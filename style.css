@@ -1,0 +1,174 @@
+body{
+	font-family: Helvetica, Arial, sans-serif;
+	color: #fff;
+}
+
+body:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.scores{
+	width: 500px;
+	background-color: #ededed;
+	margin: 15px;
+	color: #000;
+}
+
+strong{
+	font-weight: bold;
+}
+
+table{
+	border: none;
+	margin: 15px;
+	padding: 0;
+	width: 100%;
+}
+
+tr{
+	width: 100%;
+	border: none;
+	margin: 15px;
+	padding: 0;
+}
+
+td{
+	width: 33%;
+	padding: 10px;
+	margin: 0;
+	border: none;
+}
+
+.layout:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+#score{
+	width: 470px;
+	background-color: #7777ed;
+	margin: 15px;
+	padding: 15px;
+}
+
+#container{
+	width: 500px;
+	height: 500px;
+	background-color: #ededed;
+	margin: 15px;
+	position: relative;
+}
+
+.button{
+	text-align: center;
+	padding-top: 20px;
+	width: 140px;
+	height: 40px;
+	background-color: #ed3288;
+	margin: 15px;
+	cursor: pointer;
+	float: left;
+}
+
+.button:hover{
+	opacity: 0.6;
+}
+
+.button:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+#healthbar{
+	width: 330px;
+	height: 40px;
+	background-color: #ededed;
+	margin: 15px;
+	float: left;
+}
+
+#health{
+	width: 330px;
+	height: 100%;
+	background-color: #11ed55;
+	float: left;
+}
+
+#character{
+	position: absolute;
+	top: 230px;
+	left: 230px;
+	height: 40px;
+	width: 40px;
+	background-color: #11ed55;
+}
+
+#shield{
+	position: absolute;
+	top: 200px;
+	left: 230px;
+	height: 25px;
+	width: 40px;
+	background-color: #7777ed;
+}
+
+#message{
+	position: absolute;
+	text-align: center;
+	padding-top: 25px;
+	top: 200px;
+	left: 125px;
+	height: 70px;
+	width: 250px;
+	background-color: #dcdcdc;
+}
+
+#topbullet{
+	position: absolute;
+	top: 0px;
+	left: 240px;
+	height: 50px;
+	width: 10px;
+	background-color: #ed0022;
+}
+
+#bottombullet{
+	position: absolute;
+	top: 500px;
+	left: 240px;
+	height: 50px;
+	width: 10px;
+	background-color: #ed0022;
+}
+
+#rightbullet{
+	position: absolute;
+	top: 240px;
+	left: 0px;
+	height: 10px;
+	width: 50px;
+	background-color: #ed0022;
+}
+
+#leftbullet{
+	position: absolute;
+	top: 240px;
+	left: 500px;
+	height: 10px;
+	width: 50px;
+	background-color: #ed0022;
+}
+
