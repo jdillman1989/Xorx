@@ -1,10 +1,10 @@
 $(document).ready( function(){
 
-	var image = $('#image');
+	var image = $('#screen');
 	var response = $('#response');
 	var input = $('#input');
 	var inventory = $('#inventory');
-	var ability = $('#ability');
+	var trait = $('#trait');
 
 	var responsePadding = "<br><br>&gt;";
 	var genericError = "your command did not work. please try something different. type help for basic game instructions.";
