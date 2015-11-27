@@ -39,8 +39,6 @@ $(document).ready( function(){
 
 				parseCommand(playerInput);
 			};
-
-			response.scrollTop(response.scrollHeight);
 		}
 	});
 	
