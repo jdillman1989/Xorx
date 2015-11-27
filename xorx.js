@@ -20,6 +20,8 @@ $(document).ready( function(){
 	var currentPlayer = "";
 	var currentLocation = "";
 
+	response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
+
 	input.keydown( function( event ) {
 
 		playerInput = input.val();
