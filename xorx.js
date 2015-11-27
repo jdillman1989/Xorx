@@ -202,7 +202,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
-			for (var i = 0; i <= data.length-1; i++) {
+			for (var i = 0; i <= data.length; i++) {
 
 				if ( data[i].name == nameTest ) {
 					prompting = false;
@@ -213,22 +213,19 @@ $(document).ready( function(){
 				}
 
 				else{
-					
-					response.append(responsePadding + "no character data found for " + nameTest + ".");
 
-					gamePrompt = "type the name of the character you want to play.";
-					response.append(responsePadding + gamePrompt);
+					prompting = false;
 				}
 			};
 		});
 
-		// if ( prompting ) {
+		if ( prompting ) {
 
-		// 	response.append(responsePadding + "no character data found for " + nameTest + ".");
+			response.append(responsePadding + "no character data found for " + nameTest + ".");
 
-		// 	gamePrompt = "type the name of the character you want to play.";
-		// 	response.append(responsePadding + gamePrompt);
-		// };
+			gamePrompt = "type the name of the character you want to play.";
+			response.append(responsePadding + gamePrompt);
+		};
 	};
 
 	function startGame (player) {
@@ -237,7 +234,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'map.json', function(data) {
 
-			for (var i = 0; i <= data.length-1; i++) {
+			for (var i = 0; i <= data.length; i++) {
 
 				if ( data[i].roomName == location ) {
 					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
@@ -256,7 +253,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
-			for (var i = 0; i <= data.length-1; i++) {
+			for (var i = 0; i <= data.length; i++) {
 
 				if ( data[i].name == character ) {
 					currentLocation = data[1].location;
