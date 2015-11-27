@@ -27,6 +27,9 @@ $(document).ready( function(){
 		playerInput = input.val();
 
 		if ( event.which == 13 ) {
+
+			response.append(responsePadding + playerInput);
+
 			if (prompting) {
 
 				parsePrompt(playerInput);
@@ -36,6 +39,8 @@ $(document).ready( function(){
 
 				parseCommand(playerInput);
 			};
+
+			response.scrollTop(response.scrollHeight);
 		}
 	});
 	
