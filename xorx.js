@@ -209,7 +209,7 @@ $(document).ready( function(){
 					matchingCharacter = data[i].name;
 					currentPlayer = matchingCharacter;
 					startGame(currentPlayer);
-					return;
+					break;
 				}
 
 				else{
