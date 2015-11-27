@@ -229,8 +229,6 @@ $(document).ready( function(){
 
 	function startGame (player) {
 
-		var locationDescription = "";
-
 		var location = getCurrentLocation(player);
 
 		$.getJSON( 'map.json', function(data) {
@@ -238,7 +236,8 @@ $(document).ready( function(){
 			for (var i = 0; i <= data.length-1; i++) {
 
 				if ( data[i].roomName == location ) {
-					locationDescription = data[i].roomDescription;
+					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
+					image.css({ "background-image" : "url('" + data[i].roomName + ".png')" });
 					break;
 				}
 
@@ -246,10 +245,7 @@ $(document).ready( function(){
 					locationDescription = "error";
 				};
 			};
-		});
-
-		response.append(responsePadding + "You are at " + locationDescription + ".");
-		image.css({ "background-image" : "url('" + locationDescription + ".png')" });		
+		});		
 	};
 
 	function getCurrentLocation (character) {
