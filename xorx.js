@@ -208,6 +208,8 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
+				console.log(data[i].name);
+
 				if ( data[i].name == nameTest ) {
 					prompting = false;
 					matchingCharacter = data[i].name;
