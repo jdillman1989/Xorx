@@ -204,6 +204,8 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
+				console.log("continuePlay(3): " + prompting + " test");
+
 				if ( data[i].name == nameTest ) {
 					prompting = false;
 					matchingCharacter = data[i].name;
@@ -236,6 +238,8 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
+				console.log("startGame(1): " + location + " test");
+
 				if ( data[i].roomName == location ) {
 					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
 					image.css({ "background-image" : "url('" + data[i].roomName + ".png')" });
@@ -243,7 +247,7 @@ $(document).ready( function(){
 				}
 
 				else {
-					locationDescription = "error";
+					response.append(responsePadding + "error " + data[i].roomDescription + ".");
 				};
 			};
 		});		
@@ -254,6 +258,8 @@ $(document).ready( function(){
 		$.getJSON( 'characters.json', function(data) {
 
 			for (var i = 0; i <= data.length; i++) {
+
+				console.log("getCurrentLocation(4): " + character + " test");
 
 				if ( data[i].name == character ) {
 					currentLocation = data[1].location;

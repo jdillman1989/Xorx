@@ -1,52 +1,50 @@
-{
-	"location": [
-		{
-			"roomName": "ObeliskHill",
-			"roomLocation": {
-				"north": "",
-				"south": "",
-				"east": "",
-				"west": "",
-				"up": "",
-				"down": ""
-			},
-			"roomDescription": "a tall four-sided obelisk at the peak of a small hill"
+[
+	{
+		"roomName": "ObeliskHill",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
 		},
-		{
-			"roomName": "STower",
-			"roomLocation": {
-				"north": "",
-				"south": "",
-				"east": "",
-				"west": "",
-				"up": "",
-				"down": ""
-			},
-			"roomDescription": "an enormous stone tower jutting out of the ground"
+		"roomDescription": "a tall four-sided obelisk at the peak of a small hill"
+	},
+	{
+		"roomName": "STower",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
 		},
-		{
-			"roomName": "XothrogGrave",
-			"roomLocation": {
-				"north": "",
-				"south": "",
-				"east": "",
-				"west": "",
-				"up": "",
-				"down": ""
-			},
-			"roomDescription": "a large statue of a hideous horned face in the center of a strange ritual grounds"
+		"roomDescription": "an enormous stone tower jutting out of the ground"
+	},
+	{
+		"roomName": "XothrogGrave",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
 		},
-		{
-			"roomName": "ETower",
-			"roomLocation": {
-				"north": "",
-				"south": "",
-				"east": "",
-				"west": "",
-				"up": "",
-				"down": ""
-			},
-			"roomDescription": "an enormous stone tower jutting out of the ground"
+		"roomDescription": "a large statue of a hideous horned face in the center of a strange ritual grounds"
+	},
+	{
+		"roomName": "ETower",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
 		},
-	]
-}
+		"roomDescription": "an enormous stone tower jutting out of the ground"
+	}
+]
