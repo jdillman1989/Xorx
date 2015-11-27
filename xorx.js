@@ -204,7 +204,7 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
-				console.log("continuePlay(3): " + prompting + " test");
+				console.log("continuePlay(3): " + prompting + data[i].name + nameTest + " test");
 
 				if ( data[i].name == nameTest ) {
 					prompting = false;
@@ -259,10 +259,10 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
-				console.log("getCurrentLocation(4): " + character + " test");
+				console.log("getCurrentLocation(4): " + character + data[i].name + " test");
 
 				if ( data[i].name == character ) {
-					currentLocation = data[1].location;
+					currentLocation = data[i].location;
 					break;
 				};
 			};
