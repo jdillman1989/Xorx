@@ -46,5 +46,17 @@
 			"down": ""
 		},
 		"roomDescription": "an enormous stone tower jutting out of the ground"
+	},
+	{
+		"roomName": "XiasCave",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a small, well-lit cave"
 	}
 ]

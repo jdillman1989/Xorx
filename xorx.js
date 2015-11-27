@@ -248,7 +248,11 @@ $(document).ready( function(){
 				}
 
 				else {
-					response.append(responsePadding + "startGame() error.");
+
+					if (i >= data.length) {
+
+						response.append(responsePadding + "starting location error.");
+					};
 				};
 			};
 		});		
