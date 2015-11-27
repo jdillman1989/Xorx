@@ -1,5 +1,5 @@
 <?php
-$file = '/var/www/drupal/game/scores.json';
+$file = '/var/www/games/xorx/characters.json';
 
 $player = $_GET["data"];
 
