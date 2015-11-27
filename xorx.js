@@ -104,6 +104,7 @@ $(document).ready( function(){
 			case "hint":
 			case "fuck":
 				help();
+				break;
 			case "new":
 				createCharacter(1);
 				break;
@@ -204,8 +205,6 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
-				console.log("continuePlay(3): " + prompting + data[i].name + nameTest + " test");
-
 				if ( data[i].name == nameTest ) {
 					prompting = false;
 					matchingCharacter = data[i].name;
@@ -237,8 +236,6 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
-				console.log("startGame(1): " + currentLocation + " test");
-
 				if ( data[i].roomName == currentLocation ) {
 					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
 					image.css({ "background-image" : "url('images/" + data[i].roomName + ".png')" });
@@ -257,8 +254,6 @@ $(document).ready( function(){
 		$.getJSON( 'characters.json', function(data) {
 
 			for (var i = 0; i <= data.length; i++) {
-
-				console.log("getCurrentLocation(4): " + character + data[i].name + " test");
 
 				if ( data[i].name == character ) {
 					currentLocation = data[i].location;
