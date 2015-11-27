@@ -216,18 +216,17 @@ $(document).ready( function(){
 
 				else{
 
+					if (i == data.length) {
+						response.append(responsePadding + "no character data found for " + nameTest + ".");
+
+						gamePrompt = "type the name of the character you want to play.";
+						response.append(responsePadding + gamePrompt);
+					};
+
 					prompting = true;
 				}
 			};
 		});
-
-		if ( prompting ) {
-
-			response.append(responsePadding + "no character data found for " + nameTest + ".");
-
-			gamePrompt = "type the name of the character you want to play.";
-			response.append(responsePadding + gamePrompt);
-		};
 	};
 
 	function startGame (player) {
@@ -242,7 +241,7 @@ $(document).ready( function(){
 
 				if ( data[i].roomName == currentLocation ) {
 					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
-					image.css({ "background-image" : "url('" + data[i].roomName + ".png')" });
+					image.css({ "background-image" : "url('images/" + data[i].roomName + ".png')" });
 					break;
 				}
 
