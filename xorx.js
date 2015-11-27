@@ -213,18 +213,22 @@ $(document).ready( function(){
 				}
 
 				else{
-					prompting = true;
-				};
+					
+					response.append(responsePadding + "no character data found for " + nameTest + ".");
+
+					gamePrompt = "type the name of the character you want to play.";
+					response.append(responsePadding + gamePrompt);
+				}
 			};
 		});
 
-		if ( prompting ) {
+		// if ( prompting ) {
 
-			response.append(responsePadding + "no character data found for " + nameTest + ".");
+		// 	response.append(responsePadding + "no character data found for " + nameTest + ".");
 
-			gamePrompt = "type the name of the character you want to play.";
-			response.append(responsePadding + gamePrompt);
-		};
+		// 	gamePrompt = "type the name of the character you want to play.";
+		// 	response.append(responsePadding + gamePrompt);
+		// };
 	};
 
 	function startGame (player) {
