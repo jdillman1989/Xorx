@@ -216,7 +216,7 @@ $(document).ready( function(){
 
 				else{
 
-					prompting = false;
+					prompting = true;
 				}
 			};
 		});
@@ -232,22 +232,22 @@ $(document).ready( function(){
 
 	function startGame (player) {
 
-		var location = getCurrentLocation(player);
+		getCurrentLocation(player);
 
 		$.getJSON( 'map.json', function(data) {
 
 			for (var i = 0; i <= data.length; i++) {
 
-				console.log("startGame(1): " + location + " test");
+				console.log("startGame(1): " + currentLocation + " test");
 
-				if ( data[i].roomName == location ) {
+				if ( data[i].roomName == currentLocation ) {
 					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
 					image.css({ "background-image" : "url('" + data[i].roomName + ".png')" });
 					break;
 				}
 
 				else {
-					response.append(responsePadding + "error " + data[i].roomDescription + ".");
+					response.append(responsePadding + "startGame() error.");
 				};
 			};
 		});		
@@ -263,7 +263,7 @@ $(document).ready( function(){
 
 				if ( data[i].name == character ) {
 					currentLocation = data[1].location;
-					return currentLocation;
+					break;
 				};
 			};
 		});
