@@ -229,6 +229,8 @@ $(document).ready( function(){
 
 	function startGame (player) {
 
+		var locationDescription = "";
+
 		var location = getCurrentLocation(player);
 
 		$.getJSON( 'map.json', function(data) {
@@ -237,11 +239,17 @@ $(document).ready( function(){
 
 				if ( data[i].roomName == location ) {
 					locationDescription = data[i].roomDescription;
+					break;
+				}
+
+				else {
+					locationDescription = "error";
 				};
 			};
 		});
 
 		response.append(responsePadding + "You are at " + locationDescription + ".");
+		image.css({ "background-image" : "url('" + locationDescription + ".png')" });		
 	};
 
 	function getCurrentLocation (character) {
