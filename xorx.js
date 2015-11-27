@@ -206,7 +206,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
-			for (var i = 0; i <= data.length; i++) {
+			for (var i = 0; i <= data.length-1; i++) {
 
 				console.log(data[i].name);
 
@@ -220,7 +220,7 @@ $(document).ready( function(){
 
 				else{
 
-					if (i == data.length) {
+					if (i >= data.length-1) {
 						response.append(responsePadding + "no character data found for " + nameTest + ".");
 
 						gamePrompt = "type the name of the character you want to play.";
