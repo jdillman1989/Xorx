@@ -10,88 +10,47 @@ $(document).ready( function(){
 	var genericError = "your command did not work. please try something different. type help for basic game instructions.";
 	var gameInstructions = "you are a human mysteriously trapped on a strange alien world. is there a way back home? or maybe there is an amazing discovery to be made here...<br>basic instructions: type in the box to control your character. everything you type MUST be lower case. examples: 'take rock', 'look rock', 'go west'. if something seems broken or you have any suggestions, please email the developer at jesse@jdillman.com<br>keep in mind that there is more to this game than it may seem at first. :)";
 
-	var gameStarting = true;
-	var characterCreation = false;
-	var createStep = 1;
+	var prompting = false;
+	var gamePrompt = "";
+
 	var playerName = "";
 	var playerHair = "";
 	var playerSuit = "";
 
-	input.keydown(function( event ) {
+	var currentPlayer = "";
+	var currentLocation = "";
+
+	input.keydown( function( event ) {
 
 		playerInput = input.val();
 
 		if ( event.which == 13 ) {
-			if (gameStarting) {
+			if (prompting) {
 
-				if (!characterCreation) {
-
-					if (playerInput == "new" || playerInput == "continue") {
-
-						parseText(playerInput);
-					}
-
-					else{
-
-						response.append(responsePadding + "please type only new or continue to proceed.");
-					};
-
-				} 
-
-				else {
-
-					if (createStep == 1) {
-
-						playerName = playerInput;
-						createCharacter(2);
-					} 
-
-					else if (createStep == 2) {
-
-						playerHair = playerInput;
-						createCharacter(3);
-					}
-
-					else if (createStep == 3) {
-
-						playerSuit = playerInput;
-						createCharacter(4);
-					}
-
-				};
+				parsePrompt(playerInput);
 			}
 
 			else{
 
-				parseText(playerInput);
+				parseCommand(playerInput);
 			};
 		}
 	});
-
-	$.getJSON('scores.json', function(data) {
-		var output="";
-		for (var i in data) {
-			output+="<tr>";
-			output+="<td>" + data[i].player + "</td><td>" + data[i].level + "</td><td>" + data[i].score + "</td>";
-			output+="</tr>";
-		}
-		scoreTable.append(output);
-	});
 	
-	function parseText(userText){
+	function parseCommand (userCommand) {
 		
-		var userTextArray = userText.split(" ");
+		var userCommandArray = userCommand.split(" ");
 
-		for (i = 0; i <= userTextArray.length-1; i++) {
+		for (i = 0; i <= userCommandArray.length-1; i++) {
 
-			if ( userTextArray[i]=="at" || userTextArray[i]=="a" || userTextArray[i]=="the" || userTextArray[i]=="an" || userTextArray[i]=="with" || userTextArray[i]=="using" || userTextArray[i]=="to" || userTextArray[i]=="out" ) {
-				userTextArray.splice(i, 1);
+			if ( userCommandArray[i]=="at" || userCommandArray[i]=="a" || userCommandArray[i]=="the" || userCommandArray[i]=="an" || userCommandArray[i]=="with" || userCommandArray[i]=="using" || userCommandArray[i]=="to" || userCommandArray[i]=="out" ) {
+				userCommandArray.splice(i, 1);
 			};
 		};
 
-		var verb = userTextArray[0];
-		var subject1 = userTextArray[1];
-		var subject2 = userTextArray[2];
+		var verb = userCommandArray[0];
+		var subject1 = userCommandArray[1];
+		var subject2 = userCommandArray[2];
 
 		switch (verb) {
 			case "look":
@@ -144,130 +103,212 @@ $(document).ready( function(){
 			case "fuck":
 				help();
 			case "new":
-				createCharacter(createStep);
+				createCharacter(1);
 				break;
 			case "continue":
-				continuePlay();
+				gamePrompt = "type the name of the character you want to play.";
+				response.append(responsePadding + gamePrompt);
+				prompting = true;
 				break;
+			default:
+				parseError(genericError);
 		};
 	};
 
-	function createCharacter(step){
+	function parsePrompt (userAnswer) {
 
-		if (gameStarting) {
+		switch (gamePrompt) {
+			case "what is this human's name?":
+				playerName = userAnswer;
+				createCharacter(2);
+				break;
+			case "what is this human's hair color?":
+				playerHair = userAnswer;
+				createCharacter(3);
+				break;
+			case "the human is wearing a jumpsuit. what color is it?":
+				playerSuit = userAnswer;
+				createCharacter(4);
+				break;
+			case "type the name of the character you want to play.":
+				continuePlay(userAnswer);
+				break;
+			default:
+				parseError(genericError);
+		};
+	};
 
-			characterCreation = true;
+	function createCharacter (step) {
 
-			if (step == 1) {
+		prompting = true;
 
-				response.append(responsePadding + "what is this human's name?");
-				createStep = 2;
-			} 
-
-			else if (step == 2) {
-
-				response.append(responsePadding + "what is this human's hair color?");
-				createStep = 3;
-			}
-
-			else if (step == 3) {
-
-				response.append(responsePadding + "the human is wearing a jumpsuit. what color is it?");
-				createStep = 4;
-			}
-
-			else if (step == 4) {
-
+		switch (step){
+			case 1:
+				gamePrompt = "what is this human's name?";
+				response.append(responsePadding + gamePrompt);
+				break;
+			case 2:
+				gamePrompt = "what is this human's hair color?";
+				response.append(responsePadding + gamePrompt);
+				break;
+			case 3:
+				gamePrompt = "the human is wearing a jumpsuit. what color is it?";
+				response.append(responsePadding + gamePrompt);
+				break;
+			case 4:
 				response.append(responsePadding + "success. starting game now...");
-				gameStarting = false;
-				characterCreation = false;
-				saveCharacter(playerName, playerHair, playerSuit);
-			}
-
-			else {
-
-				response.append(responsePadding + "error: something went wrong during character creation. please refresh the browser window to restart.");
-
-			};
-		} 
-
-		else{
-
-			response.append(responsePadding + "if you would like to create a new character, please refresh this browser window.");
+				saveCharacter(playerName, playerSuit, playerSuit);
+				break;
+			default:
+				gamePrompt = "error: something went wrong during character creation. please refresh the browser window to restart.";
+				response.append(responsePadding + gamePrompt);
+				break;
 		};
 	};
 
 	function saveCharacter (name, hair, suit) {
 
-			var playerInfo = new Object();
+		var playerInfo = new Object();
 
-			playerInfo.player = tag;
-			playerInfo.level = currentLevel;
-			playerInfo.score = currentScore;
+		playerInfo.name = name;
+		playerInfo.location = "ObeliskHill";
+		playerInfo.inventory.slot1 = "";
+		playerInfo.inventory.slot2 = "";
+		playerInfo.inventory.slot3 = "";
+		playerInfo.description = "a human with " + hair + "hair, wearing a " + suit + "jumpsuit.";
+		playerInfo.trait = "human";
+		playerInfo.player = false;
 
-			$.ajax
-				({
-					type: "GET",
-					dataType : 'json',
-					async: false,
-					url: '/xorx/newplayer.php',
-					data: { data: JSON.stringify(playerInfo) },
-					success: function () { continuePlay(); },
-					failure: function() { response.append(responsePadding + "problem saving new character: server disrupted save process."); }
-				});
-	}
+		$.ajax({
+			type: "GET",
+			dataType : 'json',
+			async: false,
+			url: '/xorx/newplayer.php',
+			data: { data: JSON.stringify(playerInfo) },
+			success: function () {
+				prompting = true;
+				gamePrompt = "type the name of the character you want to play.";
+				response.append(responsePadding + gamePrompt);
+			},
+			failure: function() { response.append(responsePadding + "problem saving new character: server disrupted save process."); }
+		});
+	};
+
+	function continuePlay (nameTest) {
+
+		$.getJSON( 'characters.json', function(data) {
+
+			foreach (data as key => value) {
+
+				if (value['name'] == nameTest) {
+
+					prompting = false;
+					matchingCharacter = key;
+					currentPlayer = matchingCharacter
+					startGame(currentPlayer);
+					return;
+				}
+
+				else{
+
+					prompting = true;
+				};
+			};
+		});
+
+		if ( prompting ) {
+
+			response.append(responsePadding + "no character data found for " + nameTest + ".");
+
+			gamePrompt = "type the name of the character you want to play.";
+			response.append(responsePadding + gamePrompt);
+		};
+	};
+
+	function startGame (player) {
+
+		var location = getCurrentLocation(player);
+
+		$.getJSON( 'map.json', function(data) {
+
+			foreach (data as key => value) {
+
+				if (value['roomName'] == location) {
+
+					locationDescription = key;
+				};
+			};
+		});
+
+		response.append(responsePadding + "You are at " + locationDescription + ".");
+	};
+
+	function getCurrentLocation (character) {
+
+		$.getJSON( 'characters.json', function(data) {
+
+			foreach (data as key => value) {
+
+				if (value['name'] == player) {
+
+					currentLocation = key;
+					return currentLocation;
+				};
+			};
+		});
+	};
 
 	function help () {
 		response.append(responsePadding + gameInstructions);
 	};
 
-	function look (subject) {
-		if (subject != "" || subject != "around") {
-			if (subject == item) {
-				response.append(responsePadding + item.description);
-				image.css({ "background-image" : "url('" + item.name + ".jpg')" });
-			}
-			else if (subject == character) {
-				response.append(responsePadding + character.description);
-			}
-			else {
-				response.append(responsePadding + location.description);
-			}
-		}
-		else {
-			response.append(responsePadding + location.description);
-		};
-	};
-
-	function greet(subject){
-		if (subject == character.name) {
-			if (subject == "xothrog") {
-
-				response.append(responsePadding + "he doesn't seem interested in talking.");
-			} 
-
-			else if (subject == "xia") {
-
-				response.append(responsePadding + "this person can't understand you.");
-			}
-
-			else if (subject == "xaph") {
-
-				response.append(responsePadding + "the only response you get is a high-pitched squawk and a flutter of wings.");
-			}
-
-			else{
-
-				response.append(responsePadding + subject + " nods knowingly");
-			}
-		}
-
-		else{
-			response.append(responsePadding + "there was no response.");
-		};
-	};
-
 	function parseError (errorMessage) {
 		response.append(responsePadding + errorMessage);
 	};
+
+	// function look (subject) {
+	// 	if (subject != "" || subject != "around") {
+	// 		if (subject == item) {
+	// 			response.append(responsePadding + item.description);
+	// 			image.css({ "background-image" : "url('" + item.name + ".jpg')" });
+	// 		}
+	// 		else if (subject == character) {
+	// 			response.append(responsePadding + character.description);
+	// 		}
+	// 		else {
+	// 			response.append(responsePadding + location.description);
+	// 		}
+	// 	}
+	// 	else {
+	// 		response.append(responsePadding + location.description);
+	// 	};
+	// };
+
+	// function greet (subject) {
+	// 	if (subject == character.name) {
+	// 		if (subject == "xothrog") {
+
+	// 			response.append(responsePadding + "he doesn't seem interested in talking.");
+	// 		} 
+
+	// 		else if (subject == "xia") {
+
+	// 			response.append(responsePadding + "this person can't understand you.");
+	// 		}
+
+	// 		else if (subject == "xaph") {
+
+	// 			response.append(responsePadding + "the only response you get is a high-pitched squawk and a flutter of wings.");
+	// 		}
+
+	// 		else{
+
+	// 			response.append(responsePadding + subject + " nods knowingly");
+	// 		}
+	// 	}
+
+	// 	else{
+	// 		response.append(responsePadding + "there was no response.");
+	// 	};
+	// };
 });
