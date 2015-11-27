@@ -183,7 +183,7 @@ $(document).ready( function(){
 		playerInfo.name = name;
 		playerInfo.location = "ObeliskHill";
 		playerInfo.inventory = {"slot1": "","slot2": "","slot3": ""};
-		playerInfo.description = "a human with " + hair + "hair, wearing a " + suit + "jumpsuit.";
+		playerInfo.description = "a human with " + hair + " hair, wearing a " + suit + " jumpsuit.";
 		playerInfo.trait = "human";
 		playerInfo.player = false;
 
@@ -207,8 +207,6 @@ $(document).ready( function(){
 		$.getJSON( 'characters.json', function(data) {
 
 			for (var i = 0; i <= data.length-1; i++) {
-
-				console.log(data[i].name);
 
 				if ( data[i].name == nameTest ) {
 					prompting = false;
