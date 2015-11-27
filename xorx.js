@@ -43,7 +43,7 @@ $(document).ready( function(){
 		
 		var userCommandArray = userCommand.split(" ");
 
-		for (i = 0; i <= userCommandArray.length-1; i++) {
+		for (var i = 0; i <= userCommandArray.length-1; i++) {
 
 			if ( userCommandArray[i]=="at" || userCommandArray[i]=="a" || userCommandArray[i]=="the" || userCommandArray[i]=="an" || userCommandArray[i]=="with" || userCommandArray[i]=="using" || userCommandArray[i]=="to" || userCommandArray[i]=="out" ) {
 				userCommandArray.splice(i, 1);
@@ -200,19 +200,17 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
-			foreach (data as key => value) {
+			for (var i = 0; i <= data.length-1; i++) {
 
-				if (value['name'] == nameTest) {
-
+				if ( data[i].name == nameTest ) {
 					prompting = false;
 					matchingCharacter = key;
-					currentPlayer = matchingCharacter
+					currentPlayer = matchingCharacter;
 					startGame(currentPlayer);
 					return;
 				}
 
 				else{
-
 					prompting = true;
 				};
 			};
@@ -233,11 +231,10 @@ $(document).ready( function(){
 
 		$.getJSON( 'map.json', function(data) {
 
-			foreach (data as key => value) {
+			for (var i = 0; i <= data.length-1; i++) {
 
-				if (value['roomName'] == location) {
-
-					locationDescription = key;
+				if ( data[i].roomName == location ) {
+					locationDescription = data[i].roomDescription;
 				};
 			};
 		});
@@ -249,11 +246,10 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
-			foreach (data as key => value) {
+			for (var i = 0; i <= data.length-1; i++) {
 
-				if (value['name'] == player) {
-
-					currentLocation = key;
+				if ( data[i].name == character ) {
+					currentLocation = data[1].location;
 					return currentLocation;
 				};
 			};
