@@ -206,7 +206,7 @@ $(document).ready( function(){
 
 				if ( data[i].name == nameTest ) {
 					prompting = false;
-					matchingCharacter = key;
+					matchingCharacter = data[i].name;
 					currentPlayer = matchingCharacter;
 					startGame(currentPlayer);
 					return;
