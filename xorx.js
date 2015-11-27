@@ -115,6 +115,8 @@ $(document).ready( function(){
 			default:
 				parseError(genericError);
 		};
+
+		input.val("");
 	};
 
 	function parsePrompt (userAnswer) {
@@ -138,6 +140,8 @@ $(document).ready( function(){
 			default:
 				parseError(genericError);
 		};
+
+		input.val("");
 	};
 
 	function createCharacter (step) {
@@ -174,9 +178,7 @@ $(document).ready( function(){
 
 		playerInfo.name = name;
 		playerInfo.location = "ObeliskHill";
-		playerInfo.inventory.slot1 = "";
-		playerInfo.inventory.slot2 = "";
-		playerInfo.inventory.slot3 = "";
+		playerInfo.inventory = {"slot1": "","slot2": "","slot3": ""};
 		playerInfo.description = "a human with " + hair + "hair, wearing a " + suit + "jumpsuit.";
 		playerInfo.trait = "human";
 		playerInfo.player = false;
