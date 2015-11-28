@@ -189,7 +189,7 @@ $(document).ready( function(){
 				break;
 			case 4:
 				response.append(responsePadding + "success. starting game now...");
-				saveCharacter(playerName, playerSuit, playerSuit);
+				saveCharacter(playerName, playerHair, playerSuit);
 				break;
 			default:
 				gamePrompt = "error: something went wrong during character creation. please refresh the browser window to restart.";
