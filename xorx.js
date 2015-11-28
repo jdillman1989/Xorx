@@ -127,8 +127,30 @@ $(document).ready( function(){
 
 		switch (gamePrompt) {
 			case "what is this human's name?":
-				playerName = userAnswer;
-				createCharacter(2);
+
+				$.getJSON( 'characters.json', function(data) {
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if ( data[i].name == userAnswer ) {
+
+							response.append(responsePadding + "the character name " + userAnswer + " is already taken. please choose another name for this character.");
+
+							gamePrompt = "what is this human's name?";
+							response.append(responsePadding + gamePrompt);	
+							prompting = true;	
+						}
+
+						else{
+
+							if (i >= data.length-1) {
+
+								playerName = userAnswer;
+								createCharacter(2);
+							}
+						};
+					};
+				});
 				break;
 			case "what is this human's hair color?":
 				playerHair = userAnswer;
