@@ -1,5 +1,106 @@
-Obelisk
-Ray Gun
-Torn Scroll Half
-Torn Scroll Half
-Tower control console
+
+Portal Crystal
+
+[
+	{
+		"name": "ObeliskNorth",
+		"location": "ObeliskHill",
+		"movable": false,
+		"description": "a purple stone surface engraved with intricate runes and image of a winged creature."
+	},
+
+	{
+		"name": "ObeliskSouth",
+		"location": "ObeliskHill",
+		"movable": false,
+		"description": "a purple stone surface engraved with intricate runes and a strange image of three humans. the imagery seems like some kind of prophecy."
+	},
+
+	{
+		"name": "ObeliskEast",
+		"location": "ObeliskHill",
+		"movable": false,
+		"description": "a purple stone surface engraved with intricate runes and a strange image of a hideous creature. the imagery seems like some kind of apocalypse."
+	},
+
+	{
+		"name": "ObeliskWest",
+		"location": "ObeliskHill",
+		"movable": false,
+		"description": "a purple stone surface engraved with intricate runes and an image of the native xorxian people."
+	},
+
+	{
+		"name": "TowerNorth",
+		"location": "NTower",
+		"movable": false,
+		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top.",
+		"active": false
+	},
+
+	{
+		"name": "TowerSouth",
+		"location": "STower",
+		"movable": false,
+		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top.",
+		"active": false
+	},
+
+	{
+		"name": "TowerEast",
+		"location": "ETower",
+		"movable": false,
+		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top.",
+		"active": false
+	},
+
+	{
+		"name": "TowerWest",
+		"location": "WTower",
+		"movable": false,
+		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top.",
+		"active": false
+	},
+
+	{
+		"name": "MindRay",
+		"location": "ButteInterior",
+		"movable": true,
+		"description": "the mindray, a large rifle with a brightly glowing chamber."
+	},
+
+	{
+		"name": "Scroll",
+		"location": "XiasCave",
+		"movable": true,
+		"description": "a thick heavy scroll covered in strange intricate runes."
+	},
+
+	{
+		"name": "NorthConsole",
+		"location": "NUnderground",
+		"movable": false,
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand."
+	},
+
+	{
+		"name": "SouthConsole",
+		"location": "SUnderground",
+		"movable": false,
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand."
+	},
+
+	{
+		"name": "EastConsole",
+		"location": "EUnderground",
+		"movable": false,
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand."
+	},
+
+	{
+		"name": "WestConsole",
+		"location": "WUnderground",
+		"movable": false,
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand."
+	},
+]
