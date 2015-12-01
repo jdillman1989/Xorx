@@ -58,5 +58,101 @@
 			"down": ""
 		},
 		"roomDescription": "a small, well-lit cave"
-	}
+	},
+	{
+		"roomName": "Ocean",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a vast ocean of a strange boiling liquid"
+	},
+	{
+		"roomName": "Pyramid",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a huge purple stone pyramid with a mysterious crystal at the top"
+	},
+	{
+		"roomName": "Ruins",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a large circle of ancient ruined stonework. there is a bent and broken axle emerging striaght upwards from a wide pit in the center"
+	},
+	{
+		"roomName": "NTower",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "an enormous stone tower jutting out of the ground"
+	},
+	{
+		"roomName": "Butte",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a tall steep butte with a large nest at its peak"
+	},
+	{
+		"roomName": "Sky",
+		"roomLocation": {
+			"north": "Sky",
+			"south": "Sky",
+			"east": "Sky",
+			"west": "Sky",
+			"up": "Sky",
+			"down": ""
+		},
+		"roomDescription": "a very high altitude above the world"
+	},
+	{
+		"roomName": "ButteInterior",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a small dim room"
+	},
+	{
+		"roomName": "Nest",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a large nest high above the ground"
+	},
 ]
