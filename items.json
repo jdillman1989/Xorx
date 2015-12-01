@@ -1,6 +1,3 @@
-
-Portal Crystal
-
 [
 
 	{
@@ -103,12 +100,5 @@ Portal Crystal
 		"location": "EUnderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
-	},
-
-	{
-		"name": "WestConsole",
-		"location": "WUnderground",
-		"movable": false,
-		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
-	},
+	}
 ]

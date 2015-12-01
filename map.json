@@ -2,11 +2,11 @@
 	{
 		"roomName": "ObeliskHill",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "ETower",
+			"south": "Ocean",
+			"east": "Ocean",
+			"west": "STower",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "a tall four-sided obelisk at the peak of a small hill"
@@ -14,11 +14,11 @@
 	{
 		"roomName": "STower",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "Pyramid",
+			"south": "Ocean",
+			"east": "ObeliskHill",
+			"west": "XothrogGrave",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "an enormous stone tower jutting out of the ground"
@@ -26,11 +26,11 @@
 	{
 		"roomName": "XothrogGrave",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "Ruins",
+			"south": "Ocean",
+			"east": "Pyramid",
+			"west": "Ocean",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "a large statue of a hideous horned face in the center of a strange ritual grounds"
@@ -38,11 +38,11 @@
 	{
 		"roomName": "ETower",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "XiasCave",
+			"south": "ObeliskHill",
+			"east": "Ocean",
+			"west": "Pyramid",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "an enormous stone tower jutting out of the ground"
@@ -50,14 +50,14 @@
 	{
 		"roomName": "XiasCave",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
+			"north": "Ocean",
+			"south": "ETower",
+			"east": "Ocean",
+			"west": "NTower",
 			"up": "",
-			"down": ""
+			"down": "NEUnderground"
 		},
-		"roomDescription": "a small, well-lit cave"
+		"roomDescription": "a small, well-lit cave. there is a stone door in the back of the cave"
 	},
 	{
 		"roomName": "Ocean",
@@ -74,11 +74,11 @@
 	{
 		"roomName": "Pyramid",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "NTower",
+			"south": "STower",
+			"east": "ETower",
+			"west": "Ruins",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "a huge purple stone pyramid with a mysterious crystal at the top"
@@ -86,11 +86,11 @@
 	{
 		"roomName": "Ruins",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "Butte",
+			"south": "XothrogGrave",
+			"east": "Pyramid",
+			"west": "Ocean",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "a large circle of ancient ruined stonework. there is a bent and broken axle emerging striaght upwards from a wide pit in the center"
@@ -98,11 +98,11 @@
 	{
 		"roomName": "NTower",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
+			"north": "Ocean",
+			"south": "Pyramid",
+			"east": "XiasCave",
+			"west": "Butte",
+			"up": "Sky",
 			"down": ""
 		},
 		"roomDescription": "an enormous stone tower jutting out of the ground"
@@ -110,12 +110,12 @@
 	{
 		"roomName": "Butte",
 		"roomLocation": {
-			"north": "",
-			"south": "",
-			"east": "",
-			"west": "",
-			"up": "",
-			"down": ""
+			"north": "Ocean",
+			"south": "ETower",
+			"east": "NTower",
+			"west": "Ocean",
+			"up": "Nest",
+			"down": "ButteInterior"
 		},
 		"roomDescription": "a tall steep butte with a large nest at its peak"
 	},
@@ -127,9 +127,9 @@
 			"east": "Sky",
 			"west": "Sky",
 			"up": "Sky",
-			"down": ""
+			"down": "Nest"
 		},
-		"roomDescription": "a very high altitude above the world"
+		"roomDescription": "a dark expanse filled with shimmering stars"
 	},
 	{
 		"roomName": "ButteInterior",
@@ -138,21 +138,93 @@
 			"south": "",
 			"east": "",
 			"west": "",
-			"up": "",
+			"up": "Butte",
 			"down": ""
 		},
-		"roomDescription": "a small dim room"
+		"roomDescription": "a small dim room with a staircase leading up"
 	},
 	{
 		"roomName": "Nest",
 		"roomLocation": {
+			"north": "Sky",
+			"south": "Sky",
+			"east": "Sky",
+			"west": "Sky",
+			"up": "Sky",
+			"down": "Butte"
+		},
+		"roomDescription": "a large nest high above the ground"
+	},
+	{
+		"roomName": "NEUnderground",
+		"roomLocation": {
 			"north": "",
-			"south": "",
+			"south": "EUnderground",
+			"east": "",
+			"west": "NUnderground",
+			"up": "XiasCave",
+			"down": ""
+		},
+		"roomDescription": "a dim stone tunnel that runs west and south. a staircase leads upwards"
+	},
+	{
+		"roomName": "EUnderground",
+		"roomLocation": {
+			"north": "NEUnderground",
+			"south": "SEUnderground",
 			"east": "",
 			"west": "",
 			"up": "",
 			"down": ""
 		},
-		"roomDescription": "a large nest high above the ground"
+		"roomDescription": "a dim stone tunnel that runs north and south"
 	},
+	{
+		"roomName": "SEUnderground",
+		"roomLocation": {
+			"north": "EUnderground",
+			"south": "",
+			"east": "",
+			"west": "SUnderground",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a dim stone tunnel that runs north and west"
+	},
+	{
+		"roomName": "SUnderground",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "SEUnderground",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a dead-end dim stone tunnel that continues east"
+	},
+	{
+		"roomName": "NUnderground",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "NEUnderground",
+			"west": "NWUnderground",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a dim stone tunnel that runs east and west"
+	},
+	{
+		"roomName": "NWUnderground",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "NUnderground",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a dim stone tunnel that runs south and east. the southern end is completely caved-in"
+	}
 ]
