@@ -226,5 +226,17 @@
 			"down": ""
 		},
 		"roomDescription": "a dim stone tunnel that runs south and east. the southern end is completely caved-in"
+	},
+	{
+		"roomName": "Sealed",
+		"roomLocation": {
+			"north": "",
+			"south": "",
+			"east": "",
+			"west": "",
+			"up": "",
+			"down": ""
+		},
+		"roomDescription": "a black void with no escape"
 	}
 ]

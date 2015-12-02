@@ -3,6 +3,7 @@ $(document).ready( function(){
 	var image = $('#screen');
 	var response = $('#response');
 	var input = $('#input');
+	var playerNameDisplay = $('#playername');
 	var inventory = $('#inventory');
 	var trait = $('#trait');
 
@@ -19,6 +20,9 @@ $(document).ready( function(){
 
 	var currentPlayer = "";
 	var currentLocation = "";
+	var currentInventory = [];
+	var currentDescription = "";
+	var currentTrait = "";
 
 	response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
 
@@ -255,7 +259,11 @@ $(document).ready( function(){
 
 	function startGame (player) {
 
-		getCurrentLocation(player);
+		getCurrentPlayerInfo(player);
+
+		playerNameDisplay.html(currentPlayer);
+		inventory.append("<br>" + currentInventory[0] + "<br>" + currentInventory[1] + "<br>" + currentInventory[2]);
+		trait.append(currentTrait);
 
 		$.getJSON( 'map.json', function(data) {
 
@@ -278,14 +286,24 @@ $(document).ready( function(){
 		});		
 	};
 
-	function getCurrentLocation (character) {
+	function getCurrentPlayerInfo (character) {
 
 		$.getJSON( 'characters.json', function(data) {
 
 			for (var i = 0; i <= data.length; i++) {
 
 				if ( data[i].name == character ) {
+
+					currentPlayer = data[i].name;
 					currentLocation = data[i].location;
+
+					currentInventory.push(data[i].inventory.slot1);
+    				currentInventory.push(data[i].inventory.slot2);
+    				currentInventory.push(data[i].inventory.slot3);
+
+    				currentDescription = data[i].description;
+    				currentTrait = data[i].trait;
+
 					break;
 				};
 			};
