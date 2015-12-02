@@ -298,11 +298,11 @@ $(document).ready( function(){
 					currentLocation = data[i].location;
 
 					currentInventory.push(data[i].inventory.slot1);
-    				currentInventory.push(data[i].inventory.slot2);
-    				currentInventory.push(data[i].inventory.slot3);
+					currentInventory.push(data[i].inventory.slot2);
+					currentInventory.push(data[i].inventory.slot3);
 
-    				currentDescription = data[i].description;
-    				currentTrait = data[i].trait;
+					currentDescription = data[i].description;
+					currentTrait = data[i].trait;
 
 					break;
 				};
@@ -318,49 +318,129 @@ $(document).ready( function(){
 		response.append(responsePadding + errorMessage);
 	};
 
-	// function look (subject) {
-	// 	if (subject != "" || subject != "around") {
-	// 		if (subject == item) {
-	// 			response.append(responsePadding + item.description);
-	// 			image.css({ "background-image" : "url('" + item.name + ".jpg')" });
-	// 		}
-	// 		else if (subject == character) {
-	// 			response.append(responsePadding + character.description);
-	// 		}
-	// 		else {
-	// 			response.append(responsePadding + location.description);
-	// 		}
-	// 	}
-	// 	else {
-	// 		response.append(responsePadding + location.description);
-	// 	};
-	// };
+	function parseSubject (subject) {
 
-	// function greet (subject) {
-	// 	if (subject == character.name) {
-	// 		if (subject == "xothrog") {
+		var subjectParse = "";
 
-	// 			response.append(responsePadding + "he doesn't seem interested in talking.");
-	// 		} 
+		switch (subject) {
 
-	// 		else if (subject == "xia") {
+			// characters
+			case "xorxian":
+			case "alien":
+				subjectParse = "xia";
+				break;
+			case "flying":
+			case "creature":
+			case "bird":
+				subjectParse = "xaph";
+				break;
+			case "demon":
+			case "god":
+				subjectParse = "xothrog";
+				break;
+			case "human":
+			case "person":
+				subjectParse = human;
+				break;
+			case "self":
+			case currentPlayer:
+				subjectParse = currentPlayer;
+				break;
 
-	// 			response.append(responsePadding + "this person can't understand you.");
-	// 		}
+			// items
+			case "glint":
+				subjectParse = "tower";
+				break;
+			case "portal":
+			case "crystal":
+				subjectParse = "portal";
+				break;
+			case "gun":
+			case "rifle":
+			case "ray":
+			case "mind":
+				subjectParse = "mindray";
+				break;
+			case "console":
+			case "monitor":
+			case "control":
+			case "controls":
+			case "controller":
+			case "panel":
+				subjectParse = "console";
+				break;
+			default:
+				subjectParse = subject;
+		};
 
-	// 		else if (subject == "xaph") {
+		return subjectParse;
+	}
 
-	// 			response.append(responsePadding + "the only response you get is a high-pitched squawk and a flutter of wings.");
-	// 		}
+	function look (subject) {
 
-	// 		else{
+		var intendedSubject = parseSubject(subject);
 
-	// 			response.append(responsePadding + subject + " nods knowingly");
-	// 		}
-	// 	}
+		if (intendedSubject != "" || intendedSubject != "around") {
 
-	// 	else{
-	// 		response.append(responsePadding + "there was no response.");
-	// 	};
-	// };
+			$.getJSON( 'characters.json', function(data) {
+
+				for (var i = 0; i <= data.length; i++) {
+
+					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
+
+						response.append(responsePadding + "You see " + data[i].description + ".");
+						return;
+					};
+				};
+			});
+
+			$.getJSON( 'items.json', function(data) {
+
+				for (var i = 0; i <= data.length; i++) {
+
+					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
+
+						response.append(responsePadding + "You see " + data[i].description + ".");
+						return;
+					}
+
+					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk" ||  ) {
+
+						switch (intendedSubject) {
+							case "tower":
+								response.append(responsePadding + "You see " + data[5].description + ".");
+								break;
+							case "console":
+								response.append(responsePadding + "You see " + data[12].description + ".");
+								break;
+							case "obelisk":
+								prompting = true;
+								gamePrompt = "what side of the obelisk do you want to look at?";
+								response.append(responsePadding + gamePrompt);
+								break;
+						};
+
+						return;
+					};
+				};
+			});
+		}
+
+		else {
+
+			$.getJSON( 'map.json', function(data) {
+
+				for (var i = 0; i <= data.length; i++) {
+
+					if ( data[i].name == currentLocation) {
+
+						response.append(responsePadding + "You see " + data[i].roomdescription + ".");
+						return;
+					};
+				};
+			});
+		};
+	};
+
+
 });

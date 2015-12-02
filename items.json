@@ -1,103 +1,104 @@
 [
 
 	{
-		"name": "Portal",
-		"location": "Pyramid",
+		"name": "portal",
+		"location": "pyramid",
 		"movable": false,
 		"description": "an enormous dark translucent crystalline structure"
+		"active": false
 	},
 
 	{
-		"name": "ObeliskNorth",
-		"location": "ObeliskHill",
+		"name": "obelisknorth",
+		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and image of a winged creature"
 	},
 
 	{
-		"name": "ObeliskSouth",
-		"location": "ObeliskHill",
+		"name": "obelisksouth",
+		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and a strange image of three humans. the imagery seems like some kind of prophecy"
 	},
 
 	{
-		"name": "ObeliskEast",
-		"location": "ObeliskHill",
+		"name": "obeliskeast",
+		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and a strange image of a hideous creature. the imagery seems like some kind of apocalypse"
 	},
 
 	{
-		"name": "ObeliskWest",
-		"location": "ObeliskHill",
+		"name": "obeliskwest",
+		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and an image of the native xorxian people"
 	},
 
 	{
-		"name": "TowerNorth",
-		"location": "NTower",
+		"name": "towernorth",
+		"location": "ntower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
 	},
 
 	{
-		"name": "TowerSouth",
-		"location": "STower",
+		"name": "towersouth",
+		"location": "stower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
 	},
 
 	{
-		"name": "TowerEast",
-		"location": "ETower",
+		"name": "towereast",
+		"location": "etower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
 	},
 
 	{
-		"name": "TowerWest",
-		"location": "WTower",
+		"name": "towerwest",
+		"location": "wtower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
 	},
 
 	{
-		"name": "MindRay",
-		"location": "ButteInterior",
+		"name": "mindray",
+		"location": "butteinterior",
 		"movable": true,
 		"description": "the mindray, a large rifle with a brightly glowing chamber"
 	},
 
 	{
-		"name": "Scroll",
-		"location": "XiasCave",
+		"name": "scroll",
+		"location": "xiascave",
 		"movable": true,
 		"description": "a thick heavy scroll covered in strange intricate runes"
 	},
 
 	{
-		"name": "NorthConsole",
-		"location": "NUnderground",
+		"name": "northconsole",
+		"location": "nunderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	},
 
 	{
-		"name": "SouthConsole",
-		"location": "SUnderground",
+		"name": "southconsole",
+		"location": "sunderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	},
 
 	{
-		"name": "EastConsole",
-		"location": "EUnderground",
+		"name": "eastconsole",
+		"location": "eunderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	}
