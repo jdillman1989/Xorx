@@ -167,6 +167,35 @@ $(document).ready( function(){
 			case "type the name of the character you want to play.":
 				continuePlay(userAnswer);
 				break;
+			case "what side of the obelisk do you want to look at?":
+
+				$.getJSON( 'items.json', function(data) {
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if ( data[i].name == "obelisk" + userAnswer ) {
+
+							response.append(responsePadding + "you see " + data[i].description + ".");
+							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+							prompting = false;
+							break;
+						}
+
+						else{
+
+							if (i >= data.length-1) {
+
+								response.append(responsePadding + "please indicate the side of the obelisk you want to see.");
+
+								gamePrompt = "what side of the obelisk do you want to look at?";
+								response.append(responsePadding + gamePrompt);	
+								prompting = true;
+							}
+						};
+					};
+				});
+
+				break;
 			default:
 				parseError(genericError);
 		};
@@ -270,7 +299,7 @@ $(document).ready( function(){
 			for (var i = 0; i <= data.length; i++) {
 
 				if ( data[i].roomName == currentLocation ) {
-					response.append(responsePadding + "You are at " + data[i].roomDescription + ".");
+					response.append(responsePadding + "you are at " + data[i].roomDescription + ".");
 					image.css({ "background-image" : "url('images/" + data[i].roomName + ".png')" });
 					break;
 				}
@@ -340,7 +369,7 @@ $(document).ready( function(){
 				break;
 			case "human":
 			case "person":
-				subjectParse = human;
+				subjectParse = "human"; // FIX THIS LATER
 				break;
 			case "self":
 			case currentPlayer:
@@ -401,6 +430,7 @@ $(document).ready( function(){
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
+						image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 						return;
 					}
 
@@ -409,9 +439,11 @@ $(document).ready( function(){
 						switch (intendedSubject) {
 							case "tower":
 								response.append(responsePadding + "You see " + data[5].description + ".");
+								image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 								break;
 							case "console":
 								response.append(responsePadding + "You see " + data[12].description + ".");
+								image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 								break;
 							case "obelisk":
 								prompting = true;
@@ -428,6 +460,10 @@ $(document).ready( function(){
 
 		else {
 
+			var locationItemArray = [];
+
+			var locationCharacterArray = [];
+
 			$.getJSON( 'map.json', function(data) {
 
 				for (var i = 0; i <= data.length; i++) {
@@ -435,12 +471,52 @@ $(document).ready( function(){
 					if ( data[i].name == currentLocation) {
 
 						response.append(responsePadding + "You see " + data[i].roomdescription + ".");
-						return;
 					};
 				};
 			});
+
+			$.getJSON( 'items.json', function(data) {
+
+				for (var i = 0; i <= data.length; i++) {
+
+					if ( data[i].location == currentLocation) {
+
+						locationItemArray.push(data[i].description);
+					};
+				};
+			})
+				.done( function() {
+
+					if ( locationItemArray.length != 0 ) {
+
+						for (var i = 0; i <= locationItemArray.length; i++) {
+
+							response.append(responsePadding + "There is " + locationItemArray[i] + ".");
+						};
+					};
+				});
+
+			$.getJSON( 'characters.json', function(data) {
+
+				for (var i = 0; i <= data.length; i++) {
+
+					if ( data[i].location == currentLocation) {
+
+						locationCharacterArray.push(data[i].description);
+					};
+				};
+			})
+				.done( function() {
+
+					if ( locationCharacterArray.length != 0 ) {
+
+						for (var i = 0; i <= locationCharacterArray.length; i++) {
+
+							response.append(responsePadding + "There is " + locationItemArray[i] + ".");
+						};
+					};
+				});
 		};
 	};
-
 
 });
