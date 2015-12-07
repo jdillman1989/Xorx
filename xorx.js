@@ -298,9 +298,9 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length; i++) {
 
-				if ( data[i].roomName == currentLocation ) {
-					response.append(responsePadding + "you are at " + data[i].roomDescription + ".");
-					image.css({ "background-image" : "url('images/" + data[i].roomName + ".png')" });
+				if ( data[i].roomname == currentLocation ) {
+					response.append(responsePadding + "you are at " + data[i].roomdescription + ".");
+					image.css({ "background-image" : "url('images/" + data[i].roomname + ".png')" });
 					break;
 				}
 
