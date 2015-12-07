@@ -434,7 +434,7 @@ $(document).ready( function(){
 						return;
 					}
 
-					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk" ||  ) {
+					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
 
 						switch (intendedSubject) {
 							case "tower":
