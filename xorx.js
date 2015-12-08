@@ -454,8 +454,6 @@ $(document).ready( function(){
 						if (i >= data.length-1) {
 
 							console.log("Finished character test.");
-
-							lookItemTest();
 						};
 					};
 				};
