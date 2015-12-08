@@ -326,9 +326,17 @@ $(document).ready( function(){
 					currentPlayer = data[i].name;
 					currentLocation = data[i].location;
 
-					currentInventory.push(data[i].inventory.slot1);
-					currentInventory.push(data[i].inventory.slot2);
-					currentInventory.push(data[i].inventory.slot3);
+					if (data[i].inventory.slot1 != "") {
+						currentInventory.push(data[i].inventory.slot1);
+					};
+
+					if (data[i].inventory.slot2 != "") {
+						currentInventory.push(data[i].inventory.slot2);
+					};
+
+					if (data[i].inventory.slot3 != "") {
+						currentInventory.push(data[i].inventory.slot3);
+					};
 
 					currentDescription = data[i].description;
 					currentTrait = data[i].trait;

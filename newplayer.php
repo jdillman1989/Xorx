@@ -1,4 +1,5 @@
 <?php
+
 $file = '/var/www/games/xorx/characters.json';
 
 $player = $_GET["data"];
