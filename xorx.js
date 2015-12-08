@@ -498,9 +498,7 @@ $(document).ready( function(){
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					var obeliskTest = data[i].name.substring(0, 6);
-
-					console.log(obeliskTest);
+					var obeliskTest = data[i].name.substring(0, 7);
 
 					if ( data[i].location == currentLocation && obeliskTest != "obelisk") {
 
