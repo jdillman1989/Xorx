@@ -430,9 +430,7 @@ $(document).ready( function(){
 
 		var intendedSubject = parseSubject(subject);
 
-		if (intendedSubject != undefined || intendedSubject != "around") {
-
-			console.log("Starting intended subject test with " + intendedSubject);
+		function lookCharacterTest () {
 
 			$.getJSON( 'characters.json', function(data) {
 
@@ -448,7 +446,10 @@ $(document).ready( function(){
 					};
 				};
 			});
+		};
 
+		function lookItemTest () {
+			
 			$.getJSON( 'items.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
@@ -481,6 +482,15 @@ $(document).ready( function(){
 					};
 				};
 			});
+		};
+
+		if (intendedSubject != "undefined" || intendedSubject != "around") {
+
+			console.log("Starting intended subject test with " + intendedSubject);
+
+			lookCharacterTest();
+			lookItemTest();
+
 		}
 
 		else {
