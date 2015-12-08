@@ -430,7 +430,7 @@ $(document).ready( function(){
 
 		var intendedSubject = parseSubject(subject);
 
-		function lookCharacterTest () {
+		function lookSubjectTest () {
 
 			var subjectTestSuccess = false;
 
@@ -460,11 +460,6 @@ $(document).ready( function(){
 					};
 				};
 			});
-		};
-
-		function lookItemTest () {
-
-			console.log("Starting item test.");
 
 			$.getJSON( 'items.json', function(data) {
 
@@ -508,7 +503,7 @@ $(document).ready( function(){
 
 			console.log("Starting intended subject test with " + intendedSubject);
 
-			lookCharacterTest();
+			lookSubjectTest();
 		}
 
 		else {
