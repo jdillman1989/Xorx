@@ -432,6 +432,8 @@ $(document).ready( function(){
 
 		function lookSubjectTest () {
 
+			var subjectTestSuccess = false;
+
 			$.getJSON( 'characters.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
@@ -443,12 +445,12 @@ $(document).ready( function(){
 						console.log("Successful character test with " + intendedSubject + " and " + data[i].name);
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
+
+						subjectTestSuccess = true;
 					};
 				};
-			})
-				.done( function () {
 
-					console.log("Finishing character test.");
+				if (!subjectTestSuccess) {
 
 					$.getJSON( 'items.json', function(data) {
 
@@ -484,10 +486,11 @@ $(document).ready( function(){
 							};
 						};
 					});
-				});
+				};
+			});
 		};
 
-		if (intendedSubject != "undefined" || intendedSubject != "around") {
+		if (intendedSubject || intendedSubject != "around") {
 
 			console.log("Starting intended subject test with " + intendedSubject);
 
