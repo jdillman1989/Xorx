@@ -66,9 +66,6 @@ $(document).ready( function(){
 		switch (verb) {
 			case "look":
 			case "inspect":
-
-				console.log("Executing look with " + verb + " and " + subject1);
-
 				look(subject1);
 				break;
 			case "say":
@@ -426,46 +423,24 @@ $(document).ready( function(){
 
 	function look (subject) {
 
-		console.log("Starting look with " + subject);
-
 		var intendedSubject = parseSubject(subject);
 
 		function lookSubjectTest () {
-
-			var subjectTestSuccess = false;
 
 			$.getJSON( 'characters.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					console.log("Running character test with " + intendedSubject + " and " + data[i].name);
-
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
-						console.log("Successful character test with " + intendedSubject + " and " + data[i].name);
-
 						response.append(responsePadding + "You see " + data[i].description + ".");
-
-						subjectTestSuccess = true;
-					}
-
-					else{
-
-						if (i >= data.length-1) {
-
-							console.log("Finished character test.");
-						};
 					};
 				};
 			});
 
 			$.getJSON( 'items.json', function(data) {
 
-				console.log("Running item test with " + intendedSubject);
-
 				for (var i = 0; i <= data.length-1; i++) {
-
-					console.log("Running item test with " + intendedSubject + " and " + data[i].name);
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
@@ -499,14 +474,10 @@ $(document).ready( function(){
 
 		if (intendedSubject !== undefined) {
 
-			console.log("Starting intended subject test with " + intendedSubject);
-
 			lookSubjectTest();
 		}
 
 		else {
-
-			console.log("Intended subject not evaluated, starting location arrays.");
 
 			var locationItemArray = [];
 
