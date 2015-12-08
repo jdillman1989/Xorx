@@ -4,7 +4,7 @@
 		"name": "portal",
 		"location": "pyramid",
 		"movable": false,
-		"description": "an enormous dark translucent crystalline structure"
+		"description": "an enormous dark translucent crystalline structure",
 		"active": false
 	},
 

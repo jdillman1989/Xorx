@@ -455,9 +455,7 @@ $(document).ready( function(){
 
 							console.log("Finished character test.");
 
-							setTimeout(function() {
-								lookItemTest();
-							}, 1000);
+							lookItemTest();
 						};
 					};
 				};
