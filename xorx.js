@@ -300,7 +300,7 @@ $(document).ready( function(){
 
 				console.log("[" + i + "]" + ": " + data[i].roomname);
 
-				if ( data[i].roomname == currentLocation ) {
+				if (data[i].roomname == currentLocation) {
 					response.append(responsePadding + "you are at " + data[i].roomdescription + ".");
 					image.css({ "background-image" : "url('images/" + data[i].roomname + ".png')" });
 					break;
