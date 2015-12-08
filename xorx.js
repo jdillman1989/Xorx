@@ -498,7 +498,9 @@ $(document).ready( function(){
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					if ( data[i].location == currentLocation) {
+					var obeliskTest = data[i].name.substring(0, 6);
+
+					if ( data[i].location == currentLocation && obeliskTest != "obelisk") {
 
 						locationItemArray.push(data[i].description);
 					};
@@ -519,7 +521,7 @@ $(document).ready( function(){
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					if ( data[i].location == currentLocation) {
+					if ( data[i].location == currentLocation && data[i].name != currentPlayer) {
 
 						locationCharacterArray.push(data[i].description);
 					};
