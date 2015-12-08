@@ -497,6 +497,8 @@ $(document).ready( function(){
 								response.append(responsePadding + gamePrompt);
 								break;
 						};
+
+						break;
 					};
 				};
 			});
