@@ -296,7 +296,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'map.json', function(data) {
 
-			for (var i = 0; i <= data.length; i++) {
+			for (var i = 0; i <= data.length-1; i++) {
 
 				console.log("[" + i + "]" + ": " + data[i].roomname);
 
