@@ -453,8 +453,11 @@ $(document).ready( function(){
 
 						if (i >= data.length-1) {
 
-							console.log("Finished character test, starting item test.");
-							lookItemTest();
+							console.log("Finished character test.");
+
+							setTimeout(function() {
+								lookItemTest();
+							}, 1000);
 						};
 					};
 				};
@@ -462,6 +465,8 @@ $(document).ready( function(){
 		};
 
 		function lookItemTest () {
+
+			console.log("Starting item test.");
 
 			$.getJSON( 'items.json', function(data) {
 
