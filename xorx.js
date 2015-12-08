@@ -286,7 +286,7 @@ $(document).ready( function(){
 					};
 
 					prompting = true;
-				}
+				};
 			};
 		});
 	};
@@ -430,7 +430,9 @@ $(document).ready( function(){
 
 		var intendedSubject = parseSubject(subject);
 
-		function lookSubjectTest () {
+		function lookCharacterTest () {
+
+			var subjectTestSuccess = false;
 
 			$.getJSON( 'characters.json', function(data) {
 
@@ -443,51 +445,65 @@ $(document).ready( function(){
 						console.log("Successful character test with " + intendedSubject + " and " + data[i].name);
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
-					};
-				};
 
-				$.getJSON( 'items.json', function(data2) {
+						subjectTestSuccess = true;
+					}
 
-					console.log("Running item test with " + intendedSubject);
+					else{
 
-					for (var i = 0; i <= data2.length-1; i++) {
+						if (i >= data.length-1) {
 
-						console.log("Running item test with " + intendedSubject + " and " + data2[i].name);
-
-						if ( data2[i].name == intendedSubject && data[i].location == currentLocation ) {
-
-							response.append(responsePadding + "You see " + data2[i].description + ".");
-							image.css({ "background-image" : "url('images/" + data2[i].name + ".png')" });
-						}
-
-						else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
-
-							switch (intendedSubject) {
-								case "tower":
-									response.append(responsePadding + "You see " + data2[5].description + ".");
-									image.css({ "background-image" : "url('images/" + data2[i].name + ".png')" });
-									break;
-								case "console":
-									response.append(responsePadding + "You see " + data2[12].description + ".");
-									image.css({ "background-image" : "url('images/" + data2[i].name + ".png')" });
-									break;
-								case "obelisk":
-									prompting = true;
-									gamePrompt = "what side of the obelisk do you want to look at?";
-									response.append(responsePadding + gamePrompt);
-									break;
-							};
+							console.log("Finished character test, starting item test.");
+							lookItemTest();
 						};
 					};
-				});
+				};
 			});
 		};
 
-		if (intendedSubject || intendedSubject != "around") {
+		function lookItemTest () {
+
+			$.getJSON( 'items.json', function(data) {
+
+				console.log("Running item test with " + intendedSubject);
+
+				for (var i = 0; i <= data.length-1; i++) {
+
+					console.log("Running item test with " + intendedSubject + " and " + data[i].name);
+
+					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
+
+						response.append(responsePadding + "You see " + data[i].description + ".");
+						image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+					}
+
+					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
+
+						switch (intendedSubject) {
+							case "tower":
+								response.append(responsePadding + "You see " + data[5].description + ".");
+								image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+								break;
+							case "console":
+								response.append(responsePadding + "You see " + data[12].description + ".");
+								image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+								break;
+							case "obelisk":
+								prompting = true;
+								gamePrompt = "what side of the obelisk do you want to look at?";
+								response.append(responsePadding + gamePrompt);
+								break;
+						};
+					};
+				};
+			});
+		};
+
+		if (intendedSubject !== undefined) {
 
 			console.log("Starting intended subject test with " + intendedSubject);
 
-			lookSubjectTest();
+			lookCharacterTest();
 		}
 
 		else {
