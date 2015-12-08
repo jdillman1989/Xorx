@@ -516,7 +516,7 @@ $(document).ready( function(){
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					if ( data[i].name == currentLocation) {
+					if ( data[i].roomname == currentLocation) {
 
 						response.append(responsePadding + "You see " + data[i].roomdescription + ".");
 					};
@@ -537,7 +537,7 @@ $(document).ready( function(){
 
 					if ( locationItemArray.length != 0 ) {
 
-						for (var i = 0; i <= locationItemArray.length; i++) {
+						for (var i = 0; i <= locationItemArray.length-1; i++) {
 
 							response.append(responsePadding + "There is " + locationItemArray[i] + ".");
 						};
@@ -558,9 +558,9 @@ $(document).ready( function(){
 
 					if ( locationCharacterArray.length != 0 ) {
 
-						for (var i = 0; i <= locationCharacterArray.length; i++) {
+						for (var i = 0; i <= locationCharacterArray.length-1; i++) {
 
-							response.append(responsePadding + "There is " + locationItemArray[i] + ".");
+							response.append(responsePadding + "There is " + locationCharacterArray[i] + ".");
 						};
 					};
 				});
