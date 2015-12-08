@@ -450,6 +450,8 @@ $(document).ready( function(){
 
 					$.getJSON( 'items.json', function(data) {
 
+						console.log("Running item test with " + intendedSubject);
+
 						for (var i = 0; i <= data.length-1; i++) {
 
 							console.log("Running item test with " + intendedSubject + " and " + data[i].name);
