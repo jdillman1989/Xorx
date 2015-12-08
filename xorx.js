@@ -61,9 +61,14 @@ $(document).ready( function(){
 		var subject1 = userCommandArray[1];
 		var subject2 = userCommandArray[2];
 
+		console.log("Parsing command: " + userCommandArray[0] + ", " + userCommandArray[1] + ", " + userCommandArray[2]);
+
 		switch (verb) {
 			case "look":
 			case "inspect":
+
+				console.log("Executing look with " + verb + " and " + subject1);
+
 				look(subject1);
 				break;
 			case "say":
@@ -421,13 +426,19 @@ $(document).ready( function(){
 
 	function look (subject) {
 
+		console.log("Starting look with " + subject);
+
 		var intendedSubject = parseSubject(subject);
 
 		if (intendedSubject != "" || intendedSubject != "around") {
 
+			console.log("Starting intended subject test with " + intendedSubject);
+
 			$.getJSON( 'characters.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
+
+					console.log("Running character test with " + intendedSubject + " and " + data[i].name);
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
@@ -440,6 +451,8 @@ $(document).ready( function(){
 			$.getJSON( 'items.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
+
+					console.log("Running item test with " + intendedSubject + " and " + data[i].name);
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
@@ -473,6 +486,8 @@ $(document).ready( function(){
 		}
 
 		else {
+
+			console.log("Intended subject not evaluated, starting location arrays.");
 
 			var locationItemArray = [];
 
