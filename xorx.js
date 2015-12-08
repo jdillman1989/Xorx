@@ -303,12 +303,12 @@ $(document).ready( function(){
 				if (data[i].roomname == currentLocation) {
 					response.append(responsePadding + "you are at " + data[i].roomdescription + ".");
 					image.css({ "background-image" : "url('images/" + data[i].roomname + ".png')" });
-					break;
+					return;
 				}
 
 				else {
 
-					if (i >= data.length) {
+					if (i >= data.length-1) {
 
 						response.append(responsePadding + "starting location error.");
 					};
