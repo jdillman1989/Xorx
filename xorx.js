@@ -448,6 +448,8 @@ $(document).ready( function(){
 			})
 				.done( function () {
 
+					console.log("Finishing character test.");
+
 					$.getJSON( 'items.json', function(data) {
 
 						console.log("Running item test with " + intendedSubject);
