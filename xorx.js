@@ -430,7 +430,7 @@ $(document).ready( function(){
 
 		var intendedSubject = parseSubject(subject);
 
-		if (intendedSubject != "" || intendedSubject != "around") {
+		if (intendedSubject != undefined || intendedSubject != "around") {
 
 			console.log("Starting intended subject test with " + intendedSubject);
 
@@ -442,8 +442,9 @@ $(document).ready( function(){
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
+						console.log("Successful character test with " + intendedSubject + " and " + data[i].name);
+
 						response.append(responsePadding + "You see " + data[i].description + ".");
-						break;
 					};
 				};
 			});
@@ -458,7 +459,6 @@ $(document).ready( function(){
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
 						image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
-						break;
 					}
 
 					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
@@ -478,8 +478,6 @@ $(document).ready( function(){
 								response.append(responsePadding + gamePrompt);
 								break;
 						};
-
-						break;
 					};
 				};
 			});
