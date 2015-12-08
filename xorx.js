@@ -479,6 +479,16 @@ $(document).ready( function(){
 
 		else {
 
+			var obeliskTest = "";
+
+			var here = "";
+			var north = "";
+			var south = "";
+			var east = "";
+			var west = "";
+			var above = "";
+			var below = "";
+
 			var locationItemArray = [];
 
 			var locationCharacterArray = [];
@@ -489,16 +499,45 @@ $(document).ready( function(){
 
 					if ( data[i].roomname == currentLocation) {
 
-						response.append(responsePadding + "here you see " + data[i].roomdescription + ".");
+						here = data[i].roomdescription;
+
+						for (var n = 0; n <= data.length-1; n++) {
+
+							if ( data[i].roomlocation.north == data[n].roomname) {
+								north = data[n].roomdescription;
+							};
+
+							if ( data[i].roomlocation.south == data[n].roomname) {
+								south = data[n].roomdescription;
+							};
+
+							if ( data[i].roomlocation.east == data[n].roomname) {
+								east = data[n].roomdescription;
+							};
+
+							if ( data[i].roomlocation.west == data[n].roomname) {
+								west = data[n].roomdescription;
+							};
+
+							if ( data[i].roomlocation.up == data[n].roomname) {
+								above = data[n].roomdescription;
+							};
+
+							if ( data[i].roomlocation.down == data[n].roomname) {
+								below = data[n].roomdescription;
+							};
+						};
 					};
 				};
+
+				response.append(responsePadding + "here you see " + here + ". to the north there is " + north + ". to the south there is " + south + ". to the east there is " + east + ". to the west there is " + west + ". upwards there is " + above + ". downwards there is " + below + ".");
 			});
 
 			$.getJSON( 'items.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					var obeliskTest = data[i].name.substring(0, 7);
+					obeliskTest = data[i].name.substring(0, 7);
 
 					if ( data[i].location == currentLocation && obeliskTest != "obelisk") {
 
