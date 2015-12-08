@@ -489,7 +489,7 @@ $(document).ready( function(){
 
 					if ( data[i].roomname == currentLocation) {
 
-						response.append(responsePadding + "You see " + data[i].roomdescription + ".");
+						response.append(responsePadding + "here you see " + data[i].roomdescription + ".");
 					};
 				};
 			});
@@ -499,6 +499,8 @@ $(document).ready( function(){
 				for (var i = 0; i <= data.length-1; i++) {
 
 					var obeliskTest = data[i].name.substring(0, 6);
+
+					console.log(obeliskTest);
 
 					if ( data[i].location == currentLocation && obeliskTest != "obelisk") {
 
@@ -512,7 +514,7 @@ $(document).ready( function(){
 
 						for (var i = 0; i <= locationItemArray.length-1; i++) {
 
-							response.append(responsePadding + "There is " + locationItemArray[i] + ".");
+							response.append(responsePadding + "there is " + locationItemArray[i] + ".");
 						};
 					};
 				});
@@ -533,7 +535,7 @@ $(document).ready( function(){
 
 						for (var i = 0; i <= locationCharacterArray.length-1; i++) {
 
-							response.append(responsePadding + "There is " + locationCharacterArray[i] + ".");
+							response.append(responsePadding + "there is " + locationCharacterArray[i] + ".");
 						};
 					};
 				});
