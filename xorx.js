@@ -292,13 +292,13 @@ $(document).ready( function(){
 
 		playerNameDisplay.html(currentPlayer);
 		inventory.append("<br>" + currentInventory[0] + "<br>" + currentInventory[1] + "<br>" + currentInventory[2]);
-		trait.append(currentTrait);
+		trait.append("<br>" + currentTrait);
+
+		console.log(currentTrait);
 
 		$.getJSON( 'map.json', function(data) {
 
 			for (var i = 0; i <= data.length-1; i++) {
-
-				console.log("[" + i + "]" + ": " + data[i].roomname);
 
 				if (data[i].roomname == currentLocation) {
 					response.append(responsePadding + "you are at " + data[i].roomdescription + ".");
@@ -328,15 +328,15 @@ $(document).ready( function(){
 					currentPlayer = data[i].name;
 					currentLocation = data[i].location;
 
-					if (data[i].inventory.slot1 != "") {
+					if (data[i].inventory.slot1 != undefined) {
 						currentInventory.push(data[i].inventory.slot1);
 					};
 
-					if (data[i].inventory.slot2 != "") {
+					if (data[i].inventory.slot2 != undefined) {
 						currentInventory.push(data[i].inventory.slot2);
 					};
 
-					if (data[i].inventory.slot3 != "") {
+					if (data[i].inventory.slot3 != undefined) {
 						currentInventory.push(data[i].inventory.slot3);
 					};
 
@@ -423,7 +423,7 @@ $(document).ready( function(){
 
 			$.getJSON( 'characters.json', function(data) {
 
-				for (var i = 0; i <= data.length; i++) {
+				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
@@ -435,7 +435,7 @@ $(document).ready( function(){
 
 			$.getJSON( 'items.json', function(data) {
 
-				for (var i = 0; i <= data.length; i++) {
+				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
@@ -476,7 +476,7 @@ $(document).ready( function(){
 
 			$.getJSON( 'map.json', function(data) {
 
-				for (var i = 0; i <= data.length; i++) {
+				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].name == currentLocation) {
 
@@ -487,7 +487,7 @@ $(document).ready( function(){
 
 			$.getJSON( 'items.json', function(data) {
 
-				for (var i = 0; i <= data.length; i++) {
+				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].location == currentLocation) {
 
@@ -508,7 +508,7 @@ $(document).ready( function(){
 
 			$.getJSON( 'characters.json', function(data) {
 
-				for (var i = 0; i <= data.length; i++) {
+				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].location == currentLocation) {
 
