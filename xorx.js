@@ -291,7 +291,19 @@ $(document).ready( function(){
 		getCurrentPlayerInfo(player);
 
 		playerNameDisplay.html(currentPlayer);
-		inventory.append("<br>" + currentInventory[0] + "<br>" + currentInventory[1] + "<br>" + currentInventory[2]);
+
+		if (data[i].inventory.slot1 != undefined) {
+			inventory.append("<br>" + currentInventory[0]);
+		};
+
+		if (data[i].inventory.slot2 != undefined) {
+			inventory.append("<br>" + currentInventory[1]);
+		};
+
+		if (data[i].inventory.slot3 != undefined) {
+			inventory.append("<br>" + currentInventory[2]);
+		};
+
 		trait.append("<br>" + currentTrait);
 
 		console.log(currentTrait);
@@ -328,17 +340,9 @@ $(document).ready( function(){
 					currentPlayer = data[i].name;
 					currentLocation = data[i].location;
 
-					if (data[i].inventory.slot1 != undefined) {
-						currentInventory.push(data[i].inventory.slot1);
-					};
-
-					if (data[i].inventory.slot2 != undefined) {
-						currentInventory.push(data[i].inventory.slot2);
-					};
-
-					if (data[i].inventory.slot3 != undefined) {
-						currentInventory.push(data[i].inventory.slot3);
-					};
+					currentInventory.push(data[i].inventory.slot1);
+					currentInventory.push(data[i].inventory.slot2);
+					currentInventory.push(data[i].inventory.slot3);
 
 					currentDescription = data[i].description;
 					currentTrait = data[i].trait;
@@ -428,7 +432,7 @@ $(document).ready( function(){
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
-						return;
+						break;
 					};
 				};
 			});
@@ -441,7 +445,7 @@ $(document).ready( function(){
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
 						image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
-						return;
+						break;
 					}
 
 					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
@@ -462,7 +466,7 @@ $(document).ready( function(){
 								break;
 						};
 
-						return;
+						break;
 					};
 				};
 			});
