@@ -236,7 +236,7 @@ $(document).ready( function(){
 		var playerInfo = new Object();
 
 		playerInfo.name = name;
-		playerInfo.location = "ObeliskHill";
+		playerInfo.location = "obeliskhill";
 		playerInfo.inventory = {"slot1": "","slot2": "","slot3": ""};
 		playerInfo.description = "a human with " + hair + " hair, wearing a " + suit + " jumpsuit.";
 		playerInfo.trait = "human";
