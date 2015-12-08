@@ -292,15 +292,15 @@ $(document).ready( function(){
 
 		playerNameDisplay.html(currentPlayer);
 
-		if (data[i].inventory.slot1 != undefined) {
+		if (currentInventory[0] != undefined) {
 			inventory.append("<br>" + currentInventory[0]);
 		};
 
-		if (data[i].inventory.slot2 != undefined) {
+		if (currentInventory[1] != undefined) {
 			inventory.append("<br>" + currentInventory[1]);
 		};
 
-		if (data[i].inventory.slot3 != undefined) {
+		if (currentInventory[2] != undefined) {
 			inventory.append("<br>" + currentInventory[2]);
 		};
 
