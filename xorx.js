@@ -601,7 +601,7 @@ $(document).ready( function(){
 				type: "GET",
 				dataType : 'text',
 				url: '/xorx/setproperty.php',
-				data: locationDataString,
+				data: { data: locationDataString },
 				success: function () {
 					getCurrentPlayerInfo(currentPlayer);
 					displayCurrentLocation();
