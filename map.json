@@ -1,6 +1,6 @@
 [
 	{
-		"roomname": "obeliskhill",
+		"name": "obeliskhill",
 		"roomlocation": {
 			"north": "etower",
 			"south": "ocean",
@@ -12,7 +12,7 @@
 		"roomdescription": "a tall four-sided obelisk at the peak of a small hill"
 	},
 	{
-		"roomname": "stower",
+		"name": "stower",
 		"roomlocation": {
 			"north": "pyramid",
 			"south": "ocean",
@@ -24,7 +24,7 @@
 		"roomdescription": "an enormous stone tower jutting out of the ground"
 	},
 	{
-		"roomname": "xothroggrave",
+		"name": "xothroggrave",
 		"roomlocation": {
 			"north": "ruins",
 			"south": "ocean",
@@ -36,7 +36,7 @@
 		"roomdescription": "a large statue of a hideous horned face in the center of a strange ritual grounds"
 	},
 	{
-		"roomname": "etower",
+		"name": "etower",
 		"roomlocation": {
 			"north": "xiascave",
 			"south": "obeliskhill",
@@ -48,7 +48,7 @@
 		"roomdescription": "an enormous stone tower jutting out of the ground"
 	},
 	{
-		"roomname": "xiascave",
+		"name": "xiascave",
 		"roomlocation": {
 			"north": "ocean",
 			"south": "etower",
@@ -60,7 +60,7 @@
 		"roomdescription": "a small, well-lit cave. there is a stone door in the back of the cave"
 	},
 	{
-		"roomname": "ocean",
+		"name": "ocean",
 		"roomlocation": {
 			"north": "",
 			"south": "",
@@ -72,7 +72,7 @@
 		"roomdescription": "a vast ocean of a strange boiling liquid"
 	},
 	{
-		"roomname": "pyramid",
+		"name": "pyramid",
 		"roomlocation": {
 			"north": "ntower",
 			"south": "stower",
@@ -84,7 +84,7 @@
 		"roomdescription": "a huge purple stone pyramid with a mysterious crystal at the top"
 	},
 	{
-		"roomname": "ruins",
+		"name": "ruins",
 		"roomlocation": {
 			"north": "butte",
 			"south": "xothroggrave",
@@ -96,7 +96,7 @@
 		"roomdescription": "a large circle of ancient ruined stonework. there is a bent and broken axle emerging striaght upwards from a wide pit in the center"
 	},
 	{
-		"roomname": "ntower",
+		"name": "ntower",
 		"roomlocation": {
 			"north": "ocean",
 			"south": "pyramid",
@@ -108,7 +108,7 @@
 		"roomdescription": "an enormous stone tower jutting out of the ground"
 	},
 	{
-		"roomname": "butte",
+		"name": "butte",
 		"roomlocation": {
 			"north": "ocean",
 			"south": "etower",
@@ -120,7 +120,7 @@
 		"roomdescription": "a tall steep butte with a large nest at its peak"
 	},
 	{
-		"roomname": "sky",
+		"name": "sky",
 		"roomlocation": {
 			"north": "sky",
 			"south": "sky",
@@ -132,7 +132,7 @@
 		"roomdescription": "a dark expanse filled with shimmering stars"
 	},
 	{
-		"roomname": "butteinterior",
+		"name": "butteinterior",
 		"roomlocation": {
 			"north": "",
 			"south": "",
@@ -144,7 +144,7 @@
 		"roomdescription": "a small dim room with a staircase leading up"
 	},
 	{
-		"roomname": "nest",
+		"name": "nest",
 		"roomlocation": {
 			"north": "sky",
 			"south": "sky",
@@ -156,7 +156,7 @@
 		"roomdescription": "a large nest high above the ground"
 	},
 	{
-		"roomname": "neunderground",
+		"name": "neunderground",
 		"roomlocation": {
 			"north": "",
 			"south": "eunderground",
@@ -168,7 +168,7 @@
 		"roomdescription": "a dim stone tunnel that runs west and south. a staircase leads upwards"
 	},
 	{
-		"roomname": "eunderground",
+		"name": "eunderground",
 		"roomlocation": {
 			"north": "neunderground",
 			"south": "seunderground",
@@ -180,7 +180,7 @@
 		"roomdescription": "a dim stone tunnel that runs north and south"
 	},
 	{
-		"roomname": "seunderground",
+		"name": "seunderground",
 		"roomlocation": {
 			"north": "eunderground",
 			"south": "",
@@ -192,7 +192,7 @@
 		"roomdescription": "a dim stone tunnel that runs north and west"
 	},
 	{
-		"roomname": "sunderground",
+		"name": "sunderground",
 		"roomlocation": {
 			"north": "",
 			"south": "",
@@ -204,7 +204,7 @@
 		"roomdescription": "a dead-end dim stone tunnel that continues east"
 	},
 	{
-		"roomname": "nunderground",
+		"name": "nunderground",
 		"roomlocation": {
 			"north": "",
 			"south": "",
@@ -216,7 +216,7 @@
 		"roomdescription": "a dim stone tunnel that runs east and west"
 	},
 	{
-		"roomname": "nwunderground",
+		"name": "nwunderground",
 		"roomlocation": {
 			"north": "",
 			"south": "",
@@ -228,7 +228,7 @@
 		"roomdescription": "a dim stone tunnel that runs south and east. the southern end is completely caved-in"
 	},
 	{
-		"roomname": "sealed",
+		"name": "sealed",
 		"roomlocation": {
 			"north": "",
 			"south": "",

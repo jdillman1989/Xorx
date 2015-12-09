@@ -310,13 +310,18 @@ $(document).ready( function(){
 
 		console.log(currentTrait);
 
+		displayCurrentLocation();	
+	};
+
+	function displayCurrentLocation () {
+
 		$.getJSON( 'map.json', function(data) {
 
 			for (var i = 0; i <= data.length-1; i++) {
 
-				if (data[i].roomname == currentLocation) {
+				if (data[i].name == currentLocation) {
 					response.append(responsePadding + "you are at " + data[i].roomdescription + ".");
-					image.css({ "background-image" : "url('images/" + data[i].roomname + ".png')" });
+					image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 					break;
 				}
 
@@ -328,8 +333,8 @@ $(document).ready( function(){
 					};
 				};
 			};
-		});		
-	};
+		});	
+	}
 
 	function getCurrentPlayerInfo (character) {
 
@@ -497,33 +502,33 @@ $(document).ready( function(){
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					if ( data[i].roomname == currentLocation) {
+					if ( data[i].name == currentLocation) {
 
 						here = data[i].roomdescription;
 
 						for (var n = 0; n <= data.length-1; n++) {
 
-							if ( data[i].roomlocation.north == data[n].roomname) {
+							if ( data[i].roomlocation.north == data[n].name) {
 								north = data[n].roomdescription;
 							};
 
-							if ( data[i].roomlocation.south == data[n].roomname) {
+							if ( data[i].roomlocation.south == data[n].name) {
 								south = data[n].roomdescription;
 							};
 
-							if ( data[i].roomlocation.east == data[n].roomname) {
+							if ( data[i].roomlocation.east == data[n].name) {
 								east = data[n].roomdescription;
 							};
 
-							if ( data[i].roomlocation.west == data[n].roomname) {
+							if ( data[i].roomlocation.west == data[n].name) {
 								west = data[n].roomdescription;
 							};
 
-							if ( data[i].roomlocation.up == data[n].roomname) {
+							if ( data[i].roomlocation.up == data[n].name) {
 								above = data[n].roomdescription;
 							};
 
-							if ( data[i].roomlocation.down == data[n].roomname) {
+							if ( data[i].roomlocation.down == data[n].name) {
 								below = data[n].roomdescription;
 							};
 						};
@@ -577,6 +582,81 @@ $(document).ready( function(){
 					};
 				});
 		};
+	};
+
+	function move (direction) {
+
+		var newLocation = "";
+
+		function setCurrentPlayerLocation(locationSet) {
+
+			var locationDataString = "";
+
+			locationDataString += "characters.json, ";
+			locationDataString += currentPlayer + ", ";
+			locationDataString += "location, ";
+			locationDataString += locationSet;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: locationDataString,
+				success: function () {
+					getCurrentPlayerInfo(currentPlayer);
+					displayCurrentLocation();
+				},
+				failure: function() { response.append(responsePadding + "problem moving character: server disrupted process."); }
+			});
+		};
+
+		$.getJSON( 'map.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if (data[i].name == currentLocation) {
+
+					switch (direction) {
+						case "north":
+							newLocation = data[i].roomlocation.north;
+							break;
+						case "south":
+							newLocation = data[i].roomlocation.south;
+							break;
+						case "east":
+							newLocation = data[i].roomlocation.east;
+							break;
+						case "west":
+							newLocation = data[i].roomlocation.west;
+							break;
+						case "up":
+							newLocation = data[i].roomlocation.up;
+							break;
+						case "down":
+							newLocation = data[i].roomlocation.down;
+							break;
+					};
+				}
+
+				else {
+
+					if (i >= data.length-1) {
+
+						response.append(responsePadding + "movement error.");
+					};
+				};
+			};
+		})
+			.done( function() {
+
+				if (newLocation && newLocation !== undefined) {
+					setCurrentPlayerLocation(newLocation);
+				} 
+
+				else{
+					response.append(responsePadding + "you can't go that way.");
+				};
+			});
 	};
 
 });
