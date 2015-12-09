@@ -1,5 +1,7 @@
 $(document).ready( function(){
 
+	$.ajaxSetup({ cache: false });
+
 	var image = $('#screen');
 	var response = $('#response');
 	var input = $('#input');
