@@ -614,28 +614,32 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length-1; i++) {
 
+				console.log( data[i].name + ", " + currentLocation);
+
 				if (data[i].name == currentLocation) {
 
 					switch (direction) {
 						case "north":
-							newLocation = data[i].roomlocation.north;
+							setCurrentPlayerLocation(data[i].roomlocation.north);
 							break;
 						case "south":
-							newLocation = data[i].roomlocation.south;
+							setCurrentPlayerLocation(data[i].roomlocation.south);
 							break;
 						case "east":
-							newLocation = data[i].roomlocation.east;
+							setCurrentPlayerLocation(data[i].roomlocation.east);
 							break;
 						case "west":
-							newLocation = data[i].roomlocation.west;
+							setCurrentPlayerLocation(data[i].roomlocation.west);
 							break;
 						case "up":
-							newLocation = data[i].roomlocation.up;
+							setCurrentPlayerLocation(data[i].roomlocation.up);
 							break;
 						case "down":
-							newLocation = data[i].roomlocation.down;
+							setCurrentPlayerLocation(data[i].roomlocation.down);
 							break;
 					};
+
+					break;
 				}
 
 				else {
@@ -646,17 +650,7 @@ $(document).ready( function(){
 					};
 				};
 			};
-		})
-			.done( function() {
-
-				if (newLocation && newLocation !== undefined) {
-					setCurrentPlayerLocation(newLocation);
-				} 
-
-				else{
-					response.append(responsePadding + "you can't go that way.");
-				};
-			});
+		});
 	};
 
 });
