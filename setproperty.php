@@ -6,6 +6,7 @@ echo "starting prop set...";
 $receiveddata = $_GET["data"];
 $propertyinfo = explode(", ", $receiveddata);
 
+echo $receiveddata;
 echo $propertyinfo;
 
 // Parse data
