@@ -1,13 +1,13 @@
 <?php
 
-echo "starting prop set...";
+echo "starting prop set...\n";
 
 // Get and format data
 $receiveddata = $_GET["data"];
 $propertyinfo = explode(", ", $receiveddata);
 
-echo $receiveddata;
-echo $propertyinfo;
+echo "Received data: ". $receiveddata ."\n";
+echo "Format data: ". $propertyinfo ."\n";
 
 // Parse data
 $filename = $propertyinfo[0];
