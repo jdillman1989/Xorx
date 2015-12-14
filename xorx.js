@@ -775,7 +775,15 @@ $(document).ready( function(){
 
 					getCurrentPlayerInfo(currentPlayer);
 
-					inventory.html("<br>" + currentInventory);
+					if (currentInventory) {
+
+						inventory.html("<br>" + currentInventory);
+					}
+
+					else{
+
+						inventory.html("");
+					};
 				},
 				failure: function() { response.append(responsePadding + "problem dropping item: server cannot access inventory."); }
 			});
