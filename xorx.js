@@ -90,7 +90,7 @@ $(document).ready( function(){
 				take(subject1);
 				break;
 			case "drop":
-				drop(subject1);
+				drop();
 				break;
 			case "attack":
 			case "shoot":
@@ -763,7 +763,7 @@ $(document).ready( function(){
 			inventoryDataString += "characters.json, ";
 			inventoryDataString += currentPlayer + ", ";
 			inventoryDataString += "inventory, ";
-			inventoryDataString += '""';
+			inventoryDataString += undefined;
 
 			$.ajax({
 				type: "GET",
