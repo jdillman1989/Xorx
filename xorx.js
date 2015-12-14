@@ -84,7 +84,7 @@ $(document).ready( function(){
 			case "give":
 			case "hand":
 			case "offer":
-				give(subject1, subject2);
+				give(subject1, subject2); //done
 				break;
 			case "take":
 			case "get":
@@ -93,15 +93,11 @@ $(document).ready( function(){
 			case "drop":
 				drop(); //done
 				break;
-			case "attack":
-			case "shoot":
-			case "fire":
-				attack(subject1, subject2);
-				break;
 			case "activate":
 			case "push":
+			case "shoot":
 			case "use":
-				activate(subject1);
+				activate(subject1, subject2);
 				break;
 			case "go":
 			case "walk":
