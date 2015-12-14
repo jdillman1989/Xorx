@@ -853,7 +853,23 @@ $(document).ready( function(){
 				data: { data: givePlayerDataString },
 				success: function () {
 
-					response.append(responsePadding + "you give the " + currentInventory + " to " + givenRecipient + ".");
+					switch (givenRecipient) {
+
+						// characters
+						case "xia":
+							givenRecipientParse = "the xorxian";
+							break;
+						case "xaph":
+							givenRecipientParse = "the flying creature";
+							break;
+						case "xothrog":
+							givenRecipientParse = "the demon god";
+							break;
+						default:
+							givenRecipientParse = givenRecipient;
+					};
+
+					response.append(responsePadding + "you give the " + currentInventory + " to " + givenRecipientParse + ".");
 
 					getCurrentPlayerInfo(currentPlayer);
 
@@ -917,8 +933,17 @@ $(document).ready( function(){
 
 					if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
 
-						givenRecipient = data[i].name;
-						break;
+						if (data[i].inventory) {
+
+							response.append(responsePadding + "that character is already holding something.");
+							break;
+						}
+
+						else {
+
+							givenRecipient = data[i].name;
+							break;
+						};
 					} 
 
 					else{
