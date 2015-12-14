@@ -68,12 +68,13 @@ $(document).ready( function(){
 		switch (verb) {
 			case "look":
 			case "inspect":
-				look(subject1);
+				look(subject1); //done
 				break;
 			case "say":
 			case "tell":
 			case "greet":
 			case "call":
+			case "ask":
 				greet(subject1);
 				break;
 			case "read":
@@ -87,18 +88,15 @@ $(document).ready( function(){
 				break;
 			case "take":
 			case "get":
-				take(subject1);
+				take(subject1); //done
 				break;
 			case "drop":
-				drop();
+				drop(); //done
 				break;
 			case "attack":
 			case "shoot":
 			case "fire":
 				attack(subject1, subject2);
-				break;
-			case "ask":
-				ask();
 				break;
 			case "activate":
 			case "push":
@@ -109,23 +107,23 @@ $(document).ready( function(){
 			case "walk":
 			case "move":
 			case "travel":
-				move(subject1);
+				move(subject1); //done
 				break;
 			case "help":
 			case "hint":
 			case "fuck":
-				help();
+				help(); //done
 				break;
 			case "new":
-				createCharacter(1);
+				createCharacter(1); //done
 				break;
 			case "continue":
-				gamePrompt = "type the name of the character you want to play.";
+				gamePrompt = "type the name of the character you want to play."; //done
 				response.append(responsePadding + gamePrompt);
 				prompting = true;
 				break;
 			default:
-				parseError(genericError);
+				parseError(genericError); //done
 		};
 
 		input.val("");
@@ -830,6 +828,125 @@ $(document).ready( function(){
 				};
 			};
 		});
+	};
+
+	function give (subject1, subject2) {
+
+		var intendedSubject1 = parseSubject(subject1);
+		var intendedSubject2 = parseSubject(subject2);
+
+		var givenRecipient = "";
+		var givenItem = currentInventory;
+
+		function giveCurrentPlayerInventory() {
+
+			var givePlayerDataString = "";
+
+			givePlayerDataString += "characters.json, ";
+			givePlayerDataString += currentPlayer + ", ";
+			givePlayerDataString += "inventory, " + false;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: givePlayerDataString },
+				success: function () {
+
+					response.append(responsePadding + "you give the " + currentInventory + " to " + givenRecipient + ".");
+
+					getCurrentPlayerInfo(currentPlayer);
+
+					if (currentInventory) {
+
+						inventory.html("<br>" + currentInventory);
+					}
+
+					else{
+
+						inventory.html("");
+					};
+				},
+				failure: function() { response.append(responsePadding + "problem giving item: server cannot access player inventory."); }
+			});
+		};
+
+		function giveRecipientInventory(recipient) {
+
+			var giveRecipientDataString = "";
+
+			giveRecipientDataString += "characters.json, ";
+			giveRecipientDataString += recipient + ", ";
+			giveRecipientDataString += "inventory, ";
+			giveRecipientDataString += givenItem;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: giveRecipientDataString },
+				success: function () {},
+				failure: function() { response.append(responsePadding + "problem giving item: server cannot access recipient inventory."); }
+			});
+		};
+
+		function giveItemLocation (recipient) {
+
+			var itemDataString = "";
+
+			itemDataString += "items.json, ";
+			itemDataString += givenItem + ", ";
+			itemDataString += "location, ";
+			itemDataString += recipient;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: itemDataString },
+				success: function () {},
+				failure: function() { response.append(responsePadding + "problem giving item: server cannot set item location."); }
+			});
+		};
+
+		$.getJSON( 'characters.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].location == currentLocation ) {
+
+					if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
+
+						givenRecipient = data[i].name;
+						break;
+					} 
+
+					else{
+
+						if (i >= data.length-1) {
+
+							response.append(responsePadding + "please include a valid character to give to.");
+							break;
+						};
+					};
+				};
+			};
+		})
+
+			.done( function() {
+
+				if (givenRecipient.length > 2) {
+
+					giveCurrentPlayerInventory();
+					giveRecipientInventory(givenRecipient);
+					giveItemLocation(givenRecipient);
+				} 
+
+				else{
+
+					response.append(responsePadding + "there was a problem giving the item. please indicate a valid character name.");
+				};
+			});
 	};
 
 });
