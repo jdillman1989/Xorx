@@ -391,6 +391,7 @@ $(document).ready( function(){
 			case "stone":
 			case "rock":
 				subjectParse = "hotstone";
+				break;
 			case "gem":
 			case "crystal":
 			case "turquoise":
