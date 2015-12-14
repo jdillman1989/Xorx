@@ -103,7 +103,7 @@ body{
 	
 }
 
-#inventory{
+.inventory-container{
 	width: 50%;
 	height: 100%;
 	border-right: 2px solid #666;
@@ -113,7 +113,7 @@ body{
 	        box-sizing: border-box;
 }
 
-#trait{
+.trait-container{
 	width: 50%;
 	height: 100%;
 	padding: 15px;

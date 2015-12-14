@@ -77,9 +77,24 @@
 
 	{
 		"name": "scroll",
-		"location": "xiascave",
+		"location": "xia",
 		"movable": true,
 		"description": "a thick heavy scroll covered in strange intricate runes"
+	},
+
+	{
+		"name": "hotstone",
+		"location": "xothroggrave",
+		"movable": true,
+		"description": "a large crimson stone giving off a lot of heat"
+	},
+
+	{
+		"name": "xorxgem",
+		"location": "xothrog",
+		"movable": true,
+		"description": "a large gem glowing bright turquoise",
+		"active": false
 	},
 
 	{

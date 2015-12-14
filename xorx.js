@@ -22,7 +22,7 @@ $(document).ready( function(){
 
 	var currentPlayer = "";
 	var currentLocation = "";
-	var currentInventory = [];
+	var currentInventory = "";
 	var currentDescription = "";
 	var currentTrait = "";
 
@@ -86,8 +86,8 @@ $(document).ready( function(){
 				give(subject1, subject2);
 				break;
 			case "take":
-			case "steal":
-				take(subject1, subject2);
+			case "get":
+				take(subject1);
 				break;
 			case "drop":
 				drop(subject1);
@@ -241,7 +241,7 @@ $(document).ready( function(){
 
 		playerInfo.name = name;
 		playerInfo.location = "obeliskhill";
-		playerInfo.inventory = {"slot1": "","slot2": "","slot3": ""};
+		playerInfo.inventory = "";
 		playerInfo.description = "a human with " + hair + " hair, wearing a " + suit + " jumpsuit.";
 		playerInfo.trait = "human";
 		playerInfo.player = false;
@@ -296,19 +296,11 @@ $(document).ready( function(){
 
 		playerNameDisplay.html(currentPlayer);
 
-		if (currentInventory[0] != undefined) {
-			inventory.append("<br>" + currentInventory[0]);
+		if (currentInventory != undefined) {
+			inventory.html("<br>" + currentInventory);
 		};
 
-		if (currentInventory[1] != undefined) {
-			inventory.append("<br>" + currentInventory[1]);
-		};
-
-		if (currentInventory[2] != undefined) {
-			inventory.append("<br>" + currentInventory[2]);
-		};
-
-		trait.append("<br>" + currentTrait);
+		trait.html("<br>" + currentTrait);
 
 		console.log(currentTrait);
 
@@ -348,11 +340,7 @@ $(document).ready( function(){
 
 					currentPlayer = data[i].name;
 					currentLocation = data[i].location;
-
-					currentInventory.push(data[i].inventory.slot1);
-					currentInventory.push(data[i].inventory.slot2);
-					currentInventory.push(data[i].inventory.slot3);
-
+					currentInventory = data[i].inventory;
 					currentDescription = data[i].description;
 					currentTrait = data[i].trait;
 
@@ -400,6 +388,14 @@ $(document).ready( function(){
 				break;
 
 			// items
+			case "stone":
+			case "rock":
+				subjectParse = "hotstone";
+			case "gem":
+			case "crystal":
+			case "turquoise":
+				subjectParse = "xorxgem";
+				break;
 			case "glint":
 				subjectParse = "tower";
 				break;
@@ -649,6 +645,88 @@ $(document).ready( function(){
 					if (i >= data.length-1) {
 
 						response.append(responsePadding + "movement error.");
+					};
+				};
+			};
+		});
+	};
+
+	function take (item) {
+
+		var intendedItem = parseSubject(item);
+
+		function setCurrentPlayerInventory(inventorySet) {
+
+			var inventoryDataString = "";
+
+			inventoryDataString += "characters.json, ";
+			inventoryDataString += currentPlayer + ", ";
+			inventoryDataString += "inventory, ";
+			inventoryDataString += inventorySet;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: inventoryDataString },
+				success: function () {
+
+					getCurrentPlayerInfo(currentPlayer);
+
+					if (currentInventory != undefined) {
+						inventory.html("<br>" + currentInventory);
+					};
+
+					response.append(responsePadding + "you take the " + inventorySet + ".");
+				},
+				failure: function() { response.append(responsePadding + "problem taking item: server cannot access inventory."); }
+			});
+		};
+
+		function setItemLocation (itemSet) {
+
+			var itemDataString = "";
+
+			itemDataString += "items.json, ";
+			itemDataString += itemSet + ", ";
+			itemDataString += "location, ";
+			itemDataString += currentPlayer;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: itemDataString },
+				success: function () {
+					console.log(itemDataString);
+				},
+				failure: function() { response.append(responsePadding + "problem taking item: server cannot set item location."); }
+			});
+		};
+
+		$.getJSON( 'items.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].name == intendeditem && data[i].location == currentLocation && data[i].movable ) {
+
+					if (currentInventory == "") {
+
+						response.append(responsePadding + "you are already carrying something.");
+					} 
+
+					else {
+
+						setCurrentPlayerInventory();
+						setItemLocation();
+					};
+				}
+
+				else {
+
+					if (i >= data.length-1) {
+
+						response.append(responsePadding + "you can't take that.");
 					};
 				};
 			};
