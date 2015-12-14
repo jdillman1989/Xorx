@@ -15,6 +15,11 @@ $objectname = $propertyinfo[1];
 $propertyname = $propertyinfo[2];
 $propertyvalue = $propertyinfo[3];
 
+if ($propertyvalue === "false") {
+
+	$propertyvalue = false;
+};
+
 echo $filename;
 echo $objectname;
 echo $propertyname;
