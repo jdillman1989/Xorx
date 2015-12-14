@@ -721,8 +721,8 @@ $(document).ready( function(){
 
 					else {
 
-						setCurrentPlayerInventory();
-						setItemLocation();
+						setCurrentPlayerInventory(data[i].name);
+						setItemLocation(data[i].name);
 						break;
 					};
 				}
