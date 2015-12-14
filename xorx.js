@@ -713,15 +713,17 @@ $(document).ready( function(){
 
 				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
 
-					if (currentInventory == "") {
+					if (currentInventory != "") {
 
 						response.append(responsePadding + "you are already carrying something.");
+						break;
 					} 
 
 					else {
 
 						setCurrentPlayerInventory();
 						setItemLocation();
+						break;
 					};
 				}
 
