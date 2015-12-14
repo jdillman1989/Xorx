@@ -296,7 +296,7 @@ $(document).ready( function(){
 
 		playerNameDisplay.html(currentPlayer);
 
-		if (currentInventory !== undefined) {
+		if (currentInventory) {
 			inventory.html("<br>" + currentInventory);
 		};
 
