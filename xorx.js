@@ -296,7 +296,7 @@ $(document).ready( function(){
 
 		playerNameDisplay.html(currentPlayer);
 
-		if (currentInventory != undefined) {
+		if (currentInventory !== undefined) {
 			inventory.html("<br>" + currentInventory);
 		};
 
@@ -332,22 +332,45 @@ $(document).ready( function(){
 
 	function getCurrentPlayerInfo (character) {
 
-		$.getJSON( 'characters.json', function(data) {
+		$.ajax({
+			url: 'characters.json',
+			dataType: 'json',
+			async: false,
+			data: data,
+			success: function(data) {
 
-			for (var i = 0; i <= data.length; i++) {
+				for (var i = 0; i <= data.length; i++) {
 
-				if ( data[i].name == character ) {
+					if ( data[i].name == character ) {
 
-					currentPlayer = data[i].name;
-					currentLocation = data[i].location;
-					currentInventory = data[i].inventory;
-					currentDescription = data[i].description;
-					currentTrait = data[i].trait;
+						currentPlayer = data[i].name;
+						currentLocation = data[i].location;
+						currentInventory = data[i].inventory;
+						currentDescription = data[i].description;
+						currentTrait = data[i].trait;
 
-					break;
+						break;
+					};
 				};
-			};
+			}
 		});
+
+		// $.getJSON( 'characters.json', function(data) {
+
+		// 	for (var i = 0; i <= data.length; i++) {
+
+		// 		if ( data[i].name == character ) {
+
+		// 			currentPlayer = data[i].name;
+		// 			currentLocation = data[i].location;
+		// 			currentInventory = data[i].inventory;
+		// 			currentDescription = data[i].description;
+		// 			currentTrait = data[i].trait;
+
+		// 			break;
+		// 		};
+		// 	};
+		// });
 	};
 
 	function help () {
@@ -446,10 +469,13 @@ $(document).ready( function(){
 
 				for (var i = 0; i <= data.length-1; i++) {
 
-					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
+					if ( data[i].name == intendedSubject) {
 
-						response.append(responsePadding + "You see " + data[i].description + ".");
-						image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+						if (data[i].location == currentLocation || data[i].location == currentPlayer) {
+
+							response.append(responsePadding + "You see " + data[i].description + ".");
+							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+						};
 					}
 
 					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
@@ -674,9 +700,7 @@ $(document).ready( function(){
 
 					getCurrentPlayerInfo(currentPlayer);
 
-					if (currentInventory != undefined) {
-						inventory.html("<br>" + currentInventory);
-					};
+					inventory.html("<br>" + currentInventory);
 
 					response.append(responsePadding + "you take the " + inventorySet + ".");
 				},
