@@ -708,9 +708,9 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length-1; i++) {
 
-				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
+				console.log( data[i].name + ": " + intendedItem + "\n" + data[i].location + ": " + currentLocation + "\n" + "movable: " + data[i].movable + "\n\n" );
 
-					console.log( data[i].name + ": " + intendedItem + "\n" + data[i].location + ": " + currentLocation + "\n" + "movable: " + data[i].movable + "\n\n" );
+				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
 
 					if (currentInventory == "") {
 
