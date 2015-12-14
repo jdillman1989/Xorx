@@ -710,6 +710,8 @@ $(document).ready( function(){
 
 				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
 
+					console.log( data[i].name + ": " + intendedItem + "\n" + data[i].location + ": " + currentLocation + "\n" + "movable: " + data[i].movable + "\n\n" );
+
 					if (currentInventory == "") {
 
 						response.append(responsePadding + "you are already carrying something.");
