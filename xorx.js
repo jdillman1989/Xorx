@@ -708,7 +708,7 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length-1; i++) {
 
-				if ( data[i].name == intendeditem && data[i].location == currentLocation && data[i].movable ) {
+				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
 
 					if (currentInventory == "") {
 

@@ -28,7 +28,7 @@
 		"roomlocation": {
 			"north": "ruins",
 			"south": "ocean",
-			"east": "pyramid",
+			"east": "stower",
 			"west": "ocean",
 			"up": "sky",
 			"down": ""
