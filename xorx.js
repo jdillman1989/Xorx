@@ -302,8 +302,6 @@ $(document).ready( function(){
 
 		trait.html("<br>" + currentTrait);
 
-		console.log(currentTrait);
-
 		displayCurrentLocation();	
 	};
 
@@ -338,8 +336,6 @@ $(document).ready( function(){
 			async: false,
 			success: function(data) {
 
-				console.log("success getCurrentPlayerInfo");
-
 				for (var i = 0; i <= data.length; i++) {
 
 					if ( data[i].name == character ) {
@@ -349,8 +345,6 @@ $(document).ready( function(){
 						currentInventory = data[i].inventory;
 						currentDescription = data[i].description;
 						currentTrait = data[i].trait;
-
-						console.log(currentPlayer + ", " + currentLocation + ", " + currentInventory + ", " + currentDescription + ", " + currentTrait);
 
 						break;
 					};
@@ -642,8 +636,6 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length-1; i++) {
 
-				console.log( data[i].name + ", " + currentLocation);
-
 				if (data[i].name == currentLocation) {
 
 					switch (direction) {
@@ -726,7 +718,6 @@ $(document).ready( function(){
 				url: '/xorx/setproperty.php',
 				data: { data: itemDataString },
 				success: function () {
-					console.log(itemDataString);
 				},
 				failure: function() { response.append(responsePadding + "problem taking item: server cannot set item location."); }
 			});
@@ -735,8 +726,6 @@ $(document).ready( function(){
 		$.getJSON( 'items.json', function(data) {
 
 			for (var i = 0; i <= data.length-1; i++) {
-
-				console.log( data[i].name + ": " + intendedItem + "\n" + data[i].location + ": " + currentLocation + "\n" + "movable: " + data[i].movable + "\n\n" );
 
 				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
 
@@ -759,6 +748,77 @@ $(document).ready( function(){
 					if (i >= data.length-1) {
 
 						response.append(responsePadding + "you can't take that.");
+					};
+				};
+			};
+		});
+	};
+
+	function drop () {
+
+		function dropCurrentPlayerInventory() {
+
+			var inventoryDataString = "";
+
+			inventoryDataString += "characters.json, ";
+			inventoryDataString += currentPlayer + ", ";
+			inventoryDataString += "inventory, ";
+			inventoryDataString += '""';
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: inventoryDataString },
+				success: function () {
+
+					response.append(responsePadding + "you drop the " + currentInventory + ".");
+
+					getCurrentPlayerInfo(currentPlayer);
+
+					inventory.html("<br>" + currentInventory);
+				},
+				failure: function() { response.append(responsePadding + "problem dropping item: server cannot access inventory."); }
+			});
+		};
+
+		function dropItemLocation (item) {
+
+			var itemDataString = "";
+
+			itemDataString += "items.json, ";
+			itemDataString += item + ", ";
+			itemDataString += "location, ";
+			itemDataString += currentLocation;
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: itemDataString },
+				success: function () {
+				},
+				failure: function() { response.append(responsePadding + "problem dropping item: server cannot set item location."); }
+			});
+		};
+
+		$.getJSON( 'characters.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].name == currentPlayer ) {
+
+					if ( data[i].inventory !== undefined ) {
+
+						dropCurrentPlayerInventory();
+						dropItemLocation(data[i].inventory);
+						break;
+					} 
+
+					else {
+
+						response.append(responsePadding + "you are not carrying anything.");
+						break;
 					};
 				};
 			};
