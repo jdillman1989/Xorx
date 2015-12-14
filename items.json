@@ -61,14 +61,6 @@
 	},
 
 	{
-		"name": "towerwest",
-		"location": "wtower",
-		"movable": false,
-		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
-		"active": false
-	},
-
-	{
 		"name": "mindray",
 		"location": "butteinterior",
 		"movable": true,

@@ -111,7 +111,7 @@
 		"name": "butte",
 		"roomlocation": {
 			"north": "ocean",
-			"south": "etower",
+			"south": "ruins",
 			"east": "ntower",
 			"west": "ocean",
 			"up": "nest",
