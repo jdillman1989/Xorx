@@ -241,7 +241,7 @@ $(document).ready( function(){
 
 		playerInfo.name = name;
 		playerInfo.location = "obeliskhill";
-		playerInfo.inventory = "";
+		playerInfo.inventory = false;
 		playerInfo.description = "a human with " + hair + " hair, wearing a " + suit + " jumpsuit.";
 		playerInfo.trait = "human";
 		playerInfo.player = false;
@@ -729,7 +729,7 @@ $(document).ready( function(){
 
 				if ( data[i].name == intendedItem && data[i].location == currentLocation && data[i].movable ) {
 
-					if (currentInventory != "") {
+					if (currentInventory) {
 
 						response.append(responsePadding + "you are already carrying something.");
 						break;
@@ -762,8 +762,7 @@ $(document).ready( function(){
 
 			inventoryDataString += "characters.json, ";
 			inventoryDataString += currentPlayer + ", ";
-			inventoryDataString += "inventory, ";
-			inventoryDataString += undefined;
+			inventoryDataString += "inventory, " + false;
 
 			$.ajax({
 				type: "GET",
@@ -808,7 +807,7 @@ $(document).ready( function(){
 
 				if ( data[i].name == currentPlayer ) {
 
-					if ( data[i].inventory !== undefined ) {
+					if ( data[i].inventory ) {
 
 						dropCurrentPlayerInventory();
 						dropItemLocation(data[i].inventory);
