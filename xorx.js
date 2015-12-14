@@ -336,8 +336,9 @@ $(document).ready( function(){
 			url: 'characters.json',
 			dataType: 'json',
 			async: false,
-			data: data,
 			success: function(data) {
+
+				console.log("success getCurrentPlayerInfo");
 
 				for (var i = 0; i <= data.length; i++) {
 
@@ -348,6 +349,8 @@ $(document).ready( function(){
 						currentInventory = data[i].inventory;
 						currentDescription = data[i].description;
 						currentTrait = data[i].trait;
+
+						console.log(currentPlayer + ", " + currentLocation + ", " + currentInventory + ", " + currentDescription + ", " + currentTrait);
 
 						break;
 					};
