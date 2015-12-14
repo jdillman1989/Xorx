@@ -449,6 +449,8 @@ $(document).ready( function(){
 
 		function lookSubjectTest () {
 
+			var found = false;
+
 			$.getJSON( 'characters.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
@@ -456,6 +458,7 @@ $(document).ready( function(){
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
 						response.append(responsePadding + "You see " + data[i].description + ".");
+						found = true;
 					};
 				};
 			});
@@ -470,10 +473,13 @@ $(document).ready( function(){
 
 							response.append(responsePadding + "You see " + data[i].description + ".");
 							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+							found = true;
 						};
 					}
 
 					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
+
+						found = true;
 
 						switch (intendedSubject) {
 							case "tower":
@@ -494,7 +500,14 @@ $(document).ready( function(){
 						break;
 					};
 				};
-			});
+			})
+				.done( function() {
+
+					if ( !found ) {
+
+							response.append(responsePadding + "there is nothing more to see there.");
+					};
+				});
 		};
 
 		if (intendedSubject !== undefined) {
@@ -962,14 +975,20 @@ $(document).ready( function(){
 
 				if (givenRecipient.length > 2) {
 
-					giveCurrentPlayerInventory();
-					giveRecipientInventory(givenRecipient);
-					giveItemLocation(givenRecipient);
+					if (givenRecipient != "xaph") {
+						giveCurrentPlayerInventory();
+						giveRecipientInventory(givenRecipient);
+						giveItemLocation(givenRecipient);
+					} 
+
+					else {
+						response.append(responsePadding + "he has no interest in that.");
+					};
 				} 
 
 				else{
 
-					response.append(responsePadding + "there was a problem giving the item. please indicate a valid character name.");
+					response.append(responsePadding + "could not give the item.");
 				};
 			});
 	};
