@@ -216,11 +216,7 @@ $(document).ready( function(){
 
 							if (i >= data.length-1) {
 
-								response.append(responsePadding + "please indicate a valid character in this area.");
-
-								gamePrompt = "who do you want to talk to?";
-								response.append(responsePadding + gamePrompt);	
-								prompting = true;
+								response.append(responsePadding + "you can't talk to that.");
 							}
 						};
 					};
