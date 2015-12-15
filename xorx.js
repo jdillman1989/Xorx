@@ -1067,11 +1067,8 @@ $(document).ready( function(){
 
 					else{
 
-						if (i >= data.length-1) {
-
-							response.append(responsePadding + "you can't talk to that character here.");
-							break parent;
-						};
+						response.append(responsePadding + "you can't talk to that character here.");
+						break parent;
 					};
 				}
 
