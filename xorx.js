@@ -1057,17 +1057,6 @@ $(document).ready( function(){
 								};
 						};
 						break;
-					} 
-
-					else{
-
-						if (i >= data.length-1) {
-
-							gamePrompt = "who do you want to talk to?";
-							response.append(responsePadding + gamePrompt);	
-							prompting = true;
-						};
-						break;
 					};
 				}
 
@@ -1078,8 +1067,8 @@ $(document).ready( function(){
 						gamePrompt = "who do you want to talk to?";
 						response.append(responsePadding + gamePrompt);	
 						prompting = true;
+						break;
 					};
-					break;
 				};
 			};
 		});
