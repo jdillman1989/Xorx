@@ -1072,7 +1072,7 @@ $(document).ready( function(){
 
 						if (i >= data.length-1) {
 
-							gamePrompt = "who do you want to talk to?";
+							gamePrompt = "who do you want to talk to? (from name test)";
 							response.append(responsePadding + gamePrompt);	
 							prompting = true;
 							break;
@@ -1084,7 +1084,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						gamePrompt = "who do you want to talk to?";
+						gamePrompt = "who do you want to talk to? (from location test)";
 						response.append(responsePadding + gamePrompt);	
 						prompting = true;
 						break;
