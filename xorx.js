@@ -1083,11 +1083,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						console.log("from location test");
-
-						gamePrompt = "who do you want to talk to?";
-						response.append(responsePadding + gamePrompt);	
-						prompting = true;
+						response.append(responsePadding + "you can't talk to that character here.");
 						break;
 					};
 				};
