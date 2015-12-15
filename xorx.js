@@ -201,6 +201,11 @@ $(document).ready( function(){
 
 				$.getJSON( 'characters.json', function(data) {
 
+					if (userAnswer.substring(0, 4) == "the ") {
+
+						userAnswer = userAnswer.substring(4);
+					};
+
 					var intendedCharacter = parseSubject(userAnswer);
 
 					for (var i = 0; i <= data.length-1; i++) {
@@ -216,7 +221,9 @@ $(document).ready( function(){
 
 							if (i >= data.length-1) {
 
+								prompting = false;
 								response.append(responsePadding + "you can't talk to that.");
+								break;
 							}
 						};
 					};
