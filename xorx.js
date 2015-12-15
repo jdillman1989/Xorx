@@ -1019,6 +1019,8 @@ $(document).ready( function(){
 
 				if ( data[i].location == currentLocation ) {
 
+					console.log(data[i].name + " found");
+
 					if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
 
 						if (data[i].trait != currentTrait) {
@@ -1061,6 +1063,8 @@ $(document).ready( function(){
 				}
 
 				else{
+
+					console.log(data[i].name + ", " + i + ", " + data.length-1);
 
 					if (i >= data.length-1) {
 
