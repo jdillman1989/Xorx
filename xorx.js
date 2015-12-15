@@ -1064,7 +1064,7 @@ $(document).ready( function(){
 
 				else{
 
-					console.log(data[i].name + ", " + i + ", " + data.length-1);
+					console.log(data[i].name);
 					console.log(i);
 					console.log(data.length-1);
 
