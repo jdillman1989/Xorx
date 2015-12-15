@@ -1015,7 +1015,7 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length-1; i++) {
 
-				console.log(data[i].name + ", " + intendedSubject1 + ", " + intendedSubject1);
+				console.log(data[i].name + ", " + intendedSubject1 + ", " + intendedSubject2);
 
 				if ( data[i].location == currentLocation ) {
 
