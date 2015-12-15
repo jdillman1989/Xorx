@@ -1013,7 +1013,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
-			for (var i = 0; i <= data.length; i++) {
+			for (var i = 0; i <= data.length-1; i++) {
 
 				console.log(data[i].name + ", " + intendedSubject1 + ", " + intendedSubject1);
 
@@ -1061,7 +1061,7 @@ $(document).ready( function(){
 
 					else{
 
-						if (i >= data.length) {
+						if (i >= data.length-1) {
 
 							gamePrompt = "who do you want to talk to?";
 							response.append(responsePadding + gamePrompt);	
@@ -1069,6 +1069,17 @@ $(document).ready( function(){
 						};
 						break;
 					};
+				}
+
+				else{
+
+					if (i >= data.length-1) {
+
+						gamePrompt = "who do you want to talk to?";
+						response.append(responsePadding + gamePrompt);	
+						prompting = true;
+					};
+					break;
 				};
 			};
 		});
