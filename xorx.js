@@ -1020,6 +1020,7 @@ $(document).ready( function(){
 
 		$.getJSON( 'characters.json', function(data) {
 
+			parent:
 			for (var i = 0; i <= data.length-1; i++) {
 
 				if ( data[i].location == currentLocation ) {
@@ -1042,13 +1043,13 @@ $(document).ready( function(){
 								else {
 									response.append(responsePadding + "the xorxian does not respond, but continues watching you closely.");
 								};
-								break;
+								break parent;
 							case "xaph":
 								response.append(responsePadding + "the flying creature does not seem capable of conversation.");
-								break;
+								break parent;
 							case "xothrog":
 								response.append(responsePadding + "xothrog does not seem interested in conversation.");
-								break;
+								break parent;
 							default:
 
 								if (understanding) {
@@ -1060,13 +1061,13 @@ $(document).ready( function(){
 
 									response.append(responsePadding + "the human gives no response.");
 								};
-								break;
+								break parent;
 						};
 					}
 
 					else{
 
-						if (i >= data.length) {
+						if (i >= data.length-1) {
 
 							console.log("from name test");
 
