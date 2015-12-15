@@ -194,6 +194,36 @@ $(document).ready( function(){
 				});
 
 				break;
+			case "who do you want to talk to?":
+
+				$.getJSON( 'characters.json', function(data) {
+
+					var intendedCharacter = parseSubject(userAnswer);
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if ( data[i].name == intendedCharacter ) {
+
+							prompting = false;
+							greet(intendedCharacter);
+							break;
+						}
+
+						else{
+
+							if (i >= data.length-1) {
+
+								response.append(responsePadding + "please indicate a valid character in this area.");
+
+								gamePrompt = "who do you want to talk to?";
+								response.append(responsePadding + gamePrompt);	
+								prompting = true;
+							}
+						};
+					};
+				});
+
+				break;
 			default:
 				parseError(genericError);
 		};
@@ -345,23 +375,6 @@ $(document).ready( function(){
 				};
 			}
 		});
-
-		// $.getJSON( 'characters.json', function(data) {
-
-		// 	for (var i = 0; i <= data.length; i++) {
-
-		// 		if ( data[i].name == character ) {
-
-		// 			currentPlayer = data[i].name;
-		// 			currentLocation = data[i].location;
-		// 			currentInventory = data[i].inventory;
-		// 			currentDescription = data[i].description;
-		// 			currentTrait = data[i].trait;
-
-		// 			break;
-		// 		};
-		// 	};
-		// });
 	};
 
 	function help () {
@@ -863,8 +876,6 @@ $(document).ready( function(){
 				success: function () {
 
 					switch (givenRecipient) {
-
-						// characters
 						case "xia":
 							givenRecipientParse = "the xorxian";
 							break;
@@ -987,6 +998,72 @@ $(document).ready( function(){
 					response.append(responsePadding + "could not give the item.");
 				};
 			});
+	};
+
+	function greet (subject1, subject2) {
+
+		var intendedSubject1 = parseSubject(subject1);
+		var intendedSubject2 = parseSubject(subject2);
+
+		var understanding = true;
+
+		$.getJSON( 'characters.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].location == currentLocation ) {
+
+					if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
+
+						if (data[i].trait != currentTrait) {
+
+							response.append(responsePadding + "he does not understand your language.");
+							understanding = false;
+						};
+
+						switch (data[i].name) {
+							case "xia":
+
+								if (xiaComplete) {
+									response.append(responsePadding + "the xorxian gestures to himself and says \"xia\".");
+								} 
+
+								else {
+									response.append(responsePadding + "the xorxian does not respond, but continues watching you closely.");
+								};
+								break;
+							case "xaph":
+								response.append(responsePadding + "the flying creature does not seem capable of conversation.");
+								break;
+							case "xothrog":
+								response.append(responsePadding + "xothrog does not seem interested in conversation.");
+								break;
+							default:
+
+								if (understanding) {
+
+									response.append(responsePadding + "the human responds, \"greetings friend, my name is " + data[i].name + "\".");
+								} 
+
+								else{
+
+									response.append(responsePadding + "the human gives no response.");
+								};
+						};
+					} 
+
+					else{
+
+						if (i >= data.length-1) {
+
+							gamePrompt = "who do you want to talk to?";
+							response.append(responsePadding + gamePrompt);	
+							prompting = true;
+						};
+					};
+				};
+			};
+		});
 	};
 
 });
