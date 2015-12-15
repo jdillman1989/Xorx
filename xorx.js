@@ -26,6 +26,8 @@ $(document).ready( function(){
 	var currentDescription = "";
 	var currentTrait = "";
 
+	var xiaComplete = false;
+
 	response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
 
 	input.keydown( function( event ) {
@@ -891,6 +893,11 @@ $(document).ready( function(){
 
 					response.append(responsePadding + "you give the " + currentInventory + " to " + givenRecipientParse + ".");
 
+					if (currentInventory == "hotstone" && givenRecipient == "xia") {
+
+						xiaTrigger();
+					};
+
 					getCurrentPlayerInfo(currentPlayer);
 
 					if (currentInventory) {
@@ -1065,5 +1072,11 @@ $(document).ready( function(){
 			};
 		});
 	};
+
+	// Special Triggers:
+
+	function xiaTrigger () {
+		xiaComplete = true;
+	}
 
 });
