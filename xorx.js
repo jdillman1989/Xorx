@@ -1022,11 +1022,7 @@ $(document).ready( function(){
 
 			for (var i = 0; i <= data.length-1; i++) {
 
-				console.log(data[i].name + ", " + intendedSubject1 + ", " + intendedSubject2);
-
 				if ( data[i].location == currentLocation ) {
-
-					console.log(data[i].name + " found");
 
 					if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
 
@@ -1070,7 +1066,7 @@ $(document).ready( function(){
 
 					else{
 
-						if (i >= data.length-1) {
+						if (i >= data.length) {
 
 							console.log("from name test");
 
