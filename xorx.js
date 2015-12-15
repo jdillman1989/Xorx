@@ -1057,6 +1057,7 @@ $(document).ready( function(){
 									response.append(responsePadding + "the human gives no response.");
 								};
 						};
+						break;
 					} 
 
 					else{
@@ -1067,6 +1068,7 @@ $(document).ready( function(){
 							response.append(responsePadding + gamePrompt);	
 							prompting = true;
 						};
+						break;
 					};
 				};
 			};
