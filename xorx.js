@@ -78,7 +78,7 @@ $(document).ready( function(){
 			case "call":
 			case "ask":
 			case "talk":
-				greet(subject1, subject2);
+				greet(subject1, subject2); //done
 				break;
 			case "read":
 			case "decipher":
