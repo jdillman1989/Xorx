@@ -1023,9 +1023,9 @@ $(document).ready( function(){
 			parent:
 			for (var i = 0; i <= data.length-1; i++) {
 
-				if ( data[i].location == currentLocation ) {
+				if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
 
-					if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
+					if ( data[i].location == currentLocation ) {
 
 						if (data[i].trait != currentTrait) {
 
@@ -1069,12 +1069,8 @@ $(document).ready( function(){
 
 						if (i >= data.length-1) {
 
-							console.log("from name test");
-
-							gamePrompt = "who do you want to talk to?";
-							response.append(responsePadding + gamePrompt);	
-							prompting = true;
-							break;
+							response.append(responsePadding + "you can't talk to that character here.");
+							break parent;
 						};
 					};
 				}
@@ -1083,7 +1079,11 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						response.append(responsePadding + "you can't talk to that character here.");
+						console.log("from name test");
+
+						gamePrompt = "who do you want to talk to?";
+						response.append(responsePadding + gamePrompt);	
+						prompting = true;
 						break;
 					};
 				};
