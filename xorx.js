@@ -1059,14 +1059,21 @@ $(document).ready( function(){
 								};
 								break;
 						};
+					}
+
+					else{
+
+						if (i >= data.length-1) {
+
+							gamePrompt = "who do you want to talk to?";
+							response.append(responsePadding + gamePrompt);	
+							prompting = true;
+							break;
+						};
 					};
 				}
 
 				else{
-
-					console.log(data[i].name);
-					console.log(i);
-					console.log(data.length-1);
 
 					if (i >= data.length-1) {
 
