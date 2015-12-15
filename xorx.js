@@ -1057,8 +1057,8 @@ $(document).ready( function(){
 
 									response.append(responsePadding + "the human gives no response.");
 								};
+								break;
 						};
-						break;
 					};
 				}
 
