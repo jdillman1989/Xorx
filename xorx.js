@@ -11,7 +11,7 @@ $(document).ready( function(){
 
 	var responsePadding = "<br><br>&gt;";
 	var genericError = "your command did not work. please try something different. type help for basic game instructions.";
-	var gameInstructions = "you are a human mysteriously trapped on a strange alien world. is there a way back home? or maybe there is an amazing discovery to be made here...<br>basic instructions: type in the box to control your character. everything you type MUST be lower case. examples: 'take rock', 'look rock', 'go west'. if something seems broken or you have any suggestions, please email the developer at jesse@jdillman.com<br>keep in mind that there is more to this game than it may seem at first. :)";
+	var gameInstructions = "you are a human mysteriously trapped on a strange alien world. is there a way back home? or maybe there is an amazing discovery to be made here...<br>basic instructions: type in the box to control your character. everything you type MUST be lower case. examples: 'take rock', 'look rock', 'go west'. the game saves progress automatically whenever a command is given. if something seems broken or you have any suggestions, please email the developer at jesse@jdillman.com<br>keep in mind that there is more to this game than it may seem at first. :)";
 
 	var prompting = false;
 	var gamePrompt = "";
@@ -82,7 +82,7 @@ $(document).ready( function(){
 				break;
 			case "read":
 			case "decipher":
-				read(subject1);
+				read(subject1); //done
 				break;
 			case "give":
 			case "hand":
@@ -186,7 +186,7 @@ $(document).ready( function(){
 
 							if (i >= data.length-1) {
 
-								response.append(responsePadding + "please indicate the side of the obelisk you want to see.");
+								response.append(responsePadding + "please indicate the side of the obelisk you want to see (north, south, east, or west).");
 
 								gamePrompt = "what side of the obelisk do you want to look at?";
 								response.append(responsePadding + gamePrompt);	
@@ -224,6 +224,45 @@ $(document).ready( function(){
 								prompting = false;
 								response.append(responsePadding + "you can't talk to that.");
 								break;
+							}
+						};
+					};
+				});
+
+				break;
+			case "what side of the obelisk do you want to read?":
+
+				$.getJSON( 'items.json', function(data) {
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if ( data[i].name == "obelisk" + userAnswer ) {
+
+							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
+
+							if (currentTrait == "xorxian") {
+
+								response.append(responsePadding + data[i].translation + ".");
+							} 
+
+							else {
+
+								response.append(responsePadding + "you cannot decipher these xorxian runes.");
+							};
+							
+							prompting = false;
+							break;
+						}
+
+						else {
+
+							if (i >= data.length-1) {
+
+								response.append(responsePadding + "please indicate the side of the obelisk you want to read (north, south, east, or west).");
+
+								gamePrompt = "what side of the obelisk do you want to read?";
+								response.append(responsePadding + gamePrompt);	
+								prompting = true;
 							}
 						};
 					};
@@ -442,6 +481,9 @@ $(document).ready( function(){
 			case "ray":
 			case "mind":
 				subjectParse = "mindray";
+				break;
+			case "wall":
+				subjectParse = "inscription";
 				break;
 			case "console":
 			case "monitor":
@@ -1081,6 +1123,83 @@ $(document).ready( function(){
 						gamePrompt = "who do you want to talk to?";
 						response.append(responsePadding + gamePrompt);	
 						prompting = true;
+						break;
+					};
+				};
+			};
+		});
+	};
+
+	function read (subject) {
+
+		var intendedSubject = parseSubject(subject);
+
+		if (subject == "runes") {
+
+			response.append(responsePadding + "try reading with the name of the object.");
+			return;
+		};
+		
+		$.getJSON( 'items.json', function(data) {
+
+			parent:
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if (data[i].name == intendedSubject || intendedSubject === undefined) {
+
+					if ( data[i].location == currentLocation || data[i].location == currentPlayer ) {
+
+						switch (intendedSubject) {
+							case "obelisk":
+								prompting = true;
+								gamePrompt = "what side of the obelisk do you want to read?";
+								response.append(responsePadding + gamePrompt);
+								break parent;
+							case "scroll":
+								image.css({ "background-image" : "url('images/scroll.png')" });
+
+								if (currentTrait == "xorxian") {
+
+									response.append(responsePadding + data[i].translation + ".");
+								} 
+
+								else{
+									response.append(responsePadding + "you cannot decipher these xorxian runes.");
+								};
+								break parent;
+							case "inscription":
+								image.css({ "background-image" : "url('images/inscription.png')" });
+								response.append(responsePadding + "you stoop down and read the inscription.");
+
+								if (currentTrait == "human") {
+
+									response.append(responsePadding + "it says, " + data[i].translation + ".");
+								} 
+
+								else{
+
+									response.append(responsePadding + "you cannot decipher these human runes.");
+								};
+
+								break parent;
+							default:
+								response.append(responsePadding + "there is nothing to read on that.");
+								break parent;
+						};
+					}
+
+					else{
+
+						response.append(responsePadding + "you can't read that here.");
+						break parent;
+					};
+				}
+
+				else{
+
+					if (i >= data.length-1) {
+
+						response.append(responsePadding + "you can't read that.");
 						break;
 					};
 				};

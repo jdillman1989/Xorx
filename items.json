@@ -12,28 +12,32 @@
 		"name": "obelisknorth",
 		"location": "obeliskhill",
 		"movable": false,
-		"description": "a purple stone surface engraved with intricate runes and image of a winged creature"
+		"description": "a purple stone surface engraved with intricate runes and image of a winged creature",
+		"translation": "it describes a flying creature local to this area called xaph. xaph spends its time flying high over the world or roosting at its nest. it is attracted to shiny objects."
 	},
 
 	{
 		"name": "obelisksouth",
 		"location": "obeliskhill",
 		"movable": false,
-		"description": "a purple stone surface engraved with intricate runes and a strange image of three humans. the imagery seems like some kind of prophecy. at your feet there is a trubshaw sticking up out of the MUD"
+		"description": "a purple stone surface engraved with intricate runes and a strange image of three humans. the imagery seems like some kind of prophecy. at your feet there is a trubshaw sticking up out of the MUD",
+		"translation": "it describes human visitors to xorx. their minds are far more powerful than any consciousness on xorx. humans accessing xorx can sometimes enter the consciousness of other beings in order to manipulate the world through a different mind."
 	},
 
 	{
 		"name": "obeliskeast",
 		"location": "obeliskhill",
 		"movable": false,
-		"description": "a purple stone surface engraved with intricate runes and a strange image of a hideous creature. the imagery seems like some kind of apocalypse"
+		"description": "a purple stone surface engraved with intricate runes and a strange image of a hideous creature. the imagery seems like some kind of apocalypse",
+		"translation": "it describes the demon god xothrog. he was a powerful deity that once roamed these lands, wrecking havoc among both humans and xorxians."
 	},
 
 	{
 		"name": "obeliskwest",
 		"location": "obeliskhill",
 		"movable": false,
-		"description": "a purple stone surface engraved with intricate runes and an image of the native xorxian people"
+		"description": "a purple stone surface engraved with intricate runes and an image of the native xorxian people",
+		"translation": "it describes the xorxian people, the only sentient race native to xorx. it seems they thrived here at one time, but are now sparce and isolated."
 	},
 
 	{
@@ -71,7 +75,8 @@
 		"name": "scroll",
 		"location": "xia",
 		"movable": true,
-		"description": "a thick heavy scroll covered in strange intricate runes"
+		"description": "a thick heavy scroll covered in strange intricate runes",
+		"translation": "the scroll tells of ancient history, when humans first visited xorx. they brought with them highly advanced technology in search of a great power that lay dormant in xorx. the humans' minds proved to be much more powerful than any other inhabitants of this dimension. because of their powerful minds, xorx was only ever able to sustain the presence of three humans at a time. the demon god xothrog arose to maintain this balance of consciousness in xorx. if there were ever more than three humans in xorx, xothrog would consume them until the balance of three was restored. xothrog also sought to steal and destroy the technology the human's brought to xorx. unfortunately xothrog would also wreck havoc among the local xorxian people. eventually the humans gave up exploring xorx, and the xorxians decided to band together and seal away xothrog to prevent his destruction. it is said that if enough humans are sacrificed to xothrog, he could grow in power and escape from his imprisonment."
 	},
 
 	{
@@ -79,6 +84,14 @@
 		"location": "xothroggrave",
 		"movable": true,
 		"description": "a large crimson stone giving off a lot of heat"
+	},
+
+	{
+		"name": "inscription",
+		"location": "nwunderground",
+		"movable": false,
+		"description": "a tiny inscription near the bottom of the wall",
+		"translation": "\"this dungeon seems kinda MUD-dy.\" -Roy "
 	},
 
 	{
