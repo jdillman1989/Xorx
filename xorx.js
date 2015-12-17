@@ -586,7 +586,7 @@ $(document).ready( function(){
 
 			var obeliskTest = "";
 
-			var lookData = new Object();
+			var lookData = [];
 			var lookDataIndex = 0;
 			var lookDataString = "";
 
@@ -599,51 +599,32 @@ $(document).ready( function(){
 
 					if ( data[i].name == currentLocation) {
 
-						lookData[lookDataIndex].name = "here";
-						lookData[lookDataIndex].text = data[i].roomdescription;
-
-						lookDataIndex++;
+						lookData.push({"name":"here", "text": data[i].roomdescription});
 
 						for (var n = 0; n <= data.length-1; n++) {
 
 							if ( data[i].roomlocation.north && data[i].roomlocation.north == data[n].name) {
-								lookData[lookDataIndex].name = "north";
-								lookData[lookDataIndex].text = data[n].roomdescription;
-
-								lookDataIndex++;
+								lookData.push({"name":"north", "text": data[n].roomdescription});
 							};
 
 							if ( data[i].roomlocation.south && data[i].roomlocation.south == data[n].name) {
-								lookData[lookDataIndex].name = "south";
-								lookData[lookDataIndex].text = data[n].roomdescription;
-
-								lookDataIndex++;
+								lookData.push({"name":"south", "text": data[n].roomdescription});
 							};
 
 							if ( data[i].roomlocation.east && data[i].roomlocation.east == data[n].name) {
-								lookData[lookDataIndex].name = "east";
-								lookData[lookDataIndex].text = data[n].roomdescription;
-
-								lookDataIndex++;
+								lookData.push({"name":"east", "text": data[n].roomdescription});
 							};
 
 							if ( data[i].roomlocation.west && data[i].roomlocation.west == data[n].name) {
-								lookData[lookDataIndex].name = "west";
-								lookData[lookDataIndex].text = data[n].roomdescription;
-
-								lookDataIndex++;
+								lookData.push({"name":"west", "text": data[n].roomdescription});
 							};
 
 							if ( data[i].roomlocation.up && data[i].roomlocation.up == data[n].name) {
-								lookData[lookDataIndex].name = "up";
-								lookData[lookDataIndex].text = data[n].roomdescription;
-
-								lookDataIndex++;
+								lookData.push({"name":"up", "text": data[n].roomdescription});
 							};
 
 							if ( data[i].roomlocation.down && data[i].roomlocation.down == data[n].name) {
-								lookData[lookDataIndex].name = "down";
-								lookData[lookDataIndex].text = data[n].roomdescription;
+								lookData.push({"name":"down", "text": data[n].roomdescription});
 							};
 						};
 					};
