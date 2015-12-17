@@ -433,6 +433,7 @@ $(document).ready( function(){
 	function parseSubject (subject) {
 
 		var subjectParse = "";
+		var testLocation = currentLocation.indexOf(".");
 
 		switch (subject) {
 
@@ -470,7 +471,18 @@ $(document).ready( function(){
 				subjectParse = "xorxgem";
 				break;
 			case "glint":
-				subjectParse = "tower";
+			case "tower":
+
+				if (testLocation > 0) {
+
+					var targetLocation = currentLocation.split(".");
+					subjectParse = "tower_" + targetLocation[1];
+				}
+
+				else {
+
+					subjectParse = subject;
+				};
 				break;
 			case "portal":
 			case "crystal":
@@ -491,7 +503,17 @@ $(document).ready( function(){
 			case "controls":
 			case "controller":
 			case "panel":
-				subjectParse = "console";
+
+				if (testLocation > 0) {
+
+					var targetLocation = currentLocation.split(".");
+					subjectParse = "console_" + targetLocation[1];
+				}
+
+				else {
+
+					subjectParse = subject;
+				};
 				break;
 			default:
 				subjectParse = subject;
@@ -508,13 +530,21 @@ $(document).ready( function(){
 
 			var found = false;
 
+			if (intendedSubject == "obelisk" && currentLocation == "obeliskhill") {
+
+				prompting = true;
+				gamePrompt = "what side of the obelisk do you want to look at?";
+				response.append(responsePadding + gamePrompt);
+				return;
+			};
+
 			$.getJSON( 'characters.json', function(data) {
 
 				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
-						response.append(responsePadding + "You see " + data[i].description + ".");
+						response.append(responsePadding + "you see " + data[i].description + ".");
 						found = true;
 					};
 				};
@@ -528,34 +558,11 @@ $(document).ready( function(){
 
 						if (data[i].location == currentLocation || data[i].location == currentPlayer) {
 
-							response.append(responsePadding + "You see " + data[i].description + ".");
+							response.append(responsePadding + "you see " + data[i].description + ".");
 							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 							found = true;
 						};
 					}
-
-					else if ( intendedSubject == "tower" || intendedSubject == "console" || intendedSubject == "obelisk") {
-
-						found = true;
-
-						switch (intendedSubject) {
-							case "tower":
-								response.append(responsePadding + "You see " + data[5].description + ".");
-								image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
-								break;
-							case "console":
-								response.append(responsePadding + "You see " + data[12].description + ".");
-								image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
-								break;
-							case "obelisk":
-								prompting = true;
-								gamePrompt = "what side of the obelisk do you want to look at?";
-								response.append(responsePadding + gamePrompt);
-								break;
-						};
-
-						break;
-					};
 				};
 			})
 				.done( function() {
@@ -563,6 +570,7 @@ $(document).ready( function(){
 					if ( !found ) {
 
 							response.append(responsePadding + "there is nothing more to see there.");
+							look();
 					};
 				});
 		};
@@ -1134,9 +1142,17 @@ $(document).ready( function(){
 
 		var intendedSubject = parseSubject(subject);
 
-		if (subject == "runes") {
+		if (intendedSubject == "runes" || intendedSubject === undefined) {
 
 			response.append(responsePadding + "try reading with the name of the object.");
+			return;
+		};
+
+		if (intendedSubject == "obelisk") {
+
+			prompting = true;
+			gamePrompt = "what side of the obelisk do you want to read?";
+			response.append(responsePadding + gamePrompt);
 			return;
 		};
 		
@@ -1145,16 +1161,11 @@ $(document).ready( function(){
 			parent:
 			for (var i = 0; i <= data.length-1; i++) {
 
-				if (data[i].name == intendedSubject || intendedSubject === undefined) {
+				if (data[i].name == intendedSubject) {
 
 					if ( data[i].location == currentLocation || data[i].location == currentPlayer ) {
 
 						switch (intendedSubject) {
-							case "obelisk":
-								prompting = true;
-								gamePrompt = "what side of the obelisk do you want to read?";
-								response.append(responsePadding + gamePrompt);
-								break parent;
 							case "scroll":
 								image.css({ "background-image" : "url('images/scroll.png')" });
 

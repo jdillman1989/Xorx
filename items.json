@@ -9,7 +9,7 @@
 	},
 
 	{
-		"name": "obelisknorth",
+		"name": "obelisk_north",
 		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and image of a winged creature",
@@ -17,7 +17,7 @@
 	},
 
 	{
-		"name": "obelisksouth",
+		"name": "obelisk_south",
 		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and a strange image of three humans. the imagery seems like some kind of prophecy. at your feet there is a trubshaw sticking up out of the MUD",
@@ -25,7 +25,7 @@
 	},
 
 	{
-		"name": "obeliskeast",
+		"name": "obelisk_east",
 		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and a strange image of a hideous creature. the imagery seems like some kind of apocalypse",
@@ -33,7 +33,7 @@
 	},
 
 	{
-		"name": "obeliskwest",
+		"name": "obelisk_west",
 		"location": "obeliskhill",
 		"movable": false,
 		"description": "a purple stone surface engraved with intricate runes and an image of the native xorxian people",
@@ -41,7 +41,7 @@
 	},
 
 	{
-		"name": "towernorth",
+		"name": "tower_north",
 		"location": "ntower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
@@ -49,7 +49,7 @@
 	},
 
 	{
-		"name": "towersouth",
+		"name": "tower_south",
 		"location": "stower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
@@ -57,7 +57,7 @@
 	},
 
 	{
-		"name": "towereast",
+		"name": "tower_east",
 		"location": "etower",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
@@ -103,21 +103,21 @@
 	},
 
 	{
-		"name": "northconsole",
+		"name": "console_north",
 		"location": "nunderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	},
 
 	{
-		"name": "southconsole",
+		"name": "console_south",
 		"location": "sunderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	},
 
 	{
-		"name": "eastconsole",
+		"name": "console_east",
 		"location": "eunderground",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"

@@ -2,17 +2,17 @@
 	{
 		"name": "obeliskhill",
 		"roomlocation": {
-			"north": "etower",
+			"north": "tower.east",
 			"south": "ocean",
 			"east": "ocean",
-			"west": "stower",
+			"west": "tower.south",
 			"up": "sky",
 			"down": ""
 		},
 		"roomdescription": "a tall four-sided obelisk at the peak of a small hill"
 	},
 	{
-		"name": "stower",
+		"name": "tower.south",
 		"roomlocation": {
 			"north": "pyramid",
 			"south": "ocean",
@@ -28,7 +28,7 @@
 		"roomlocation": {
 			"north": "ruins",
 			"south": "ocean",
-			"east": "stower",
+			"east": "tower.south",
 			"west": "ocean",
 			"up": "sky",
 			"down": ""
@@ -36,7 +36,7 @@
 		"roomdescription": "a large statue of a hideous horned face in the center of a circle of stones. the stones give off a lot of heat"
 	},
 	{
-		"name": "etower",
+		"name": "tower.east",
 		"roomlocation": {
 			"north": "xiascave",
 			"south": "obeliskhill",
@@ -51,11 +51,11 @@
 		"name": "xiascave",
 		"roomlocation": {
 			"north": "ocean",
-			"south": "etower",
+			"south": "tower.east",
 			"east": "ocean",
-			"west": "ntower",
+			"west": "tower.north",
 			"up": "",
-			"down": "neunderground"
+			"down": "underground.northeast"
 		},
 		"roomdescription": "a small, well-lit cave. there is a stone door in the back of the cave"
 	},
@@ -74,9 +74,9 @@
 	{
 		"name": "pyramid",
 		"roomlocation": {
-			"north": "ntower",
-			"south": "stower",
-			"east": "etower",
+			"north": "tower.north",
+			"south": "tower.south",
+			"east": "tower.east",
 			"west": "ruins",
 			"up": "sky",
 			"down": ""
@@ -96,7 +96,7 @@
 		"roomdescription": "a large circle of ancient ruined stonework. there is a bent and broken axle emerging striaght upwards from a wide pit in the center"
 	},
 	{
-		"name": "ntower",
+		"name": "tower.north",
 		"roomlocation": {
 			"north": "ocean",
 			"south": "pyramid",
@@ -112,7 +112,7 @@
 		"roomlocation": {
 			"north": "ocean",
 			"south": "ruins",
-			"east": "ntower",
+			"east": "tower.north",
 			"west": "ocean",
 			"up": "nest",
 			"down": "butteinterior"
@@ -156,22 +156,22 @@
 		"roomdescription": "a large nest high above the ground"
 	},
 	{
-		"name": "neunderground",
+		"name": "underground.northeast",
 		"roomlocation": {
 			"north": "",
-			"south": "eunderground",
+			"south": "underground.east",
 			"east": "",
-			"west": "nunderground",
+			"west": "underground.north",
 			"up": "xiascave",
 			"down": ""
 		},
 		"roomdescription": "a dim stone tunnel that runs west and south. a staircase leads upwards"
 	},
 	{
-		"name": "eunderground",
+		"name": "underground.east",
 		"roomlocation": {
-			"north": "neunderground",
-			"south": "seunderground",
+			"north": "underground.northeast",
+			"south": "underground.southeast",
 			"east": "",
 			"west": "",
 			"up": "",
@@ -180,23 +180,23 @@
 		"roomdescription": "a dim stone tunnel that runs north and south"
 	},
 	{
-		"name": "seunderground",
+		"name": "underground.southeast",
 		"roomlocation": {
-			"north": "eunderground",
+			"north": "underground.east",
 			"south": "",
 			"east": "",
-			"west": "sunderground",
+			"west": "underground.south",
 			"up": "",
 			"down": ""
 		},
 		"roomdescription": "a dim stone tunnel that runs north and west"
 	},
 	{
-		"name": "sunderground",
+		"name": "underground.south",
 		"roomlocation": {
 			"north": "",
 			"south": "",
-			"east": "seunderground",
+			"east": "underground.southeast",
 			"west": "",
 			"up": "",
 			"down": ""
@@ -204,23 +204,23 @@
 		"roomdescription": "a dead-end dim stone tunnel that continues east"
 	},
 	{
-		"name": "nunderground",
+		"name": "underground.north",
 		"roomlocation": {
 			"north": "",
 			"south": "",
-			"east": "neunderground",
-			"west": "nwunderground",
+			"east": "underground.northeast",
+			"west": "underground.northwest",
 			"up": "",
 			"down": ""
 		},
 		"roomdescription": "a dim stone tunnel that runs east and west"
 	},
 	{
-		"name": "nwunderground",
+		"name": "underground.northwest",
 		"roomlocation": {
 			"north": "",
 			"south": "",
-			"east": "nunderground",
+			"east": "underground.north",
 			"west": "",
 			"up": "",
 			"down": ""
