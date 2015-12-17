@@ -517,8 +517,9 @@ $(document).ready( function(){
 				break;
 			default:
 				subjectParse = subject;
+				break;
 		};
-		
+
 		console.log(subjectParse);
 		return subjectParse;
 	};

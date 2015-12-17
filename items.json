@@ -42,7 +42,7 @@
 
 	{
 		"name": "tower_north",
-		"location": "ntower",
+		"location": "tower.north",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
@@ -50,7 +50,7 @@
 
 	{
 		"name": "tower_south",
-		"location": "stower",
+		"location": "tower.south",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
@@ -58,7 +58,7 @@
 
 	{
 		"name": "tower_east",
-		"location": "etower",
+		"location": "tower.east",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
 		"active": false
@@ -88,7 +88,7 @@
 
 	{
 		"name": "inscription",
-		"location": "nwunderground",
+		"location": "underground.northwest",
 		"movable": false,
 		"description": "a tiny inscription near the bottom of the wall",
 		"translation": "\"this dungeon seems kinda MUD-dy.\" -Roy "
@@ -104,21 +104,21 @@
 
 	{
 		"name": "console_north",
-		"location": "nunderground",
+		"location": "underground.north",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	},
 
 	{
 		"name": "console_south",
-		"location": "sunderground",
+		"location": "underground.south",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	},
 
 	{
 		"name": "console_east",
-		"location": "eunderground",
+		"location": "underground.east",
 		"movable": false,
 		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
 	}
