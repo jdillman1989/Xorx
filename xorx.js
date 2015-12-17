@@ -174,7 +174,7 @@ $(document).ready( function(){
 
 					for (var i = 0; i <= data.length-1; i++) {
 
-						if ( data[i].name == "obelisk" + userAnswer ) {
+						if ( data[i].name == "obelisk_" + userAnswer ) {
 
 							response.append(responsePadding + "you see " + data[i].description + ".");
 							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
