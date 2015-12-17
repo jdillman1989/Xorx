@@ -1197,7 +1197,7 @@ $(document).ready( function(){
 			return;
 		};
 
-		if (intendedSubject == "obelisk") {
+		if (intendedSubject == "obelisk" && currentLocation == "obeliskhill") {
 
 			prompting = true;
 			gamePrompt = "what side of the obelisk do you want to read?";
