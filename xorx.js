@@ -518,10 +518,10 @@ $(document).ready( function(){
 			default:
 				subjectParse = subject;
 		};
-
-		return subjectParse;
+		
 		console.log(subjectParse);
-	}
+		return subjectParse;
+	};
 
 	function look (subject) {
 
