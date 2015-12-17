@@ -718,22 +718,66 @@ $(document).ready( function(){
 
 					switch (direction) {
 						case "north":
-							setCurrentPlayerLocation(data[i].roomlocation.north);
+							if (data[i].roomlocation.north !== undefined) {
+								setCurrentPlayerLocation(data[i].roomlocation.north);
+							} 
+
+							else {
+								response.append(responsePadding + "you can't go that way.");
+							};
 							break;
 						case "south":
-							setCurrentPlayerLocation(data[i].roomlocation.south);
+							if (data[i].roomlocation.south !== undefined) {
+								setCurrentPlayerLocation(data[i].roomlocation.south);
+							} 
+
+							else {
+								response.append(responsePadding + "you can't go that way.");
+							};
 							break;
 						case "east":
-							setCurrentPlayerLocation(data[i].roomlocation.east);
+							if (data[i].roomlocation.east !== undefined) {
+								setCurrentPlayerLocation(data[i].roomlocation.east);
+							} 
+
+							else {
+								response.append(responsePadding + "you can't go that way.");
+							};
 							break;
 						case "west":
-							setCurrentPlayerLocation(data[i].roomlocation.west);
+							if (data[i].roomlocation.west !== undefined) {
+								setCurrentPlayerLocation(data[i].roomlocation.west);
+							} 
+
+							else {
+								response.append(responsePadding + "you can't go that way.");
+							};
 							break;
 						case "up":
-							setCurrentPlayerLocation(data[i].roomlocation.up);
+							if (data[i].roomlocation.up !== undefined) {
+
+								if (currentTrait == "flying" || currentLocation == "underground.northeast" || currentLocation == "butteinterior") {
+									setCurrentPlayerLocation(data[i].roomlocation.up);
+								} 
+
+								else{
+
+									response.append(responsePadding + "you are not able to fly.");
+								};
+							} 
+
+							else {
+								response.append(responsePadding + "you can't go that way.");
+							};
 							break;
 						case "down":
-							setCurrentPlayerLocation(data[i].roomlocation.down);
+							if (data[i].roomlocation.down !== undefined) {
+								setCurrentPlayerLocation(data[i].roomlocation.down);
+							} 
+
+							else {
+								response.append(responsePadding + "you can't go that way");
+							};
 							break;
 					};
 
