@@ -520,6 +520,7 @@ $(document).ready( function(){
 		};
 
 		return subjectParse;
+		console.log(subjectParse);
 	}
 
 	function look (subject) {
