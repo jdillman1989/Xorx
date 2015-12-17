@@ -236,7 +236,7 @@ $(document).ready( function(){
 
 					for (var i = 0; i <= data.length-1; i++) {
 
-						if ( data[i].name == "obelisk" + userAnswer ) {
+						if ( data[i].name == "obelisk_" + userAnswer ) {
 
 							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 
