@@ -727,6 +727,9 @@ $(document).ready( function(){
 							};
 							break;
 						case "south":
+
+							console.log(data[i].roomlocation.south);
+							
 							if (data[i].roomlocation.south !== undefined) {
 								setCurrentPlayerLocation(data[i].roomlocation.south);
 							} 
