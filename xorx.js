@@ -586,16 +586,11 @@ $(document).ready( function(){
 
 			var obeliskTest = "";
 
-			var here = "";
-			var north = "";
-			var south = "";
-			var east = "";
-			var west = "";
-			var above = "";
-			var below = "";
+			var lookData = new Object();
+			var lookDataIndex = 0;
+			var lookDataString = "";
 
 			var locationItemArray = [];
-
 			var locationCharacterArray = [];
 
 			$.getJSON( 'map.json', function(data) {
@@ -604,38 +599,62 @@ $(document).ready( function(){
 
 					if ( data[i].name == currentLocation) {
 
-						here = data[i].roomdescription;
+						lookData[lookDataIndex].name = "here";
+						lookData[lookDataIndex].text = data[i].roomdescription;
+
+						lookDataIndex++;
 
 						for (var n = 0; n <= data.length-1; n++) {
 
-							if ( data[i].roomlocation.north == data[n].name) {
-								north = data[n].roomdescription;
+							if ( data[i].roomlocation.north && data[i].roomlocation.north == data[n].name) {
+								lookData[lookDataIndex].name = "north";
+								lookData[lookDataIndex].text = data[n].roomdescription;
+
+								lookDataIndex++;
 							};
 
-							if ( data[i].roomlocation.south == data[n].name) {
-								south = data[n].roomdescription;
+							if ( data[i].roomlocation.south && data[i].roomlocation.south == data[n].name) {
+								lookData[lookDataIndex].name = "south";
+								lookData[lookDataIndex].text = data[n].roomdescription;
+
+								lookDataIndex++;
 							};
 
-							if ( data[i].roomlocation.east == data[n].name) {
-								east = data[n].roomdescription;
+							if ( data[i].roomlocation.east && data[i].roomlocation.east == data[n].name) {
+								lookData[lookDataIndex].name = "east";
+								lookData[lookDataIndex].text = data[n].roomdescription;
+
+								lookDataIndex++;
 							};
 
-							if ( data[i].roomlocation.west == data[n].name) {
-								west = data[n].roomdescription;
+							if ( data[i].roomlocation.west && data[i].roomlocation.west == data[n].name) {
+								lookData[lookDataIndex].name = "west";
+								lookData[lookDataIndex].text = data[n].roomdescription;
+
+								lookDataIndex++;
 							};
 
-							if ( data[i].roomlocation.up == data[n].name) {
-								above = data[n].roomdescription;
+							if ( data[i].roomlocation.up && data[i].roomlocation.up == data[n].name) {
+								lookData[lookDataIndex].name = "up";
+								lookData[lookDataIndex].text = data[n].roomdescription;
+
+								lookDataIndex++;
 							};
 
-							if ( data[i].roomlocation.down == data[n].name) {
-								below = data[n].roomdescription;
+							if ( data[i].roomlocation.down && data[i].roomlocation.down == data[n].name) {
+								lookData[lookDataIndex].name = "down";
+								lookData[lookDataIndex].text = data[n].roomdescription;
 							};
 						};
 					};
 				};
 
-				response.append(responsePadding + "here you see " + here + ". to the north there is " + north + ". to the south there is " + south + ". to the east there is " + east + ". to the west there is " + west + ". upwards there is " + above + ". downwards there is " + below + ".");
+				for (var i = 0; i <= lookData.length-1; i++) {
+
+					lookDataString += lookData[i].name + " you see " + lookData[i].text + ". ";
+				};
+
+				response.append(responsePadding + lookDataString);
 			});
 
 			$.getJSON( 'items.json', function(data) {
@@ -718,7 +737,7 @@ $(document).ready( function(){
 
 					switch (direction) {
 						case "north":
-							if (data[i].roomlocation.north !== undefined) {
+							if (data[i].roomlocation.north) {
 								setCurrentPlayerLocation(data[i].roomlocation.north);
 							} 
 
@@ -729,8 +748,8 @@ $(document).ready( function(){
 						case "south":
 
 							console.log(data[i].roomlocation.south);
-							
-							if (data[i].roomlocation.south !== undefined) {
+
+							if (data[i].roomlocation.south) {
 								setCurrentPlayerLocation(data[i].roomlocation.south);
 							} 
 
@@ -739,7 +758,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "east":
-							if (data[i].roomlocation.east !== undefined) {
+							if (data[i].roomlocation.east) {
 								setCurrentPlayerLocation(data[i].roomlocation.east);
 							} 
 
@@ -748,7 +767,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "west":
-							if (data[i].roomlocation.west !== undefined) {
+							if (data[i].roomlocation.west) {
 								setCurrentPlayerLocation(data[i].roomlocation.west);
 							} 
 
@@ -757,7 +776,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "up":
-							if (data[i].roomlocation.up !== undefined) {
+							if (data[i].roomlocation.up) {
 
 								if (currentTrait == "flying" || currentLocation == "underground.northeast" || currentLocation == "butteinterior") {
 									setCurrentPlayerLocation(data[i].roomlocation.up);
@@ -774,7 +793,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "down":
-							if (data[i].roomlocation.down !== undefined) {
+							if (data[i].roomlocation.down) {
 								setCurrentPlayerLocation(data[i].roomlocation.down);
 							} 
 
