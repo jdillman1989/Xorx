@@ -56,7 +56,7 @@ $(document).ready( function(){
 
 		for (var i = 0; i <= userCommandArray.length-1; i++) {
 
-			if ( userCommandArray[i]=="at" || userCommandArray[i]=="a" || userCommandArray[i]=="the" || userCommandArray[i]=="an" || userCommandArray[i]=="with" || userCommandArray[i]=="using" || userCommandArray[i]=="to" || userCommandArray[i]=="out" ) {
+			if ( userCommandArray[i]=="at" || userCommandArray[i]=="a" || userCommandArray[i]=="the" || userCommandArray[i]=="an" || userCommandArray[i]=="with" || userCommandArray[i]=="using" || userCommandArray[i]=="to" || userCommandArray[i]=="out" || userCommandArray[i]=="in" || userCommandArray[i]=="into" || userCommandArray[i]=="through" ) {
 				userCommandArray.splice(i, 1);
 			};
 		};
@@ -97,8 +97,10 @@ $(document).ready( function(){
 				drop(); //done
 				break;
 			case "activate":
-			case "push":
 			case "shoot":
+			case "operate":
+			case "put":
+			case "place":
 			case "use":
 				activate(subject1, subject2);
 				break;
@@ -106,6 +108,7 @@ $(document).ready( function(){
 			case "walk":
 			case "move":
 			case "travel":
+			case "enter":
 				move(subject1); //done
 				break;
 			case "help":
@@ -223,6 +226,55 @@ $(document).ready( function(){
 
 								prompting = false;
 								response.append(responsePadding + "you can't talk to that.");
+								break;
+							}
+						};
+					};
+				});
+
+				break;
+			case "what do you want to fire the mindray at?":
+
+				$.getJSON( 'characters.json', function(data) {
+
+					if (userAnswer.substring(0, 4) == "the ") {
+
+						userAnswer = userAnswer.substring(4);
+					};
+
+					var intendedCharacter = parseSubject(userAnswer);
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if (data[i].name == intendedCharacter && data[i].location == currentLocation) {
+
+							switch (data[i].name){
+								case "xia":
+									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes the xorxian.");
+									response.append(responsePadding + "he clutches his head in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
+									break;
+								case "xaph":
+									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes the flying creature.");
+									response.append(responsePadding + "it writhes in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
+									break;
+								case "xothrog":
+									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes xothrog.");
+									xothrogTrigger();
+									break;
+								default:
+									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes " + data[i].name + ".");
+									response.append(responsePadding + "he clutches his head in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
+									break;
+							};
+							break;
+						}
+
+						else{
+
+							if (i >= data.length-1) {
+
+								prompting = false;
+								response.append(responsePadding + "you can't shoot at that.");
 								break;
 							}
 						};
@@ -502,6 +554,7 @@ $(document).ready( function(){
 			case "control":
 			case "controls":
 			case "controller":
+			case "depression":
 			case "panel":
 
 				if (testLocation > 0) {
@@ -774,13 +827,17 @@ $(document).ready( function(){
 							};
 							break;
 						case "down":
+						case "door":
 							if (data[i].roomlocation.down) {
 								setCurrentPlayerLocation(data[i].roomlocation.down);
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way");
+								response.append(responsePadding + "you can't go that way.");
 							};
+							break;
+						default:
+							response.append(responsePadding + "that is not a valid direction.");
 							break;
 					};
 
@@ -1267,10 +1324,98 @@ $(document).ready( function(){
 		});
 	};
 
+	function activate (subject1, subject2) {
+
+		var intendedSubject1 = parseSubject(subject1);
+		var intendedSubject2 = parseSubject(subject2);
+		var useParse = "";
+
+		$.getJSON( 'items.json', function(data) {
+
+			parent:
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if (data[i].name == intendedSubject1 || data[i].name == intendedSubject2) {
+
+					if (data[i].location == currentLocation || data[i].location == currentPlayer) {
+
+						if (data[i].name.substring(0, 7) == "console") {
+
+							useParse = "console";
+						} 
+
+						else{
+
+							useParse = data[i].name;
+						};
+
+						switch (useParse) {
+							case "portal":
+								portalTrigger();
+								break parent;
+							case "mindray":
+								prompting = true;
+								gamePrompt = "what do you want to fire the mindray at?";
+								response.append(responsePadding + gamePrompt);
+								break parent;
+							case "scroll":
+								read("scroll");
+								break parent;
+							case "xorxgem":
+								if (currentTrait == "immortal") {
+									response.append(responsePadding + "you can use your immortal power to produce a beam of energy from the gem.");
+									gemTrigger();
+								} 
+								else {
+									response.append(responsePadding + "it seems like this xorxian artifact would require immortal power to operate.");
+								};
+								break parent;
+							case "console":
+								if (currentTrait == "human") {
+									var orientation = data[i].name.split("_");
+									response.append(responsePadding + "you place your hand into the console.");
+									towerTrigger(orientation[1]);
+								} 
+								else {
+									response.append(responsePadding + "you are not capable of operating this human technology.");
+								};
+								break parent;
+							default:
+								response.append(responsePadding + "you see no way to operate that.");
+								break parent;
+						};
+					}
+
+					else{
+
+						response.append(responsePadding + "you can't use that here.");
+						break parent;
+					};
+				}
+
+				else{
+
+					if (i >= data.length-1) {
+
+						response.append(responsePadding + "you can't use that.");
+						break;
+					};
+				};
+			};
+		});
+	};
+
 	// Special Triggers:
 
+	// scrollTrigger
+	// towerTrigger
+	// portalTrigger
+	// xothrogTrigger
+	// humanTrigger
+	// gemTrigger
+	// butteTrigger
+
 	function xiaTrigger () {
-		xiaComplete = true;
-	}
+	};
 
 });

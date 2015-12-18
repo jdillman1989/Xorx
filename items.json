@@ -5,7 +5,7 @@
 		"location": "pyramid",
 		"movable": false,
 		"description": "an enormous dark translucent crystalline structure",
-		"active": false
+		"active": 0
 	},
 
 	{
@@ -45,7 +45,7 @@
 		"location": "tower.north",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
-		"active": false
+		"active": 0
 	},
 
 	{
@@ -53,7 +53,7 @@
 		"location": "tower.south",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
-		"active": false
+		"active": 0
 	},
 
 	{
@@ -61,7 +61,7 @@
 		"location": "tower.east",
 		"movable": false,
 		"description": "an enormous purple stone tower with smooth sides. there is a glint of something bright turquoise at the top",
-		"active": false
+		"active": 0
 	},
 
 	{
@@ -91,7 +91,7 @@
 		"location": "underground.northwest",
 		"movable": false,
 		"description": "a tiny inscription near the bottom of the wall",
-		"translation": "\"this dungeon seems kinda MUD-dy.\" -Roy "
+		"translation": "\"this dungeon seems kinda MUD-dy. -Roy\""
 	},
 
 	{
@@ -99,27 +99,27 @@
 		"location": "xothrog",
 		"movable": true,
 		"description": "a large gem glowing bright turquoise",
-		"active": false
+		"active": 0
 	},
 
 	{
 		"name": "console_north",
 		"location": "underground.north",
 		"movable": false,
-		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has a depression in the shape of a human hand"
 	},
 
 	{
 		"name": "console_south",
 		"location": "underground.south",
 		"movable": false,
-		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has a depression in the shape of a human hand"
 	},
 
 	{
 		"name": "console_east",
 		"location": "underground.east",
 		"movable": false,
-		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has four colored buttons and a depression in the shape of a human hand"
+		"description": "a monitor and a control panel. the monitor shows an image of a large tower topped with a glowing turquoise crystal. the control panel has a depression in the shape of a human hand"
 	}
 ]
