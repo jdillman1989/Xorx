@@ -26,8 +26,6 @@ $(document).ready( function(){
 	var currentDescription = "";
 	var currentTrait = "";
 
-	var xiaComplete = false;
-
 	response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
 
 	input.keydown( function( event ) {
@@ -1192,7 +1190,7 @@ $(document).ready( function(){
 						switch (data[i].name) {
 							case "xia":
 
-								if (xiaComplete) {
+								if (data[i].inventory == "hotstone") {
 									response.append(responsePadding + "the xorxian gestures to himself and says \"xia\".");
 								} 
 
@@ -1407,15 +1405,16 @@ $(document).ready( function(){
 
 	// Special Triggers:
 
-	// scrollTrigger
-	// towerTrigger
-	// portalTrigger
-	// xothrogTrigger
-	// humanTrigger
-	// gemTrigger
-	// butteTrigger
+	// scrollTrigger - destroy scroll item/remove scroll from xia inventory
+	// xiaTrigger - open underground/xia gives his name
+	// towerTrigger - console activates tower for 4 turns
+	// portalTrigger - tower activations set state of portal
+	// butteTrigger - open butteinterior when key is used on door
+	// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
+	// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
+	// gemTrigger - set final state of portal if location and direction are right
 
-	function xiaTrigger () {
+	function scrollTrigger () {
 	};
 
 });
