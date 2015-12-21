@@ -44,12 +44,26 @@ foreach ($currentjson as $key => $value) {
 			};
 		}
 		elseif ($propname == $propertyname) {
-			
-			if ($found){
-				
-				$currentjson[$key][$propertyname] = $propertyvalue;
-				break 2;
-			};
+
+			if ($propertyname == "roomlocation") {
+				if ($found){
+
+					$roomlocate = explode("> ", $propertyvalue);
+					$roomdirection = $roomlocate[0];
+					$roomvalue = $roomlocate[1];
+					
+					$currentjson[$key][$propertyname][$roomdirection] = $roomvalue;
+					break 2;
+				};
+			} 
+
+			else {
+				if ($found){
+					
+					$currentjson[$key][$propertyname] = $propertyvalue;
+					break 2;
+				};
+			}
 		};
 	};
 };

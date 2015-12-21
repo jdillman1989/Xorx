@@ -1487,7 +1487,7 @@ $(document).ready( function(){
 		setDownDataString += "map.json& ";
 		setDownDataString += "xiascave& ";
 		setDownDataString += "roomlocation& ";
-		setDownDataString += {"north":"ocean","south":"tower.east","east":"ocean","west":"tower.north","up":"sky","down":"underground.northeast"};
+		setDownDataString += "down> underground.northeast";
 
 		$.ajax({
 			type: "GET",
