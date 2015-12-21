@@ -779,7 +779,7 @@ $(document).ready( function(){
 
 					switch (direction) {
 						case "north":
-							if (data[i].roomlocation.north) {
+							if (data[i].roomlocation.north && data[i].roomlocation.north != "ocean") {
 								setCurrentPlayerLocation(data[i].roomlocation.north);
 							} 
 
@@ -788,10 +788,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "south":
-
-							console.log(data[i].roomlocation.south);
-
-							if (data[i].roomlocation.south) {
+							if (data[i].roomlocation.south && data[i].roomlocation.south != "ocean") {
 								setCurrentPlayerLocation(data[i].roomlocation.south);
 							} 
 
@@ -800,7 +797,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "east":
-							if (data[i].roomlocation.east) {
+							if (data[i].roomlocation.east && data[i].roomlocation.east != "ocean") {
 								setCurrentPlayerLocation(data[i].roomlocation.east);
 							} 
 
@@ -809,7 +806,7 @@ $(document).ready( function(){
 							};
 							break;
 						case "west":
-							if (data[i].roomlocation.west) {
+							if (data[i].roomlocation.west && data[i].roomlocation.west != "ocean") {
 								setCurrentPlayerLocation(data[i].roomlocation.west);
 							} 
 
