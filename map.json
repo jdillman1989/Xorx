@@ -55,9 +55,9 @@
 			"east": "ocean",
 			"west": "tower.north",
 			"up": "sky",
-			"down": "underground.northeast"
+			"down": false
 		},
-		"roomdescription": "a small, well-lit cave. there is a stone door in the back of the cave"
+		"roomdescription": "a small, dim cave. there is a large metal door sealed shut in the back of the cave"
 	},
 	{
 		"name": "ocean",

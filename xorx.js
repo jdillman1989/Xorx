@@ -597,6 +597,11 @@ $(document).ready( function(){
 
 					if ( data[i].name == intendedSubject && data[i].location == currentLocation ) {
 
+						if (data[i].name == "xia" && data[i].inventory == "scroll") {
+
+							scrollTrigger();
+						};
+
 						response.append(responsePadding + "you see " + data[i].description + ".");
 						found = true;
 					};
@@ -717,6 +722,11 @@ $(document).ready( function(){
 				for (var i = 0; i <= data.length-1; i++) {
 
 					if ( data[i].location == currentLocation && data[i].name != currentPlayer) {
+
+						if (data[i].name != currentPlayer && data[i].name == "xia" && data[i].inventory == "scroll") {
+
+							scrollTrigger();
+						};
 
 						locationCharacterArray.push(data[i].description);
 					};
@@ -1415,6 +1425,103 @@ $(document).ready( function(){
 	// gemTrigger - set final state of portal if location and direction are right
 
 	function scrollTrigger () {
+
+		var setScrollDataString = "";
+
+		setScrollDataString += "items.json, ";
+		setScrollDataString += "scroll, ";
+		setScrollDataString += "location, ";
+		setScrollDataString += "sealed";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setScrollDataString },
+			success: function () {
+
+				response.append(responsePadding + "the xorxian notices you and raises the scroll in his hand. he waves his free hand around the scroll.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xorxian event: server cannot access scroll item."); }
+		});
+
+		var setInvDataString = "";
+
+		setInvDataString += "characters.json, ";
+		setInvDataString += "xia, ";
+		setInvDataString += "inventory, " + false;
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setInvDataString },
+			success: function () {
+
+				response.append(responsePadding + "with a wave of the xorxian's hand, the scroll vanishes into thin air.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xorxian event: server cannot access xorxian inventory."); }
+		});
+	};
+
+	function xiaTrigger () {
+	
+		var setDescDataString = "";
+
+		setDescDataString += "map.json, ";
+		setDescDataString += "xiascave, ";
+		setDescDataString += "roomdescription, ";
+		setDescDataString += "a small, well-lit cave. there is a large dark opening in the back of the cave";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setDescDataString },
+			success: function () {
+
+				response.append(responsePadding + "the xorxian takes the stone and places it into a slot in the wall you hadn't noticed. suddenly lights spring to life and a comfortable warmth fills the cave.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xorxian event: server cannot access map description."); }
+		});
+
+		var setDownDataString = "";
+
+		setDownDataString += "map.json, ";
+		setDownDataString += "xiascave, ";
+		setDownDataString += "roomlocation, ";
+		setDownDataString += '{"north":"ocean","south":"tower.east","east":"ocean","west":"tower.north","up":"sky","down":"underground.northeast"}';
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setDownDataString },
+			success: function () {
+
+				response.append(responsePadding + "the large metal door in the back of the cave slides open.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xiascave event: server cannot access map location."); }
+		});
+
+		var setXiaDataString = "";
+
+		setXiaDataString += "characters.json, ";
+		setXiaDataString += "xia, ";
+		setXiaDataString += "description, ";
+		setXiaDataString += "a very short, purple-skinned xorxian with a small eyes in a flat face and four-fingered hands.";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setXiaDataString },
+			success: function () {
+
+				response.append(responsePadding + "the xorxian seems pleased. he looks at you, gestures to himself and says \"xia\".");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xia event: server cannot access xorxian description."); }
+		});
 	};
 
 });
