@@ -753,9 +753,9 @@ $(document).ready( function(){
 
 			var locationDataString = "";
 
-			locationDataString += "characters.json, ";
-			locationDataString += currentPlayer + ", ";
-			locationDataString += "location, ";
+			locationDataString += "characters.json& ";
+			locationDataString += currentPlayer + "& ";
+			locationDataString += "location& ";
 			locationDataString += locationSet;
 
 			$.ajax({
@@ -871,9 +871,9 @@ $(document).ready( function(){
 
 			var inventoryDataString = "";
 
-			inventoryDataString += "characters.json, ";
-			inventoryDataString += currentPlayer + ", ";
-			inventoryDataString += "inventory, ";
+			inventoryDataString += "characters.json& ";
+			inventoryDataString += currentPlayer + "& ";
+			inventoryDataString += "inventory& ";
 			inventoryDataString += inventorySet;
 
 			$.ajax({
@@ -897,9 +897,9 @@ $(document).ready( function(){
 
 			var itemDataString = "";
 
-			itemDataString += "items.json, ";
-			itemDataString += itemSet + ", ";
-			itemDataString += "location, ";
+			itemDataString += "items.json& ";
+			itemDataString += itemSet + "& ";
+			itemDataString += "location& ";
 			itemDataString += currentPlayer;
 
 			$.ajax({
@@ -950,9 +950,9 @@ $(document).ready( function(){
 
 			var inventoryDataString = "";
 
-			inventoryDataString += "characters.json, ";
-			inventoryDataString += currentPlayer + ", ";
-			inventoryDataString += "inventory, " + false;
+			inventoryDataString += "characters.json& ";
+			inventoryDataString += currentPlayer + "& ";
+			inventoryDataString += "inventory& " + false;
 
 			$.ajax({
 				type: "GET",
@@ -983,9 +983,9 @@ $(document).ready( function(){
 
 			var itemDataString = "";
 
-			itemDataString += "items.json, ";
-			itemDataString += item + ", ";
-			itemDataString += "location, ";
+			itemDataString += "items.json& ";
+			itemDataString += item + "& ";
+			itemDataString += "location& ";
 			itemDataString += currentLocation;
 
 			$.ajax({
@@ -1034,9 +1034,9 @@ $(document).ready( function(){
 
 			var givePlayerDataString = "";
 
-			givePlayerDataString += "characters.json, ";
-			givePlayerDataString += currentPlayer + ", ";
-			givePlayerDataString += "inventory, " + false;
+			givePlayerDataString += "characters.json& ";
+			givePlayerDataString += currentPlayer + "& ";
+			givePlayerDataString += "inventory& " + false;
 
 			$.ajax({
 				type: "GET",
@@ -1086,9 +1086,9 @@ $(document).ready( function(){
 
 			var giveRecipientDataString = "";
 
-			giveRecipientDataString += "characters.json, ";
-			giveRecipientDataString += recipient + ", ";
-			giveRecipientDataString += "inventory, ";
+			giveRecipientDataString += "characters.json& ";
+			giveRecipientDataString += recipient + "& ";
+			giveRecipientDataString += "inventory& ";
 			giveRecipientDataString += givenItem;
 
 			$.ajax({
@@ -1105,9 +1105,9 @@ $(document).ready( function(){
 
 			var itemDataString = "";
 
-			itemDataString += "items.json, ";
-			itemDataString += givenItem + ", ";
-			itemDataString += "location, ";
+			itemDataString += "items.json& ";
+			itemDataString += givenItem + "& ";
+			itemDataString += "location& ";
 			itemDataString += recipient;
 
 			$.ajax({
@@ -1428,9 +1428,9 @@ $(document).ready( function(){
 
 		var setScrollDataString = "";
 
-		setScrollDataString += "items.json, ";
-		setScrollDataString += "scroll, ";
-		setScrollDataString += "location, ";
+		setScrollDataString += "items.json& ";
+		setScrollDataString += "scroll& ";
+		setScrollDataString += "location& ";
 		setScrollDataString += "sealed";
 
 		$.ajax({
@@ -1447,9 +1447,9 @@ $(document).ready( function(){
 
 		var setInvDataString = "";
 
-		setInvDataString += "characters.json, ";
-		setInvDataString += "xia, ";
-		setInvDataString += "inventory, " + false;
+		setInvDataString += "characters.json& ";
+		setInvDataString += "xia& ";
+		setInvDataString += "inventory& " + false;
 
 		$.ajax({
 			type: "GET",
@@ -1468,9 +1468,9 @@ $(document).ready( function(){
 	
 		var setDescDataString = "";
 
-		setDescDataString += "map.json, ";
-		setDescDataString += "xiascave, ";
-		setDescDataString += "roomdescription, ";
+		setDescDataString += "map.json& ";
+		setDescDataString += "xiascave& ";
+		setDescDataString += "roomdescription& ";
 		setDescDataString += "a small, well-lit cave. there is a large dark opening in the back of the cave";
 
 		$.ajax({
@@ -1487,10 +1487,10 @@ $(document).ready( function(){
 
 		var setDownDataString = "";
 
-		setDownDataString += "map.json, ";
-		setDownDataString += "xiascave, ";
-		setDownDataString += "roomlocation, ";
-		setDownDataString += '{"north":"ocean","south":"tower.east","east":"ocean","west":"tower.north","up":"sky","down":"underground.northeast"}';
+		setDownDataString += "map.json& ";
+		setDownDataString += "xiascave& ";
+		setDownDataString += "roomlocation& ";
+		setDownDataString += {"north":"ocean","south":"tower.east","east":"ocean","west":"tower.north","up":"sky","down":"underground.northeast"};
 
 		$.ajax({
 			type: "GET",
@@ -1506,9 +1506,9 @@ $(document).ready( function(){
 
 		var setXiaDataString = "";
 
-		setXiaDataString += "characters.json, ";
-		setXiaDataString += "xia, ";
-		setXiaDataString += "description, ";
+		setXiaDataString += "characters.json& ";
+		setXiaDataString += "xia& ";
+		setXiaDataString += "description& ";
 		setXiaDataString += "a very short, purple-skinned xorxian with a small eyes in a flat face and four-fingered hands.";
 
 		$.ajax({

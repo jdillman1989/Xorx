@@ -4,7 +4,7 @@ echo "starting prop set...\n";
 
 // Get and format data
 $receiveddata = $_GET["data"];
-$propertyinfo = explode(", ", $receiveddata);
+$propertyinfo = explode("& ", $receiveddata);
 
 echo "Received data: ". $receiveddata ."\n";
 echo "Format data: ". $propertyinfo ."\n";
