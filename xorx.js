@@ -1412,9 +1412,9 @@ $(document).ready( function(){
 
 	// Special Triggers:
 
-	// scrollTrigger - destroy scroll item/remove scroll from xia inventory
-	// xiaTrigger - open underground/xia gives his name
-	// towerTrigger - console activates tower for 4 turns
+		// scrollTrigger - destroy scroll item/remove scroll from xia inventory
+		// xiaTrigger - open underground/xia gives his name
+	// towerTrigger - console activates tower for 4 turns and checks for portal activation
 	// portalTrigger - tower activations set state of portal
 	// butteTrigger - open butteinterior when key is used on door
 	// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
