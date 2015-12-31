@@ -20,6 +20,10 @@ if ($propertyvalue === "false") {
 	$propertyvalue = false;
 };
 
+if (is_numeric($propertyvalue)) {
+    $propertyvalue = intval($propertyvalue);
+};
+
 echo $filename;
 echo $objectname;
 echo $propertyname;

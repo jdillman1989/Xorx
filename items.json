@@ -65,6 +65,13 @@
 	},
 
 	{
+		"name": "buttekey",
+		"location": "nest",
+		"movable": true,
+		"description": "a small shiny key"
+	},
+
+	{
 		"name": "mindray",
 		"location": "butteinterior",
 		"movable": true,

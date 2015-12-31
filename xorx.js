@@ -45,6 +45,24 @@ $(document).ready( function(){
 
 				parseCommand(playerInput);
 			};
+
+			$.getJSON( 'items.json', function(data) {
+
+				for (var i = 0; i <= data.length-1; i++) {
+
+					var towerTest = data[i].name.split("_");
+
+					if (towerTest == "tower") {
+
+						if (data[i].active > 0) {
+
+							var towerLevel = data[i].active - 1;
+
+							decreaseTowerActivation(data[i].name, towerLevel);
+						};
+					};
+				};
+			});
 		}
 	});
 	
@@ -1414,12 +1432,14 @@ $(document).ready( function(){
 
 		// scrollTrigger - destroy scroll item/remove scroll from xia inventory
 		// xiaTrigger - open underground/xia gives his name
-	// towerTrigger - console activates tower for 4 turns and checks for portal activation
-	// portalTrigger - tower activations set state of portal
+		// towerTrigger - console activates tower for 4 turns and checks for portal activation
+		// portalTrigger - tower activations set state of portal
+		// endGame - show ending splash screen when active portal is used
 	// butteTrigger - open butteinterior when key is used on door
 	// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
 	// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
 	// gemTrigger - set final state of portal if location and direction are right
+	// omniscience - set player trait to omniscient and trigger it
 
 	function scrollTrigger () {
 
@@ -1519,6 +1539,180 @@ $(document).ready( function(){
 			},
 			failure: function() { response.append(responsePadding + "problem triggering xia event: server cannot access xorxian description."); }
 		});
+	};
+
+	function towerTrigger (position) {
+	
+		var setTowerDataString = "";
+
+		setTowerDataString += "items.json& ";
+		setTowerDataString += "tower_" + position + "& ";
+		setTowerDataString += "active& ";
+		setTowerDataString += "4";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setTowerDataString },
+			success: function () {
+
+				response.append(responsePadding + "you hear a deep rumbling sound coming from above. the monitor shows a beam of light emitting from the top of the tower.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering tower event: server cannot access item properties."); }
+		});
+
+		var towersActivated = 0;
+
+		$.getJSON( 'items.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				var towerTest = data[i].name.split("_");
+
+				if (towerTest == "tower") {
+
+					if (data[i].active > 0) {
+						towersActivated++;
+					};
+				};
+			};
+		})
+			.done( function() {
+
+				if (towersActivated == 3) {
+
+					var setPortalDataString = "";
+
+					setPortalDataString += "items.json& ";
+					setPortalDataString += "portal& ";
+					setPortalDataString += "active& ";
+					setPortalDataString += "1";
+
+					$.ajax({
+						type: "GET",
+						dataType : 'text',
+						url: '/xorx/setproperty.php',
+						data: { data: setPortalDataString },
+						success: function () {
+
+							response.append(responsePadding + "you feel a powerful aura expanding from the center of the island.");
+						},
+						failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+					});
+
+					var setCrystalDataString = "";
+
+					setCrystalDataString += "items.json& ";
+					setCrystalDataString += "portal& ";
+					setCrystalDataString += "description& ";
+					setCrystalDataString += "an enormous brightly shining crystalline structure. a powerful aura flows from it";
+
+					$.ajax({
+						type: "GET",
+						dataType : 'text',
+						url: '/xorx/setproperty.php',
+						data: { data: setCrystalDataString },
+						success: function () {},
+						failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+					});
+				};
+			});
+	};
+
+	function decreaseTowerActivation (tower, level) {
+
+		var setActiveDataString = "";
+
+		setActiveDataString += "items.json& " + tower + "& ";
+		setActiveDataString += "active& " + level;
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setActiveDataString },
+			success: function () {
+
+				if (level == 0) {
+					response.append(responsePadding + "you hear a far off sound of something powering down.");
+				};
+			},
+			failure: function() { response.append(responsePadding + "problem triggering tower event: server cannot access item properties."); }
+		});
+	};
+
+	function portalTrigger () {
+
+		$.getJSON( 'items.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if (data[i].name == "portal") {
+
+					switch (data[i].active) {
+						case 0:
+							response.append(responsePadding + "the crystal feels icy cold on your hand.");
+							break;
+						case 1:
+							response.append(responsePadding + "the crystal's power practically pulls you towards it. you place your hand on it's hot surface and embrace a wave of light rushing over you. you feel your body being whisked away.");
+
+							setTimeout(endGame, 6000);
+							break;
+						case 2:
+							response.append(responsePadding + "the crystal's power practically pulls you towards it. you place your hand on it's hot surface and embrace a wave of light rushing over you. you feel your consciousness expanding.");
+
+							setTimeout(omniscience, 6000);
+							break;
+						default:
+							response.append(responsePadding + "something is wrong with this, there is a problem with your save.");
+							break;
+					};
+				};
+			};
+		});
+	};
+
+	function endGame () {
+
+		var setEndDataString = "";
+
+		setEndDataString += "characters.json& ";
+		setEndDataString += "" + currentPlayer + "& ";
+		setEndDataString += "location& ";
+		setEndDataString += "home";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setEndDataString },
+			success: function () {
+
+				$("#endgame").append("<div><h1>congratulations</h1><p>your character was able to make it back to earth. but there was something they missed on xorx. maybe you will find more information about this strange world next time you play.</p></div>");
+
+				$("#endgame").fadeIn();
+			},
+			failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+		});
+
+		if (currentInventory) {
+			var setDropDataString = "";
+
+			setDropDataString += "items.json& ";
+			setDropDataString += currentInventory + "& ";
+			setDropDataString += "location& ";
+			setDropDataString += "pyramid";
+
+			$.ajax({
+				type: "GET",
+				dataType : 'text',
+				url: '/xorx/setproperty.php',
+				data: { data: setDropDataString },
+				success: function () {},
+				failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+			});
+		};
 	};
 
 });
