@@ -115,9 +115,9 @@
 			"east": "tower.north",
 			"west": "ocean",
 			"up": "nest",
-			"down": "butteinterior"
+			"down": false
 		},
-		"roomdescription": "a tall steep butte with a large nest at its peak"
+		"roomdescription": "a tall steep butte with a large nest at its peak and a sealed door in its base"
 	},
 	{
 		"name": "sky",

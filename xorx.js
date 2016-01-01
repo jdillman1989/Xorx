@@ -381,7 +381,7 @@ $(document).ready( function(){
 		playerInfo.inventory = false;
 		playerInfo.description = "a human with " + hair + " hair, wearing a " + suit + " jumpsuit.";
 		playerInfo.trait = "human";
-		playerInfo.player = false;
+		playerInfo.player = 0;
 
 		$.ajax({
 			type: "GET",
@@ -1376,6 +1376,9 @@ $(document).ready( function(){
 							case "portal":
 								portalTrigger();
 								break parent;
+							case "buttekey":
+								butteTrigger();
+								break parent;
 							case "mindray":
 								prompting = true;
 								gamePrompt = "what do you want to fire the mindray at?";
@@ -1435,7 +1438,7 @@ $(document).ready( function(){
 		// towerTrigger - console activates tower for 4 turns and checks for portal activation
 		// portalTrigger - tower activations set state of portal
 		// endGame - show ending splash screen when active portal is used
-	// butteTrigger - open butteinterior when key is used on door
+		// butteTrigger - open butteinterior when key is used on door
 	// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
 	// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
 	// gemTrigger - set final state of portal if location and direction are right
@@ -1715,4 +1718,41 @@ $(document).ready( function(){
 		};
 	};
 
+	function butteTrigger () {
+
+		var setButteDataString = "";
+
+		setButteDataString += "map.json& ";
+		setButteDataString += "butte& ";
+		setButteDataString += "roomlocation& ";
+		setButteDataString += "down> butteinterior";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setButteDataString },
+			success: function () {
+
+				response.append(responsePadding + "the sealed door in the base of the butte slides open.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering butte event: server cannot access map location."); }
+		});
+
+		var setDescDataString = "";
+
+		setDescDataString += "map.json& ";
+		setDescDataString += "butte& ";
+		setDescDataString += "roomdescription& ";
+		setDescDataString += "a tall steep butte with a large nest at its peak and an open door in its base";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setDescDataString },
+			success: function () {},
+			failure: function() { response.append(responsePadding + "problem triggering butte event: server cannot access map description."); }
+		});
+	};
 });
