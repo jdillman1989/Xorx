@@ -133,6 +133,7 @@ $(document).ready( function(){
 				help(); //done
 				break;
 			case "new":
+				humanTrigger();
 				createCharacter(1); //done
 				break;
 			case "continue":
@@ -337,6 +338,31 @@ $(document).ready( function(){
 				});
 
 				break;
+			case "the world of xorx can only sustain three humans at any given time. to create a new character, you must sacrifice an existing human. type the name of the human you wish to sacrifice.":
+
+				$.getJSON( 'characters.json', function(data) {
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if ( data[i].name == userAnswer && data[i].trait == 'human' ) {
+
+							prompting = false;
+							humanTrigger(data[i].trait);
+							break;
+						}
+
+						else{
+
+							if (i >= data.length-1) {
+
+								prompting = false;
+								response.append(responsePadding + "that is not a valid character for sacrifice.");
+								response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
+								break;
+							}
+						};
+					};
+				});
 			default:
 				parseError(genericError);
 		};
@@ -350,8 +376,18 @@ $(document).ready( function(){
 
 		switch (step){
 			case 1:
-				gamePrompt = "what is this human's name?";
-				response.append(responsePadding + gamePrompt);
+				$.getJSON( 'characters.json', function(data) {
+
+					if (data.length > 6) {
+						gamePrompt = "the world of xorx can only sustain three humans at any given time. to create a new character, you must sacrifice an existing human. type the name of the human you wish to sacrifice.";
+						response.append(responsePadding + gamePrompt);
+						prompting = true;
+					}
+					else{
+						gamePrompt = "what is this human's name?";
+						response.append(responsePadding + gamePrompt);
+					};
+				});
 				break;
 			case 2:
 				gamePrompt = "what is this human's hair color?";
@@ -1754,5 +1790,9 @@ $(document).ready( function(){
 			success: function () {},
 			failure: function() { response.append(responsePadding + "problem triggering butte event: server cannot access map description."); }
 		});
+	};
+
+	function humanTrigger (sacrifice) {
+
 	};
 });
