@@ -1791,6 +1791,39 @@ $(document).ready( function(){
 
 	function humanTrigger (sacrifice) {
 
+		var inventoryToGrave = false;
+
+		$.getJSON( 'characters.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].name == sacrifice && data[i].trait == "human" ) {
+					inventoryToGrave = data[i].inventory;
+					break;
+				}
+			};
+		})
+			.done( function() {
+				if (inventoryToGrave) {
+					var setInvDataString = "";
+
+					setInvDataString += "items.json& ";
+					setInvDataString += inventoryToGrave + "& ";
+					setInvDataString += "location& ";
+					setInvDataString += "xothroggrave";
+
+					$.ajax({
+						type: "GET",
+						dataType : 'text',
+						url: '/xorx/setproperty.php',
+						data: { data: setInvDataString },
+						success: function () {
+						},
+						failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access inventory data."); }
+					});
+				};
+			});		
+
 		var setSacrificeDataString = "";
 
 		setSacrificeDataString += "characters.json& " sacrifice;
@@ -1807,5 +1840,42 @@ $(document).ready( function(){
 			},
 			failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access character data."); }
 		});
+
+		var xothrogLevel = 0;
+
+		$.getJSON( 'characters.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].name == "xothrog" ) {
+					xothrogLevel = parseInt(data[i].player) + 1;
+					break;
+				}
+			};
+		})
+			.done( function() {
+
+				if (xothrogLevel > 2) {
+					xothrogTrigger();
+				} 
+
+				else{
+					var setXothrogDataString = "";
+
+					setXothrogDataString += "characters.json& ";
+					setXothrogDataString += "xothrog& ";
+					setXothrogDataString += "player& " + xothrogLevel;
+
+					$.ajax({
+						type: "GET",
+						dataType : 'text',
+						url: '/xorx/setproperty.php',
+						data: { data: setXothrogDataString },
+						success: function () {
+						},
+						failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access xothrog data."); }
+					});
+				};
+			});	
 	};
 });
