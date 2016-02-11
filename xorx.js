@@ -133,7 +133,6 @@ $(document).ready( function(){
 				help(); //done
 				break;
 			case "new":
-				humanTrigger();
 				createCharacter(1); //done
 				break;
 			case "continue":
@@ -276,7 +275,7 @@ $(document).ready( function(){
 									break;
 								case "xothrog":
 									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes xothrog.");
-									xothrogTrigger();
+									mindrayTrigger();
 									break;
 								default:
 									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes " + data[i].name + ".");
@@ -347,7 +346,7 @@ $(document).ready( function(){
 						if ( data[i].name == userAnswer && data[i].trait == 'human' ) {
 
 							prompting = false;
-							humanTrigger(data[i].trait);
+							humanTrigger(data[i].name);
 							break;
 						}
 
@@ -378,7 +377,7 @@ $(document).ready( function(){
 			case 1:
 				$.getJSON( 'characters.json', function(data) {
 
-					if (data.length > 6) {
+					if (data.length > 5) {
 						gamePrompt = "the world of xorx can only sustain three humans at any given time. to create a new character, you must sacrifice an existing human. type the name of the human you wish to sacrifice.";
 						response.append(responsePadding + gamePrompt);
 						prompting = true;
@@ -423,7 +422,7 @@ $(document).ready( function(){
 			type: "GET",
 			dataType : 'json',
 			async: false,
-			url: '/xorx/newplayer.php',
+			url: '/xorx/addproperty.php',
 			data: { data: JSON.stringify(playerInfo) },
 			success: function () {
 				prompting = true;
@@ -1475,8 +1474,9 @@ $(document).ready( function(){
 		// portalTrigger - tower activations set state of portal
 		// endGame - show ending splash screen when active portal is used
 		// butteTrigger - open butteinterior when key is used on door
-	// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
+		// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
 	// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
+	// mindrayTrigger - stop xothrog's AI
 	// gemTrigger - set final state of portal if location and direction are right
 	// omniscience - set player trait to omniscient and trigger it
 
@@ -1716,15 +1716,12 @@ $(document).ready( function(){
 
 		var setEndDataString = "";
 
-		setEndDataString += "characters.json& ";
-		setEndDataString += "" + currentPlayer + "& ";
-		setEndDataString += "location& ";
-		setEndDataString += "home";
+		setEndDataString += "characters.json& " + currentPlayer;
 
 		$.ajax({
 			type: "GET",
 			dataType : 'text',
-			url: '/xorx/setproperty.php',
+			url: '/xorx/removeproperty.php',
 			data: { data: setEndDataString },
 			success: function () {
 
@@ -1794,5 +1791,21 @@ $(document).ready( function(){
 
 	function humanTrigger (sacrifice) {
 
+		var setSacrificeDataString = "";
+
+		setSacrificeDataString += "characters.json& " sacrifice;
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/removeproperty.php',
+			data: { data: setSacrificeDataString },
+			success: function () {
+
+				response.append(responsePadding + "you have sacrificed " + sacrifice + " to the demon god xothrog.");
+				response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access character data."); }
+		});
 	};
 });
