@@ -1826,7 +1826,7 @@ $(document).ready( function(){
 
 		var setSacrificeDataString = "";
 
-		setSacrificeDataString += "characters.json& " sacrifice;
+		setSacrificeDataString += "characters.json& " + sacrifice;
 
 		$.ajax({
 			type: "GET",
@@ -1877,5 +1877,27 @@ $(document).ready( function(){
 					});
 				};
 			});	
+	};
+
+	function xothrogTrigger () {
+
+		var setXothrogDataString = "";
+
+		setXothrogDataString += "characters.json& ";
+		setXothrogDataString += "xothrog& ";
+		setXothrogDataString += "location& ";
+		setXothrogDataString += "xothroggrave";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setButteDataString },
+			success: function () {
+
+				response.append(responsePadding + "the demon god xothrog has awoken.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character location."); }
+		});
 	};
 });
