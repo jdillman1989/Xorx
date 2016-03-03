@@ -63,6 +63,28 @@ $(document).ready( function(){
 					};
 				};
 			});
+
+			$.getJSON( 'characters.json', function(data) {
+
+				var currentXothrogLevel = 0;
+
+				var currentXothrogLocation = "";
+
+				for (var i = 0; i <= data.length-1; i++) {
+
+					if ( data[i].name == "xothrog" ) {
+						currentXothrogLevel = parseInt(data[i].player);
+						currentXothrogLocation = data[i].location;
+						break;
+					}
+				};
+			})
+				.done( function() {
+
+					if (currentXothrogLevel > 2 && currentXothrogLocation != currentLocation) {
+						xothrogAI();
+					}
+				});
 		}
 	});
 	
@@ -1892,12 +1914,96 @@ $(document).ready( function(){
 			type: "GET",
 			dataType : 'text',
 			url: '/xorx/setproperty.php',
-			data: { data: setButteDataString },
+			data: { data: setXothrogDataString },
 			success: function () {
 
 				response.append(responsePadding + "the demon god xothrog has awoken.");
 			},
 			failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character location."); }
 		});
+	};
+
+	function xothrogAI () {
+
+		var moveNumber = Math.floor(Math.random() * 5) + 1;
+
+		$.getJSON( 'characters.json', function(data) {
+
+			var currentXothrogLocation = "";
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].name == "xothrog" ) {
+					currentXothrogLocation = data[i].location;
+				};
+			};
+		})
+
+			.done( function() {
+
+				$.getJSON( 'map.json', function(data) {
+
+					var newXothrogLocation = "";
+
+					var xothrogDirection = "";
+
+					for (var i = 0; i <= data.length-1; i++) {
+
+						if ( data[i].name == currentXothrogLocation ) {
+							switch (moveNumber) {
+								case 1:
+									newXothrogLocation = data[i].roomlocation.north;
+									xothrogDirection = "north";
+									break;
+								case 2:
+									newXothrogLocation = data[i].roomlocation.south;
+									xothrogDirection = "south";
+									break;
+								case 3:
+									newXothrogLocation = data[i].roomlocation.east;
+									xothrogDirection = "east";
+									break;
+								case 4:
+									newXothrogLocation = data[i].roomlocation.west;
+									xothrogDirection = "west";
+									break;
+								case 5:
+									newXothrogLocation = currentXothrogLocation;
+									xothrogDirection = false;
+									break;
+							};
+						};
+					};
+
+					if (newXothrogLocation = "ocean") {
+						newXothrogLocation = currentXothrogLocation;
+						xothrogDirection = false;
+					};
+				})
+
+					.done( function() {
+
+						var setAIDataString = "";
+
+						setAIDataString += "characters.json& ";
+						setAIDataString += "xothrog& ";
+						setAIDataString += "location& ";
+						setAIDataString += newXothrogLocation;
+
+						$.ajax({
+							type: "GET",
+							dataType : 'text',
+							url: '/xorx/setproperty.php',
+							data: { data: setAIDataString },
+							success: function () {
+
+								if (xothrogDirection) {
+									response.append(responsePadding + "the demon god xothrog moves " + xothrogDirection + ".");
+								};
+							},
+							failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character location."); }
+						});
+					});
+			});
 	};
 });
