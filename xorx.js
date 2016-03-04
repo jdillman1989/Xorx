@@ -462,11 +462,21 @@ $(document).ready( function(){
 			for (var i = 0; i <= data.length-1; i++) {
 
 				if ( data[i].name == nameTest ) {
-					prompting = false;
-					matchingCharacter = data[i].name;
-					currentPlayer = matchingCharacter;
-					startGame(currentPlayer);
-					break;
+
+					if (data[i].name == "xothrog" && data[i].player > 2) {
+						response.append(responsePadding + "the demon god's willpower resists your influence.");
+
+						gamePrompt = "type the name of the character you want to play.";
+						response.append(responsePadding + gamePrompt);
+					} 
+
+					else{
+						prompting = false;
+						matchingCharacter = data[i].name;
+						currentPlayer = matchingCharacter;
+						startGame(currentPlayer);
+						break;
+					};
 				}
 
 				else{
@@ -1497,8 +1507,8 @@ $(document).ready( function(){
 		// endGame - show ending splash screen when active portal is used
 		// butteTrigger - open butteinterior when key is used on door
 		// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
-	// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
-	// mindrayTrigger - stop xothrog's AI
+		// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
+		// mindrayTrigger - stop xothrog's AI
 	// gemTrigger - set final state of portal if location and direction are right
 	// omniscience - set player trait to omniscient and trigger it
 
@@ -2006,4 +2016,25 @@ $(document).ready( function(){
 					});
 			});
 	};
+
+	function mindrayTrigger () {
+		var setLevelDataString = "";
+
+		setLevelDataString += "characters.json& ";
+		setLevelDataString += "xothrog& ";
+		setLevelDataString += "player& ";
+		setLevelDataString += "0";
+
+		$.ajax({
+			type: "GET",
+			dataType : 'text',
+			url: '/xorx/setproperty.php',
+			data: { data: setLevelDataString },
+			success: function () {
+
+				response.append(responsePadding + "the demon god seems unaffected, but you feel his willpower is weakened.");
+			},
+			failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character level."); }
+		});
+	}
 });
