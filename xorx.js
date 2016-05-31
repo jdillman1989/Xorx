@@ -70,16 +70,23 @@ $(document).ready( function(){
 
 				var currentXothrogLocation = "";
 
+				console.log("$.getJSON characters.json " + currentXothrogLevel);
+
 				for (var i = 0; i <= data.length-1; i++) {
+
+					console.log("for(" + i + ") " + currentXothrogLevel);
 
 					if ( data[i].name == "xothrog" ) {
 						currentXothrogLevel = parseInt(data[i].player);
 						currentXothrogLocation = data[i].location;
+						console.log("if ( data[i].name == xothrog ) " + currentXothrogLevel);
 						break;
 					}
 				};
 			})
 				.done( function() {
+
+					console.log(".done( function() " + currentXothrogLevel);
 
 					if (currentXothrogLevel > 2 && currentXothrogLocation != currentLocation) {
 						xothrogAI();
