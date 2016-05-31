@@ -444,7 +444,6 @@ $(document).ready( function(){
 		playerInfo.description = "a human with " + hair + " hair, wearing a " + suit + " jumpsuit.";
 		playerInfo.trait = "human";
 		playerInfo.player = 0;
-		playerInfo.file = "characters.json";
 
 		$.ajax({
 			type: "GET",

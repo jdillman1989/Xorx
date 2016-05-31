@@ -5,7 +5,7 @@ echo "starting new record...\n";
 // Get and format data
 $receiveddata[] = $_GET["data"];
 
-var_dump($receiveddata);
+$filename = "characters.json";
 
 // Open JSON file and make assoc array
 $file = '/var/www/games/xorx/'. $filename;
@@ -16,6 +16,6 @@ array_push($currentjson, $data);
 
 // Add updated JSON content
 $update = json_encode($currentjson, JSON_PRETTY_PRINT);
-file_put_contents($filename, $update);
+file_put_contents($file, $update);
 
 ?>
