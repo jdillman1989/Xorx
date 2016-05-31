@@ -5,6 +5,8 @@ echo "starting new record...\n";
 // Get and format data
 $receiveddata[] = $_GET["data"];
 
+var_dump($receiveddata);
+
 // Open JSON file and make assoc array
 $file = '/var/www/games/xorx/'. $filename;
 $current = file_get_contents($file);
