@@ -450,7 +450,7 @@ $(document).ready( function(){
 			dataType : 'json',
 			async: false,
 			url: '/xorx/addproperty.php',
-			data: { data: JSON.stringify(playerInfo) },
+			data: { data: playerInfo },
 			success: function () {
 				prompting = true;
 				gamePrompt = "type the name of the character you want to play.";
