@@ -25,6 +25,8 @@ $(document).ready( function(){
 	var currentInventory = "";
 	var currentDescription = "";
 	var currentTrait = "";
+	var currentXothrogLevel = 0;
+	var currentXothrogLocation = "";
 
 	response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
 
@@ -65,10 +67,6 @@ $(document).ready( function(){
 			});
 
 			$.getJSON( 'characters.json', function(data) {
-
-				var currentXothrogLevel = 0;
-
-				var currentXothrogLocation = "";
 
 				console.log("$.getJSON characters.json " + currentXothrogLevel);
 
