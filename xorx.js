@@ -2037,4 +2037,12 @@ $(document).ready( function(){
 			failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character level."); }
 		});
 	}
+
+	function gemTrigger() {
+		response.append(responsePadding + "test gemTrigger function");
+	}
+
+	function omniscience() {
+		response.append(responsePadding + "test omniscience function");
+	}
 });
