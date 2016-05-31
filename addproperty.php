@@ -3,7 +3,7 @@
 echo "starting new record...\n";
 
 // Get and format data
-$receiveddata[] = $_GET["data"];
+$data = $_GET["data"];
 
 $filename = "characters.json";
 
