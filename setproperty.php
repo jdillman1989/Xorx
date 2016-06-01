@@ -33,6 +33,7 @@ echo $propertyvalue;
 $file = '/var/www/games/xorx/'. $filename;
 $current = file_get_contents($file);
 $currentjson = json_decode($current, true);
+var_dump($currentjson);
 $found = false;
 
 // Search assoc array for matching property and set new value
@@ -71,9 +72,10 @@ foreach ($currentjson as $key => $value) {
 		};
 	};
 };
-
+var_dump($currentjson);
 // Add updated JSON content
 $update = json_encode($currentjson, JSON_PRETTY_PRINT);
+var_dump($update);
 file_put_contents($filename, $update);
 
 ?>
