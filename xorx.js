@@ -68,24 +68,6 @@ $(document).ready( function(){
 					};
 				};
 			});
-
-			$.getJSON( 'characters.json', function(data) {
-
-				for (var i = 0; i <= data.length-1; i++) {
-
-					if ( data[i].name == "xothrog" ) {
-						currentXothrogLevel = parseInt(data[i].player);
-						currentXothrogLocation = data[i].location;
-						break;
-					}
-				};
-			})
-				.done( function() {
-
-					if (currentXothrogLevel >= 2 && currentXothrogLocation != currentLocation) {
-						xothrogAI();
-					}
-				});
 		}
 	});
 	
@@ -945,6 +927,24 @@ $(document).ready( function(){
 				};
 			};
 		});
+
+		$.getJSON( 'characters.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				if ( data[i].name == "xothrog" ) {
+					currentXothrogLevel = parseInt(data[i].player);
+					currentXothrogLocation = data[i].location;
+					break;
+				}
+			};
+		})
+			.done( function() {
+
+				if (currentXothrogLevel >= 2 && currentXothrogLocation != currentLocation) {
+					xothrogAI();
+				}
+			});
 	};
 
 	function take (item) {
