@@ -9,11 +9,6 @@ $propertyinfo = explode("& ", $receiveddata);
 echo "Received data: ". $receiveddata ."\n";
 var_dump($propertyinfo);
 
-starting prop set...
-Received data: characters.json& xothrog& player& 0
-Format data: Array
-characters.jsonxothrogplayer0
-
 // Parse data
 $filename = $propertyinfo[0];
 $objectname = $propertyinfo[1];
