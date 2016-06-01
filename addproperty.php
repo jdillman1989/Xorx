@@ -13,10 +13,10 @@ $current = file_get_contents($file);
 $currentjson = json_decode($current, true);
 $newjson = json_decode($data, true);
 
-array_push($currentjson, $newjson);
+$newdata = array_merge($currentjson, $newjson);
 
 // Add updated JSON content
-$update = json_encode($currentjson, JSON_PRETTY_PRINT);
+$update = json_encode($newdata, JSON_PRETTY_PRINT);
 file_put_contents($file, $update);
 
 ?>
