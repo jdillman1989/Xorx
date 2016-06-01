@@ -443,7 +443,7 @@ $(document).ready( function(){
 			dataType : 'json',
 			async: false,
 			url: '/xorx/addproperty.php',
-			data: { data: playerInfo },
+			data: { data: JSON.stringify(playerInfo) },
 			complete: function () {
 				console.log("(448) saveCharacter -- complete: function () {");
 				prompting = true;
