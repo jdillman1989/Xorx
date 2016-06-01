@@ -7,7 +7,12 @@ $receiveddata = $_GET["data"];
 $propertyinfo = explode("& ", $receiveddata);
 
 echo "Received data: ". $receiveddata ."\n";
-echo "Format data: ". $propertyinfo ."\n";
+var_dump($propertyinfo);
+
+starting prop set...
+Received data: characters.json& xothrog& player& 0
+Format data: Array
+characters.jsonxothrogplayer0
 
 // Parse data
 $filename = $propertyinfo[0];

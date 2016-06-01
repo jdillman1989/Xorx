@@ -4,7 +4,9 @@ echo "starting removal...\n";
 
 // Get and format data
 $receiveddata = $_GET["data"];
+var_dump($receiveddata);
 $propertyinfo = explode("& ", $receiveddata);
+var_dump($propertyinfo);
 
 // Parse data
 $filename = $propertyinfo[0];
@@ -14,7 +16,8 @@ $objectname = $propertyinfo[1];
 $file = '/var/www/games/xorx/'. $filename;
 $current = file_get_contents($file);
 $currentjson = json_decode($current, true);
-$found = false;
+
+var_dump($currentjson);
 
 // Search assoc array for matching property and set new value
 foreach ($currentjson as $key => $value) {
@@ -31,8 +34,11 @@ foreach ($currentjson as $key => $value) {
 	};
 };
 
+var_dump($currentjson);
+
 // Add updated JSON content
 $update = json_encode($currentjson, JSON_PRETTY_PRINT);
+var_dump($update);
 file_put_contents($filename, $update);
 
 ?>
