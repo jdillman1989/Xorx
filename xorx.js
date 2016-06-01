@@ -189,7 +189,8 @@ $(document).ready( function(){
 
 							gamePrompt = "what is this human's name?";
 							response.append(responsePadding + gamePrompt);	
-							prompting = true;	
+							prompting = true;
+							break;	
 						}
 
 						else{
