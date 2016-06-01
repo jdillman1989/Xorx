@@ -34,7 +34,8 @@ foreach ($currentjson as $key => $value) {
 var_dump($currentjson);
 
 // Add updated JSON content
-$update = json_encode($currentjson, JSON_PRETTY_PRINT);
+$currentjsonformat = array_values($currentjson);
+$update = json_encode($currentjsonformat, JSON_PRETTY_PRINT);
 var_dump($update);
 file_put_contents($filename, $update);
 

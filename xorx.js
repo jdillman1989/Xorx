@@ -1,5 +1,6 @@
 // xothrog not moving
 // towers not powering down
+// xothrog not always getting increase from sacrifice
 
 $(document).ready( function(){
 
