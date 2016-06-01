@@ -162,6 +162,7 @@ $(document).ready( function(){
 				break;
 			default:
 				parseError(genericError); //done
+				console.log("parse Command");
 		};
 
 		input.val("");
@@ -174,9 +175,15 @@ $(document).ready( function(){
 
 				$.getJSON( 'characters.json', function(data) {
 
+					console.log("fire getJSON");
+
 					for (var i = 0; i <= data.length-1; i++) {
 
+						console.log("loop count: " + i);
+
 						if ( data[i].name == userAnswer ) {
+
+							console.log("matched");
 
 							response.append(responsePadding + "the character name " + userAnswer + " is already taken. please choose another name for this character.");
 
@@ -187,7 +194,11 @@ $(document).ready( function(){
 
 						else{
 
+							console.log("no match");
+
 							if (i >= data.length-1) {
+
+								console.log("continuing");
 
 								playerName = userAnswer;
 								createCharacter(2);
@@ -384,6 +395,7 @@ $(document).ready( function(){
 				});
 			default:
 				parseError(genericError);
+				console.log("parse Prompt");
 		};
 
 		input.val("");
