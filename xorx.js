@@ -1955,11 +1955,11 @@ $(document).ready( function(){
 
 				console.log("xothrogAI location: " + currentXothrogLocation);
 
+				var newXothrogLocation = "";
+
+				var xothrogDirection = "";
+
 				$.getJSON( 'map.json', function(data) {
-
-					var newXothrogLocation = "";
-
-					var xothrogDirection = "";
 
 					for (var i = 0; i <= data.length-1; i++) {
 
