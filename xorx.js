@@ -444,13 +444,15 @@ $(document).ready( function(){
 			async: false,
 			url: '/xorx/addproperty.php',
 			data: { data: playerInfo },
-			success: function () {
-				console.log("(448) saveCharacter -- success: function () {");
+			complete: function () {
+				console.log("(448) saveCharacter -- complete: function () {");
 				prompting = true;
 				gamePrompt = "type the name of the character you want to play.";
 				response.append(responsePadding + gamePrompt);
 			},
-			failure: function() { response.append(responsePadding + "problem saving new character: server disrupted save process."); }
+			failure: function() {
+				response.append(responsePadding + "problem saving new character: server disrupted save process.");
+			}
 		});
 	};
 
