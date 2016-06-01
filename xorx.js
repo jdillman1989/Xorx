@@ -393,6 +393,7 @@ $(document).ready( function(){
 						};
 					};
 				});
+				break;
 			default:
 				parseError(genericError);
 				console.log("parse Prompt");
