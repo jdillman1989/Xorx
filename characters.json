@@ -22,5 +22,29 @@
 		"description": "a very short, purple-skinned xorxian with a small eyes in a flat face and four-fingered hands. he is hunched and shivering",
 		"trait": "xorxian",
 		"player": 0
-	}
+	},
+    {
+        "name": "jesse",
+        "location": "tower.east",
+        "inventory": false,
+        "description": "a human with red hair, wearing a red jumpsuit.",
+        "trait": "human",
+        "player": 0
+    },
+    {
+        "name": "jordan",
+        "location": "tower.east",
+        "inventory": false,
+        "description": "a human with red hair, wearing a red jumpsuit.",
+        "trait": "human",
+        "player": 0
+    },
+    {
+        "name": "brian",
+        "location": "tower.east",
+        "inventory": false,
+        "description": "a human with red hair, wearing a red jumpsuit.",
+        "trait": "human",
+        "player": 0
+    }
 ]

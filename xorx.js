@@ -1,6 +1,5 @@
 // xothrog not moving
 // towers not powering down
-// xothrog not always getting increase from sacrifice
 
 $(document).ready( function(){
 
@@ -88,7 +87,7 @@ $(document).ready( function(){
 			})
 				.done( function() {
 
-					console.log("request complete callback");
+					console.log("request complete callback: " + currentXothrogLevel + " " + currentXothrogLocation);
 
 					if (currentXothrogLevel > 2 && currentXothrogLocation != currentLocation) {
 						console.log("fire AI: " + currentXothrogLevel + " " + currentLocation);
