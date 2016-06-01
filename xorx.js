@@ -71,18 +71,26 @@ $(document).ready( function(){
 
 			$.getJSON( 'characters.json', function(data) {
 
+				console.log("charater.json request");
+
 				for (var i = 0; i <= data.length-1; i++) {
+
+					console.log("character request loop: " + i);
 
 					if ( data[i].name == "xothrog" ) {
 						currentXothrogLevel = parseInt(data[i].player);
 						currentXothrogLocation = data[i].location;
+						console.log("xothrog found: " + currentXothrogLevel + " " + currentXothrogLocation);
 						break;
 					}
 				};
 			})
 				.done( function() {
 
+					console.log("request complete callback");
+
 					if (currentXothrogLevel > 2 && currentXothrogLocation != currentLocation) {
+						console.log("fire AI: " + currentXothrogLevel + " " + currentLocation);
 						xothrogAI();
 					}
 				});
