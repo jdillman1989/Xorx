@@ -68,23 +68,16 @@ $(document).ready( function(){
 
 			$.getJSON( 'characters.json', function(data) {
 
-				console.log("$.getJSON characters.json " + currentXothrogLevel);
-
 				for (var i = 0; i <= data.length-1; i++) {
-
-					console.log("for(" + i + ") " + currentXothrogLevel);
 
 					if ( data[i].name == "xothrog" ) {
 						currentXothrogLevel = parseInt(data[i].player);
 						currentXothrogLocation = data[i].location;
-						console.log("if ( data[i].name == xothrog ) " + currentXothrogLevel);
 						break;
 					}
 				};
 			})
 				.done( function() {
-
-					console.log(".done( function() " + currentXothrogLevel);
 
 					if (currentXothrogLevel > 2 && currentXothrogLocation != currentLocation) {
 						xothrogAI();
@@ -452,6 +445,7 @@ $(document).ready( function(){
 			url: '/xorx/addproperty.php',
 			data: { data: playerInfo },
 			success: function () {
+				console.log("(448) saveCharacter -- success: function () {");
 				prompting = true;
 				gamePrompt = "type the name of the character you want to play.";
 				response.append(responsePadding + gamePrompt);
