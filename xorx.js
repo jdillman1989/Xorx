@@ -1,3 +1,6 @@
+// xothrog not moving
+// towers not powering down
+
 $(document).ready( function(){
 
 	$.ajaxSetup({ cache: false });
@@ -101,8 +104,6 @@ $(document).ready( function(){
 		var subject1 = userCommandArray[1];
 		var subject2 = userCommandArray[2];
 
-		console.log("Parsing command: " + userCommandArray[0] + ", " + userCommandArray[1] + ", " + userCommandArray[2]);
-
 		switch (verb) {
 			case "look":
 			case "inspect":
@@ -162,7 +163,6 @@ $(document).ready( function(){
 				break;
 			default:
 				parseError(genericError); //done
-				console.log("parse Command");
 		};
 
 		input.val("");
@@ -175,15 +175,9 @@ $(document).ready( function(){
 
 				$.getJSON( 'characters.json', function(data) {
 
-					console.log("fire getJSON");
-
 					for (var i = 0; i <= data.length-1; i++) {
 
-						console.log("loop count: " + i);
-
 						if ( data[i].name == userAnswer ) {
-
-							console.log("matched");
 
 							response.append(responsePadding + "the character name " + userAnswer + " is already taken. please choose another name for this character.");
 
@@ -195,11 +189,7 @@ $(document).ready( function(){
 
 						else{
 
-							console.log("no match");
-
 							if (i >= data.length-1) {
-
-								console.log("continuing");
 
 								playerName = userAnswer;
 								createCharacter(2);
@@ -397,7 +387,6 @@ $(document).ready( function(){
 				break;
 			default:
 				parseError(genericError);
-				console.log("parse Prompt");
 		};
 
 		input.val("");
@@ -459,7 +448,6 @@ $(document).ready( function(){
 			url: '/xorx/addproperty.php',
 			data: { data: JSON.stringify(playerInfo) },
 			complete: function () {
-				console.log("(448) saveCharacter -- complete: function () {");
 				prompting = true;
 				gamePrompt = "type the name of the character you want to play.";
 				response.append(responsePadding + gamePrompt);
@@ -671,7 +659,6 @@ $(document).ready( function(){
 				break;
 		};
 
-		console.log(subjectParse);
 		return subjectParse;
 	};
 
@@ -1337,8 +1324,6 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						console.log("from name test");
-
 						gamePrompt = "who do you want to talk to?";
 						response.append(responsePadding + gamePrompt);	
 						prompting = true;
@@ -1952,6 +1937,8 @@ $(document).ready( function(){
 
 		var moveNumber = Math.floor(Math.random() * 5) + 1;
 
+		console.log("xothrogAI roll: " + moveNumber);
+
 		$.getJSON( 'characters.json', function(data) {
 
 			var currentXothrogLocation = "";
@@ -1965,6 +1952,8 @@ $(document).ready( function(){
 		})
 
 			.done( function() {
+
+				console.log("xothrogAI location: " + currentXothrogLocation);
 
 				$.getJSON( 'map.json', function(data) {
 
@@ -2007,6 +1996,8 @@ $(document).ready( function(){
 				})
 
 					.done( function() {
+
+						console.log("xothrogAI movement: " + newXothrogLocation);
 
 						var setAIDataString = "";
 
