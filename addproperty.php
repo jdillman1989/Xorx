@@ -11,8 +11,9 @@ $filename = "characters.json";
 $file = '/var/www/games/xorx/'. $filename;
 $current = file_get_contents($file);
 $currentjson = json_decode($current, true);
+$newjson = json_decode($data, true);
 
-array_push($currentjson, $data);
+array_push($currentjson, $newjson);
 
 // Add updated JSON content
 $update = json_encode($currentjson, JSON_PRETTY_PRINT);
