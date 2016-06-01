@@ -14,7 +14,7 @@ $currentjson = json_decode($current, true);
 echo "currentjson\n";
 var_dump($currentjson);
 echo "\n\n";
-$newjson = json_decode($data, true); //null
+$newjson[] = json_decode($data, true); //null
 echo "newjson\n";
 var_dump($newjson);
 echo "\n\n";
