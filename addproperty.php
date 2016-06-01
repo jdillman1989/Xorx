@@ -11,24 +11,12 @@ $filename = "characters.json";
 $file = '/var/www/games/xorx/'. $filename;
 $current = file_get_contents($file);
 $currentjson = json_decode($current, true);
-echo "currentjson\n";
-var_dump($currentjson);
-echo "\n\n";
-$newjson[] = json_decode($data, true); //null
-echo "newjson\n";
-var_dump($newjson);
-echo "\n\n";
+$newjson[] = json_decode($data, true);
 
-$newdata = array_merge($currentjson, $newjson); //null
-echo "newdata\n";
-var_dump($newdata);
-echo "\n\n";
+$newdata = array_merge($currentjson, $newjson);
 
 // Add updated JSON content
-$update = json_encode($newdata, JSON_PRETTY_PRINT); //'null'
-echo "update\n";
-var_dump($update);
-echo "\n\n";
+$update = json_encode($newdata, JSON_PRETTY_PRINT);
 file_put_contents($file, $update);
 
 ?>

@@ -32,7 +32,7 @@ echo $propertyvalue;
 // Open JSON file and make assoc array
 $file = '/var/www/games/xorx/'. $filename;
 $current = file_get_contents($file);
-$currentjson = json_decode($current, true);
+$currentjson = json_decode($current, false);
 var_dump($currentjson);
 $found = false;
 
