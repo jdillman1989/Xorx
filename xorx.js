@@ -13,7 +13,7 @@ $(document).ready( function(){
 
 	var responsePadding = "<br><br>&gt;";
 	var genericError = "your command did not work. please try something different. type help for basic game instructions.";
-	var gameInstructions = "you are a human mysteriously trapped on a strange alien world. is there a way back home? or maybe there is an amazing discovery to be made here...<br>basic instructions: type in the box to control your character. everything you type MUST be lower case. examples: 'take rock', 'look rock', 'go west'. the game saves progress automatically whenever a command is given. if something seems broken or you have any suggestions, please email the developer at jesse@jdillman.com<br>keep in mind that there is more to this game than it may seem at first. :)";
+	var gameInstructions = "you are a human mysteriously trapped on a strange alien world. is there a way back home? or maybe there is an amazing discovery to be made here...<br>basic instructions: type in the box to control your character. everything you type MUST be lower case. examples: 'take rock', 'look rock', 'go west'. the game saves progress automatically whenever a command is given. taking notes is encouraged! if something seems broken or you have any suggestions, please email the developer at jesse@jdillman.com<br>keep in mind that there is more to this game than it may seem at first. :)";
 
 	var prompting = false;
 	var gamePrompt = "";
@@ -567,7 +567,6 @@ $(document).ready( function(){
 				subjectParse = "hotstone";
 				break;
 			case "gem":
-			case "crystal":
 			case "turquoise":
 				subjectParse = "xorxgem";
 				break;
@@ -587,6 +586,7 @@ $(document).ready( function(){
 				break;
 			case "portal":
 			case "crystal":
+			case "structure":
 				subjectParse = "portal";
 				break;
 			case "gun":
@@ -1642,7 +1642,7 @@ $(document).ready( function(){
 
 				var towerTest = data[i].name.split("_");
 
-				if (towerTest == "tower") {
+				if (towerTest[0] == "tower") {
 
 					if (data[i].active > 0) {
 						towersActivated++;
