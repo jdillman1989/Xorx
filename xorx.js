@@ -1,4 +1,5 @@
-// towers not powering down
+// fix command scrolling
+// implement game logging
 
 $(document).ready( function(){
 
@@ -935,8 +936,6 @@ $(document).ready( function(){
 
 				if (towerTest[0] == "tower") {
 
-					console.log(data[i].active);
-
 					if (data[i].active > 0) {
 
 						var towerLevel = data[i].active - 1;
@@ -1694,8 +1693,6 @@ $(document).ready( function(){
 
 	function decreaseTowerActivation (tower, level) {
 
-		console.log("Tower: " + tower + ", Level: " + level);
-
 		var setActiveDataString = "";
 
 		setActiveDataString += "items.json& " + tower + "& ";
@@ -1707,8 +1704,6 @@ $(document).ready( function(){
 			url: '/xorx/setproperty.php',
 			data: { data: setActiveDataString },
 			success: function () {
-
-				console.log("success");
 
 				if (level == 0) {
 					response.append(responsePadding + "you hear a far off sound of something powering down.");

@@ -122,11 +122,23 @@ body{
 	        box-sizing: border-box;
 }
 
-.endgame{
+#endgame{
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     position: fixed;
     background: rgba(255,255,255,0.7);
+}
+
+#endgame div{
+	position: absolute;
+	width: 50%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
 }
