@@ -1,4 +1,3 @@
-// xothrog not moving
 // towers not powering down
 
 $(document).ready( function(){
@@ -50,24 +49,6 @@ $(document).ready( function(){
 
 				parseCommand(playerInput);
 			};
-
-			$.getJSON( 'items.json', function(data) {
-
-				for (var i = 0; i <= data.length-1; i++) {
-
-					var towerTest = data[i].name.split("_");
-
-					if (towerTest == "tower") {
-
-						if (data[i].active > 0) {
-
-							var towerLevel = data[i].active - 1;
-
-							decreaseTowerActivation(data[i].name, towerLevel);
-						};
-					};
-				};
-			});
 		}
 	});
 	
@@ -945,6 +926,28 @@ $(document).ready( function(){
 					xothrogAI();
 				}
 			});
+
+		$.getJSON( 'items.json', function(data) {
+
+			for (var i = 0; i <= data.length-1; i++) {
+
+				var towerTest = data[i].name.split("_");
+
+				console.log(towerTest);
+
+				if (towerTest == "tower") {
+
+					console.log(data[i].active);
+
+					if (data[i].active > 0) {
+
+						var towerLevel = data[i].active - 1;
+
+						decreaseTowerActivation(data[i].name, towerLevel);
+					};
+				};
+			};
+		});
 	};
 
 	function take (item) {
@@ -1693,6 +1696,8 @@ $(document).ready( function(){
 
 	function decreaseTowerActivation (tower, level) {
 
+		console.log("Tower: " + tower + ", Level: " + level);
+
 		var setActiveDataString = "";
 
 		setActiveDataString += "items.json& " + tower + "& ";
@@ -1704,6 +1709,8 @@ $(document).ready( function(){
 			url: '/xorx/setproperty.php',
 			data: { data: setActiveDataString },
 			success: function () {
+
+				console.log("success");
 
 				if (level == 0) {
 					response.append(responsePadding + "you hear a far off sound of something powering down.");
@@ -1951,8 +1958,6 @@ $(document).ready( function(){
 
 			.done( function() {
 
-				console.log("xothrogAI location: " + currentXothrogLocation);
-
 				var newXothrogLocation = "";
 
 				var xothrogDirection = "";
@@ -1962,7 +1967,6 @@ $(document).ready( function(){
 					for (var i = 0; i <= data.length-1; i++) {
 
 						if ( data[i].name == currentXothrogLocation ) {
-							console.log("xothrogAI roll: " + moveNumber);
 							switch (moveNumber) {
 								case 1:
 									newXothrogLocation = data[i].roomlocation.north;
@@ -1995,9 +1999,6 @@ $(document).ready( function(){
 				})
 
 					.done( function() {
-
-						console.log("xothrogAI movement: " + xothrogDirection);
-						console.log("xothrogAI movement: " + newXothrogLocation);
 
 						var setAIDataString = "";
 
