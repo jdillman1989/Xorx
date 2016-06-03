@@ -1987,7 +1987,7 @@ $(document).ready( function(){
 							};
 						};
 					};
-					
+
 					console.log("xothrogAI movement: " + xothrogDirection);
 					console.log("xothrogAI movement: " + newXothrogLocation);
 
@@ -1995,9 +1995,15 @@ $(document).ready( function(){
 						newXothrogLocation = currentXothrogLocation;
 						xothrogDirection = false;
 					};
+
+					console.log("xothrogAI movement: " + xothrogDirection);
+					console.log("xothrogAI movement: " + newXothrogLocation);
 				})
 
 					.done( function() {
+
+						console.log("xothrogAI movement: " + xothrogDirection);
+						console.log("xothrogAI movement: " + newXothrogLocation);
 
 						var setAIDataString = "";
 
