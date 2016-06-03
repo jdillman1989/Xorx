@@ -1937,8 +1937,6 @@ $(document).ready( function(){
 
 		var moveNumber = Math.floor(Math.random() * 5) + 1;
 
-		console.log("xothrogAI roll: " + moveNumber);
-
 		$.getJSON( 'characters.json', function(data) {
 
 			var currentXothrogLocation = "";
@@ -1964,6 +1962,7 @@ $(document).ready( function(){
 					for (var i = 0; i <= data.length-1; i++) {
 
 						if ( data[i].name == currentXothrogLocation ) {
+							console.log("xothrogAI roll: " + moveNumber);
 							switch (moveNumber) {
 								case 1:
 									newXothrogLocation = data[i].roomlocation.north;
@@ -1988,6 +1987,9 @@ $(document).ready( function(){
 							};
 						};
 					};
+					
+					console.log("xothrogAI movement: " + xothrogDirection);
+					console.log("xothrogAI movement: " + newXothrogLocation);
 
 					if (newXothrogLocation = "ocean") {
 						newXothrogLocation = currentXothrogLocation;
@@ -1996,8 +1998,6 @@ $(document).ready( function(){
 				})
 
 					.done( function() {
-
-						console.log("xothrogAI movement: " + newXothrogLocation);
 
 						var setAIDataString = "";
 
