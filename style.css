@@ -31,7 +31,7 @@ body{
 	width: 50%;
 	background-color: #000;
 	background-image: url('images/xorx.png');
-	background-size: cover;
+	background-size: contain;
 	background-repeat: no-repeat;
 	border-right: 2px solid #666;
 	display: flex;
