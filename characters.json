@@ -10,7 +10,7 @@
 	{
 		"name": "xothrog",
 		"location": "sealed",
-		"inventory": false,
+		"inventory": "xorxgem",
 		"description": "an enormous crimson-skinned demon with two curved horns",
 		"trait": "immortal",
 		"player": 1
