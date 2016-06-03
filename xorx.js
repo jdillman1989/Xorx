@@ -590,6 +590,9 @@ $(document).ready( function(){
 			case "structure":
 				subjectParse = "portal";
 				break;
+			case "key":
+				subjectParse = "buttekey";
+				break;
 			case "gun":
 			case "rifle":
 			case "ray":
