@@ -933,9 +933,7 @@ $(document).ready( function(){
 
 				var towerTest = data[i].name.split("_");
 
-				console.log(towerTest);
-
-				if (towerTest == "tower") {
+				if (towerTest[0] == "tower") {
 
 					console.log(data[i].active);
 
