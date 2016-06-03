@@ -430,7 +430,7 @@ $(document).ready( function(){
 
 				if ( data[i].name == nameTest ) {
 
-					if (data[i].name == "xothrog" && data[i].player > 2) {
+					if (data[i].name == "xothrog" && data[i].player >= 2) {
 						response.append(responsePadding + "the demon god's willpower resists your influence.");
 
 						gamePrompt = "type the name of the character you want to play.";
@@ -1511,7 +1511,7 @@ $(document).ready( function(){
 		// butteTrigger - open butteinterior when key is used on door
 		// humanTrigger - destroy a human if there are 3, increase xothrogtrigger counter, and drop his inventory at xothroggrave
 		// xothrogTrigger - set xothrog's location to xothroggrave and start his AI
-		// mindrayTrigger - stop xothrog's AI
+	// mindrayTrigger - stop xothrog's AI
 	// gemTrigger - set final state of portal if location and direction are right
 	// omniscience - set player trait to omniscient and trigger it
 
