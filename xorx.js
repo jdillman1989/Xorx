@@ -31,7 +31,12 @@ $(document).ready( function(){
 	var currentXothrogLevel = 0;
 	var currentXothrogLocation = "";
 
-	response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
+	function displayResponse(textResponse) {
+		response.append(responsePadding + textResponse);
+		response.scrollTop(response.height());
+	}
+
+	displayResponse("type new to start a new character. type continue to play an existing character.");
 
 	input.keydown( function( event ) {
 
@@ -39,7 +44,7 @@ $(document).ready( function(){
 
 		if ( event.which == 13 ) {
 
-			response.append(responsePadding + playerInput);
+			displayResponse(playerInput);
 
 			if (prompting) {
 
@@ -122,7 +127,7 @@ $(document).ready( function(){
 				break;
 			case "continue":
 				gamePrompt = "type the name of the character you want to play."; //done
-				response.append(responsePadding + gamePrompt);
+				displayResponse(gamePrompt);
 				prompting = true;
 				break;
 			default:
@@ -143,10 +148,10 @@ $(document).ready( function(){
 
 						if ( data[i].name == userAnswer ) {
 
-							response.append(responsePadding + "the character name " + userAnswer + " is already taken. please choose another name for this character.");
+							displayResponse("the character name " + userAnswer + " is already taken. please choose another name for this character.");
 
 							gamePrompt = "what is this human's name?";
-							response.append(responsePadding + gamePrompt);	
+							displayResponse(gamePrompt);	
 							prompting = true;
 							break;	
 						}
@@ -181,7 +186,7 @@ $(document).ready( function(){
 
 						if ( data[i].name == "obelisk_" + userAnswer ) {
 
-							response.append(responsePadding + "you see " + data[i].description + ".");
+							displayResponse("you see " + data[i].description + ".");
 							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 							prompting = false;
 							break;
@@ -191,10 +196,10 @@ $(document).ready( function(){
 
 							if (i >= data.length-1) {
 
-								response.append(responsePadding + "please indicate the side of the obelisk you want to see (north, south, east, or west).");
+								displayResponse("please indicate the side of the obelisk you want to see (north, south, east, or west).");
 
 								gamePrompt = "what side of the obelisk do you want to look at?";
-								response.append(responsePadding + gamePrompt);	
+								displayResponse(gamePrompt);	
 								prompting = true;
 							}
 						};
@@ -227,7 +232,7 @@ $(document).ready( function(){
 							if (i >= data.length-1) {
 
 								prompting = false;
-								response.append(responsePadding + "you can't talk to that.");
+								displayResponse("you can't talk to that.");
 								break;
 							}
 						};
@@ -252,20 +257,20 @@ $(document).ready( function(){
 
 							switch (data[i].name){
 								case "xia":
-									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes the xorxian.");
-									response.append(responsePadding + "he clutches his head in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
+									displayResponse("a stream of electricity flashes from the mindray and strikes the xorxian.");
+									displayResponse("he clutches his head in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
 									break;
 								case "xaph":
-									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes the flying creature.");
-									response.append(responsePadding + "it writhes in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
+									displayResponse("a stream of electricity flashes from the mindray and strikes the flying creature.");
+									displayResponse("it writhes in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
 									break;
 								case "xothrog":
-									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes xothrog.");
+									displayResponse("a stream of electricity flashes from the mindray and strikes xothrog.");
 									mindrayTrigger();
 									break;
 								default:
-									response.append(responsePadding + "a stream of electricity flashes from the mindray and strikes " + data[i].name + ".");
-									response.append(responsePadding + "he clutches his head in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
+									displayResponse("a stream of electricity flashes from the mindray and strikes " + data[i].name + ".");
+									displayResponse("he clutches his head in pain for a moment but quickly recovers. it seems like that was completely unnecessary.");
 									break;
 							};
 							break;
@@ -276,7 +281,7 @@ $(document).ready( function(){
 							if (i >= data.length-1) {
 
 								prompting = false;
-								response.append(responsePadding + "you can't shoot at that.");
+								displayResponse("you can't shoot at that.");
 								break;
 							}
 						};
@@ -296,12 +301,12 @@ $(document).ready( function(){
 
 							if (currentTrait == "xorxian") {
 
-								response.append(responsePadding + data[i].translation + ".");
+								displayResponse(data[i].translation + ".");
 							} 
 
 							else {
 
-								response.append(responsePadding + "you cannot decipher these xorxian runes.");
+								displayResponse("you cannot decipher these xorxian runes.");
 							};
 							
 							prompting = false;
@@ -312,10 +317,10 @@ $(document).ready( function(){
 
 							if (i >= data.length-1) {
 
-								response.append(responsePadding + "please indicate the side of the obelisk you want to read (north, south, east, or west).");
+								displayResponse("please indicate the side of the obelisk you want to read (north, south, east, or west).");
 
 								gamePrompt = "what side of the obelisk do you want to read?";
-								response.append(responsePadding + gamePrompt);	
+								displayResponse(gamePrompt);	
 								prompting = true;
 							}
 						};
@@ -341,8 +346,8 @@ $(document).ready( function(){
 							if (i >= data.length-1) {
 
 								prompting = false;
-								response.append(responsePadding + "that is not a valid character for sacrifice.");
-								response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
+								displayResponse("that is not a valid character for sacrifice.");
+								displayResponse("type new to start a new character. type continue to play an existing character.");
 								break;
 							}
 						};
@@ -366,30 +371,30 @@ $(document).ready( function(){
 
 					if (data.length > 5) {
 						gamePrompt = "the world of xorx can only sustain three humans at any given time. to create a new character, you must sacrifice an existing human. type the name of the human you wish to sacrifice.";
-						response.append(responsePadding + gamePrompt);
+						displayResponse(gamePrompt);
 						prompting = true;
 					}
 					else{
 						gamePrompt = "what is this human's name?";
-						response.append(responsePadding + gamePrompt);
+						displayResponse(gamePrompt);
 					};
 				});
 				break;
 			case 2:
 				gamePrompt = "what is this human's hair color?";
-				response.append(responsePadding + gamePrompt);
+				displayResponse(gamePrompt);
 				break;
 			case 3:
 				gamePrompt = "the human is wearing a jumpsuit. what color is it?";
-				response.append(responsePadding + gamePrompt);
+				displayResponse(gamePrompt);
 				break;
 			case 4:
-				response.append(responsePadding + "success. starting game now...");
+				displayResponse("success. starting game now...");
 				saveCharacter(playerName, playerHair, playerSuit);
 				break;
 			default:
 				gamePrompt = "error: something went wrong during character creation. please refresh the browser window to restart.";
-				response.append(responsePadding + gamePrompt);
+				displayResponse(gamePrompt);
 				break;
 		};
 	};
@@ -414,10 +419,10 @@ $(document).ready( function(){
 			complete: function () {
 				prompting = true;
 				gamePrompt = "type the name of the character you want to play.";
-				response.append(responsePadding + gamePrompt);
+				displayResponse(gamePrompt);
 			},
 			failure: function() {
-				response.append(responsePadding + "problem saving new character: server disrupted save process.");
+				displayResponse("problem saving new character: server disrupted save process.");
 			}
 		});
 	};
@@ -431,10 +436,10 @@ $(document).ready( function(){
 				if ( data[i].name == nameTest ) {
 
 					if (data[i].name == "xothrog" && data[i].player >= 2) {
-						response.append(responsePadding + "the demon god's willpower resists your influence.");
+						displayResponse("the demon god's willpower resists your influence.");
 
 						gamePrompt = "type the name of the character you want to play.";
-						response.append(responsePadding + gamePrompt);
+						displayResponse(gamePrompt);
 					} 
 
 					else{
@@ -449,10 +454,10 @@ $(document).ready( function(){
 				else{
 
 					if (i >= data.length-1) {
-						response.append(responsePadding + "no character data found for " + nameTest + ".");
+						displayResponse("no character data found for " + nameTest + ".");
 
 						gamePrompt = "type the name of the character you want to play.";
-						response.append(responsePadding + gamePrompt);
+						displayResponse(gamePrompt);
 					};
 
 					prompting = true;
@@ -483,7 +488,7 @@ $(document).ready( function(){
 			for (var i = 0; i <= data.length-1; i++) {
 
 				if (data[i].name == currentLocation) {
-					response.append(responsePadding + "you are at " + data[i].roomdescription + ".");
+					displayResponse("you are at " + data[i].roomdescription + ".");
 					image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 					break;
 				}
@@ -492,7 +497,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						response.append(responsePadding + "starting location error.");
+						displayResponse("starting location error.");
 					};
 				};
 			};
@@ -525,11 +530,11 @@ $(document).ready( function(){
 	};
 
 	function help () {
-		response.append(responsePadding + gameInstructions);
+		displayResponse(gameInstructions);
 	};
 
 	function parseError (errorMessage) {
-		response.append(responsePadding + errorMessage);
+		displayResponse(errorMessage);
 	};
 
 	function parseSubject (subject) {
@@ -641,7 +646,7 @@ $(document).ready( function(){
 
 				prompting = true;
 				gamePrompt = "what side of the obelisk do you want to look at?";
-				response.append(responsePadding + gamePrompt);
+				displayResponse(gamePrompt);
 				return;
 			};
 
@@ -656,7 +661,7 @@ $(document).ready( function(){
 							scrollTrigger();
 						};
 
-						response.append(responsePadding + "you see " + data[i].description + ".");
+						displayResponse("you see " + data[i].description + ".");
 						found = true;
 					};
 				};
@@ -670,7 +675,7 @@ $(document).ready( function(){
 
 						if (data[i].location == currentLocation || data[i].location == currentPlayer) {
 
-							response.append(responsePadding + "you see " + data[i].description + ".");
+							displayResponse("you see " + data[i].description + ".");
 							image.css({ "background-image" : "url('images/" + data[i].name + ".png')" });
 							found = true;
 						};
@@ -681,7 +686,7 @@ $(document).ready( function(){
 
 					if ( !found ) {
 
-							response.append(responsePadding + "there is nothing more to see there.");
+							displayResponse("there is nothing more to see there.");
 							look();
 					};
 				});
@@ -745,7 +750,7 @@ $(document).ready( function(){
 					lookDataString += lookData[i].name + " you see " + lookData[i].text + ". ";
 				};
 
-				response.append(responsePadding + lookDataString);
+				displayResponse(lookDataString);
 			});
 
 			$.getJSON( 'items.json', function(data) {
@@ -766,7 +771,7 @@ $(document).ready( function(){
 
 						for (var i = 0; i <= locationItemArray.length-1; i++) {
 
-							response.append(responsePadding + "there is " + locationItemArray[i] + ".");
+							displayResponse("there is " + locationItemArray[i] + ".");
 						};
 					};
 				});
@@ -792,7 +797,7 @@ $(document).ready( function(){
 
 						for (var i = 0; i <= locationCharacterArray.length-1; i++) {
 
-							response.append(responsePadding + "there is " + locationCharacterArray[i] + ".");
+							displayResponse("there is " + locationCharacterArray[i] + ".");
 						};
 					};
 				});
@@ -821,7 +826,7 @@ $(document).ready( function(){
 					getCurrentPlayerInfo(currentPlayer);
 					displayCurrentLocation();
 				},
-				failure: function() { response.append(responsePadding + "problem moving character: server disrupted process."); }
+				failure: function() { displayResponse("problem moving character: server disrupted process."); }
 			});
 		};
 
@@ -838,7 +843,7 @@ $(document).ready( function(){
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way.");
+								displayResponse("you can't go that way.");
 							};
 							break;
 						case "south":
@@ -847,7 +852,7 @@ $(document).ready( function(){
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way.");
+								displayResponse("you can't go that way.");
 							};
 							break;
 						case "east":
@@ -856,7 +861,7 @@ $(document).ready( function(){
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way.");
+								displayResponse("you can't go that way.");
 							};
 							break;
 						case "west":
@@ -865,7 +870,7 @@ $(document).ready( function(){
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way.");
+								displayResponse("you can't go that way.");
 							};
 							break;
 						case "up":
@@ -877,12 +882,12 @@ $(document).ready( function(){
 
 								else{
 
-									response.append(responsePadding + "you are not able to fly.");
+									displayResponse("you are not able to fly.");
 								};
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way.");
+								displayResponse("you can't go that way.");
 							};
 							break;
 						case "down":
@@ -892,11 +897,11 @@ $(document).ready( function(){
 							} 
 
 							else {
-								response.append(responsePadding + "you can't go that way.");
+								displayResponse("you can't go that way.");
 							};
 							break;
 						default:
-							response.append(responsePadding + "that is not a valid direction.");
+							displayResponse("that is not a valid direction.");
 							break;
 					};
 
@@ -907,7 +912,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						response.append(responsePadding + "movement error.");
+						displayResponse("movement error.");
 					};
 				};
 			};
@@ -974,9 +979,9 @@ $(document).ready( function(){
 
 					inventory.html("<br>" + currentInventory);
 
-					response.append(responsePadding + "you take the " + inventorySet + ".");
+					displayResponse("you take the " + inventorySet + ".");
 				},
-				failure: function() { response.append(responsePadding + "problem taking item: server cannot access inventory."); }
+				failure: function() { displayResponse("problem taking item: server cannot access inventory."); }
 			});
 		};
 
@@ -996,7 +1001,7 @@ $(document).ready( function(){
 				data: { data: itemDataString },
 				success: function () {
 				},
-				failure: function() { response.append(responsePadding + "problem taking item: server cannot set item location."); }
+				failure: function() { displayResponse("problem taking item: server cannot set item location."); }
 			});
 		};
 
@@ -1008,7 +1013,7 @@ $(document).ready( function(){
 
 					if (currentInventory) {
 
-						response.append(responsePadding + "you are already carrying something.");
+						displayResponse("you are already carrying something.");
 						break;
 					} 
 
@@ -1024,7 +1029,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						response.append(responsePadding + "you can't take that.");
+						displayResponse("you can't take that.");
 					};
 				};
 			};
@@ -1048,7 +1053,7 @@ $(document).ready( function(){
 				data: { data: inventoryDataString },
 				success: function () {
 
-					response.append(responsePadding + "you drop the " + currentInventory + ".");
+					displayResponse("you drop the " + currentInventory + ".");
 
 					getCurrentPlayerInfo(currentPlayer);
 
@@ -1062,7 +1067,7 @@ $(document).ready( function(){
 						inventory.html("");
 					};
 				},
-				failure: function() { response.append(responsePadding + "problem dropping item: server cannot access inventory."); }
+				failure: function() { displayResponse("problem dropping item: server cannot access inventory."); }
 			});
 		};
 
@@ -1082,7 +1087,7 @@ $(document).ready( function(){
 				data: { data: itemDataString },
 				success: function () {
 				},
-				failure: function() { response.append(responsePadding + "problem dropping item: server cannot set item location."); }
+				failure: function() { displayResponse("problem dropping item: server cannot set item location."); }
 			});
 		};
 
@@ -1101,7 +1106,7 @@ $(document).ready( function(){
 
 					else {
 
-						response.append(responsePadding + "you are not carrying anything.");
+						displayResponse("you are not carrying anything.");
 						break;
 					};
 				};
@@ -1146,7 +1151,7 @@ $(document).ready( function(){
 							givenRecipientParse = givenRecipient;
 					};
 
-					response.append(responsePadding + "you give the " + currentInventory + " to " + givenRecipientParse + ".");
+					displayResponse("you give the " + currentInventory + " to " + givenRecipientParse + ".");
 
 					if (currentInventory == "hotstone" && givenRecipient == "xia") {
 
@@ -1165,7 +1170,7 @@ $(document).ready( function(){
 						inventory.html("");
 					};
 				},
-				failure: function() { response.append(responsePadding + "problem giving item: server cannot access player inventory."); }
+				failure: function() { displayResponse("problem giving item: server cannot access player inventory."); }
 			});
 		};
 
@@ -1184,7 +1189,7 @@ $(document).ready( function(){
 				url: '/xorx/setproperty.php',
 				data: { data: giveRecipientDataString },
 				success: function () {},
-				failure: function() { response.append(responsePadding + "problem giving item: server cannot access recipient inventory."); }
+				failure: function() { displayResponse("problem giving item: server cannot access recipient inventory."); }
 			});
 		};
 
@@ -1203,7 +1208,7 @@ $(document).ready( function(){
 				url: '/xorx/setproperty.php',
 				data: { data: itemDataString },
 				success: function () {},
-				failure: function() { response.append(responsePadding + "problem giving item: server cannot set item location."); }
+				failure: function() { displayResponse("problem giving item: server cannot set item location."); }
 			});
 		};
 
@@ -1217,7 +1222,7 @@ $(document).ready( function(){
 
 						if (data[i].inventory) {
 
-							response.append(responsePadding + "that character is already holding something.");
+							displayResponse("that character is already holding something.");
 							break;
 						}
 
@@ -1232,7 +1237,7 @@ $(document).ready( function(){
 
 						if (i >= data.length-1) {
 
-							response.append(responsePadding + "please include a valid character to give to.");
+							displayResponse("please include a valid character to give to.");
 							break;
 						};
 					};
@@ -1251,13 +1256,13 @@ $(document).ready( function(){
 					} 
 
 					else {
-						response.append(responsePadding + "he has no interest in that.");
+						displayResponse("he has no interest in that.");
 					};
 				} 
 
 				else{
 
-					response.append(responsePadding + "could not give the item.");
+					displayResponse("could not give the item.");
 				};
 			});
 	};
@@ -1280,7 +1285,7 @@ $(document).ready( function(){
 
 						if (data[i].trait != currentTrait) {
 
-							response.append(responsePadding + "he does not understand your language.");
+							displayResponse("he does not understand your language.");
 							understanding = false;
 						};
 
@@ -1288,29 +1293,29 @@ $(document).ready( function(){
 							case "xia":
 
 								if (data[i].inventory == "hotstone") {
-									response.append(responsePadding + "the xorxian gestures to himself and says \"xia\".");
+									displayResponse("the xorxian gestures to himself and says \"xia\".");
 								} 
 
 								else {
-									response.append(responsePadding + "the xorxian does not respond, but continues watching you closely.");
+									displayResponse("the xorxian does not respond, but continues watching you closely.");
 								};
 								break parent;
 							case "xaph":
-								response.append(responsePadding + "the flying creature does not seem capable of conversation.");
+								displayResponse("the flying creature does not seem capable of conversation.");
 								break parent;
 							case "xothrog":
-								response.append(responsePadding + "xothrog does not seem interested in conversation.");
+								displayResponse("xothrog does not seem interested in conversation.");
 								break parent;
 							default:
 
 								if (understanding) {
 
-									response.append(responsePadding + "the human responds, \"greetings friend, my name is " + data[i].name + "\".");
+									displayResponse("the human responds, \"greetings friend, my name is " + data[i].name + "\".");
 								} 
 
 								else{
 
-									response.append(responsePadding + "the human gives no response.");
+									displayResponse("the human gives no response.");
 								};
 								break parent;
 						};
@@ -1318,7 +1323,7 @@ $(document).ready( function(){
 
 					else{
 
-						response.append(responsePadding + "you can't talk to that character here.");
+						displayResponse("you can't talk to that character here.");
 						break parent;
 					};
 				}
@@ -1328,7 +1333,7 @@ $(document).ready( function(){
 					if (i >= data.length-1) {
 
 						gamePrompt = "who do you want to talk to?";
-						response.append(responsePadding + gamePrompt);	
+						displayResponse(gamePrompt);	
 						prompting = true;
 						break;
 					};
@@ -1343,7 +1348,7 @@ $(document).ready( function(){
 
 		if (intendedSubject == "runes" || intendedSubject === undefined) {
 
-			response.append(responsePadding + "try reading with the name of the object.");
+			displayResponse("try reading with the name of the object.");
 			return;
 		};
 
@@ -1351,7 +1356,7 @@ $(document).ready( function(){
 
 			prompting = true;
 			gamePrompt = "what side of the obelisk do you want to read?";
-			response.append(responsePadding + gamePrompt);
+			displayResponse(gamePrompt);
 			return;
 		};
 		
@@ -1370,37 +1375,37 @@ $(document).ready( function(){
 
 								if (currentTrait == "xorxian") {
 
-									response.append(responsePadding + data[i].translation + ".");
+									displayResponse(data[i].translation + ".");
 								} 
 
 								else{
-									response.append(responsePadding + "you cannot decipher these xorxian runes.");
+									displayResponse("you cannot decipher these xorxian runes.");
 								};
 								break parent;
 							case "inscription":
 								image.css({ "background-image" : "url('images/inscription.png')" });
-								response.append(responsePadding + "you stoop down and read the inscription.");
+								displayResponse("you stoop down and read the inscription.");
 
 								if (currentTrait == "human") {
 
-									response.append(responsePadding + "it says, " + data[i].translation + ".");
+									displayResponse("it says, " + data[i].translation + ".");
 								} 
 
 								else{
 
-									response.append(responsePadding + "you cannot decipher these human runes.");
+									displayResponse("you cannot decipher these human runes.");
 								};
 
 								break parent;
 							default:
-								response.append(responsePadding + "there is nothing to read on that.");
+								displayResponse("there is nothing to read on that.");
 								break parent;
 						};
 					}
 
 					else{
 
-						response.append(responsePadding + "you can't read that here.");
+						displayResponse("you can't read that here.");
 						break parent;
 					};
 				}
@@ -1409,7 +1414,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						response.append(responsePadding + "you can't read that.");
+						displayResponse("you can't read that.");
 						break;
 					};
 				};
@@ -1452,39 +1457,39 @@ $(document).ready( function(){
 							case "mindray":
 								prompting = true;
 								gamePrompt = "what do you want to fire the mindray at?";
-								response.append(responsePadding + gamePrompt);
+								displayResponse(gamePrompt);
 								break parent;
 							case "scroll":
 								read("scroll");
 								break parent;
 							case "xorxgem":
 								if (currentTrait == "immortal") {
-									response.append(responsePadding + "you can use your immortal power to produce a beam of energy from the gem.");
+									displayResponse("you can use your immortal power to produce a beam of energy from the gem.");
 									gemTrigger();
 								} 
 								else {
-									response.append(responsePadding + "it seems like this xorxian artifact would require immortal power to operate.");
+									displayResponse("it seems like this xorxian artifact would require immortal power to operate.");
 								};
 								break parent;
 							case "console":
 								if (currentTrait == "human") {
 									var orientation = data[i].name.split("_");
-									response.append(responsePadding + "you place your hand into the console.");
+									displayResponse("you place your hand into the console.");
 									towerTrigger(orientation[1]);
 								} 
 								else {
-									response.append(responsePadding + "you are not capable of operating this human technology.");
+									displayResponse("you are not capable of operating this human technology.");
 								};
 								break parent;
 							default:
-								response.append(responsePadding + "you see no way to operate that.");
+								displayResponse("you see no way to operate that.");
 								break parent;
 						};
 					}
 
 					else{
 
-						response.append(responsePadding + "you can't use that here.");
+						displayResponse("you can't use that here.");
 						break parent;
 					};
 				}
@@ -1493,7 +1498,7 @@ $(document).ready( function(){
 
 					if (i >= data.length-1) {
 
-						response.append(responsePadding + "you can't use that.");
+						displayResponse("you can't use that.");
 						break;
 					};
 				};
@@ -1531,9 +1536,9 @@ $(document).ready( function(){
 			data: { data: setScrollDataString },
 			success: function () {
 
-				response.append(responsePadding + "the xorxian notices you and raises the scroll in his hand. he waves his free hand around the scroll.");
+				displayResponse("the xorxian notices you and raises the scroll in his hand. he waves his free hand around the scroll.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xorxian event: server cannot access scroll item."); }
+			failure: function() { displayResponse("problem triggering xorxian event: server cannot access scroll item."); }
 		});
 
 		var setInvDataString = "";
@@ -1549,9 +1554,9 @@ $(document).ready( function(){
 			data: { data: setInvDataString },
 			success: function () {
 
-				response.append(responsePadding + "with a wave of the xorxian's hand, the scroll vanishes into thin air.");
+				displayResponse("with a wave of the xorxian's hand, the scroll vanishes into thin air.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xorxian event: server cannot access xorxian inventory."); }
+			failure: function() { displayResponse("problem triggering xorxian event: server cannot access xorxian inventory."); }
 		});
 	};
 
@@ -1571,9 +1576,9 @@ $(document).ready( function(){
 			data: { data: setDescDataString },
 			success: function () {
 
-				response.append(responsePadding + "the xorxian takes the stone and places it into a slot in the wall you hadn't noticed. suddenly lights spring to life and a comfortable warmth fills the cave.");
+				displayResponse("the xorxian takes the stone and places it into a slot in the wall you hadn't noticed. suddenly lights spring to life and a comfortable warmth fills the cave.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xorxian event: server cannot access map description."); }
+			failure: function() { displayResponse("problem triggering xorxian event: server cannot access map description."); }
 		});
 
 		var setDownDataString = "";
@@ -1590,9 +1595,9 @@ $(document).ready( function(){
 			data: { data: setDownDataString },
 			success: function () {
 
-				response.append(responsePadding + "the large metal door in the back of the cave slides open.");
+				displayResponse("the large metal door in the back of the cave slides open.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xiascave event: server cannot access map location."); }
+			failure: function() { displayResponse("problem triggering xiascave event: server cannot access map location."); }
 		});
 
 		var setXiaDataString = "";
@@ -1609,9 +1614,9 @@ $(document).ready( function(){
 			data: { data: setXiaDataString },
 			success: function () {
 
-				response.append(responsePadding + "the xorxian seems pleased. he looks at you, gestures to himself and says \"xia\".");
+				displayResponse("the xorxian seems pleased. he looks at you, gestures to himself and says \"xia\".");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xia event: server cannot access xorxian description."); }
+			failure: function() { displayResponse("problem triggering xia event: server cannot access xorxian description."); }
 		});
 	};
 
@@ -1631,9 +1636,9 @@ $(document).ready( function(){
 			data: { data: setTowerDataString },
 			success: function () {
 
-				response.append(responsePadding + "you hear a deep rumbling sound coming from above. the monitor shows a beam of light emitting from the top of the tower.");
+				displayResponse("you hear a deep rumbling sound coming from above. the monitor shows a beam of light emitting from the top of the tower.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering tower event: server cannot access item properties."); }
+			failure: function() { displayResponse("problem triggering tower event: server cannot access item properties."); }
 		});
 
 		var towersActivated = 0;
@@ -1670,9 +1675,9 @@ $(document).ready( function(){
 						data: { data: setPortalDataString },
 						success: function () {
 
-							response.append(responsePadding + "you feel a powerful aura expanding from the center of the island.");
+							displayResponse("you feel a powerful aura expanding from the center of the island.");
 						},
-						failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+						failure: function() { displayResponse("problem triggering portal event: server cannot access item properties."); }
 					});
 
 					var setCrystalDataString = "";
@@ -1688,7 +1693,7 @@ $(document).ready( function(){
 						url: '/xorx/setproperty.php',
 						data: { data: setCrystalDataString },
 						success: function () {},
-						failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+						failure: function() { displayResponse("problem triggering portal event: server cannot access item properties."); }
 					});
 				};
 			});
@@ -1709,10 +1714,10 @@ $(document).ready( function(){
 			success: function () {
 
 				if (level == 0) {
-					response.append(responsePadding + "you hear a far off sound of something powering down.");
+					displayResponse("you hear a far off sound of something powering down.");
 				};
 			},
-			failure: function() { response.append(responsePadding + "problem triggering tower event: server cannot access item properties."); }
+			failure: function() { displayResponse("problem triggering tower event: server cannot access item properties."); }
 		});
 	};
 
@@ -1726,20 +1731,20 @@ $(document).ready( function(){
 
 					switch (data[i].active) {
 						case 0:
-							response.append(responsePadding + "the crystal feels icy cold on your hand.");
+							displayResponse("the crystal feels icy cold on your hand.");
 							break;
 						case 1:
-							response.append(responsePadding + "the crystal's power practically pulls you towards it. you place your hand on it's hot surface and embrace a wave of light rushing over you. you feel your body being whisked away.");
+							displayResponse("the crystal's power practically pulls you towards it. you place your hand on it's hot surface and embrace a wave of light rushing over you. you feel your body being whisked away.");
 
 							setTimeout(endGame, 6000);
 							break;
 						case 2:
-							response.append(responsePadding + "the crystal's power practically pulls you towards it. you place your hand on it's hot surface and embrace a wave of light rushing over you. you feel your consciousness expanding.");
+							displayResponse("the crystal's power practically pulls you towards it. you place your hand on it's hot surface and embrace a wave of light rushing over you. you feel your consciousness expanding.");
 
 							setTimeout(omniscience, 6000);
 							break;
 						default:
-							response.append(responsePadding + "something is wrong with this, there is a problem with your save.");
+							displayResponse("something is wrong with this, there is a problem with your save.");
 							break;
 					};
 				};
@@ -1764,7 +1769,7 @@ $(document).ready( function(){
 
 				$("#endgame").fadeIn();
 			},
-			failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+			failure: function() { displayResponse("problem triggering portal event: server cannot access item properties."); }
 		});
 
 		if (currentInventory) {
@@ -1781,7 +1786,7 @@ $(document).ready( function(){
 				url: '/xorx/setproperty.php',
 				data: { data: setDropDataString },
 				success: function () {},
-				failure: function() { response.append(responsePadding + "problem triggering portal event: server cannot access item properties."); }
+				failure: function() { displayResponse("problem triggering portal event: server cannot access item properties."); }
 			});
 		};
 	};
@@ -1802,9 +1807,9 @@ $(document).ready( function(){
 			data: { data: setButteDataString },
 			success: function () {
 
-				response.append(responsePadding + "the sealed door in the base of the butte slides open.");
+				displayResponse("the sealed door in the base of the butte slides open.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering butte event: server cannot access map location."); }
+			failure: function() { displayResponse("problem triggering butte event: server cannot access map location."); }
 		});
 
 		var setDescDataString = "";
@@ -1820,7 +1825,7 @@ $(document).ready( function(){
 			url: '/xorx/setproperty.php',
 			data: { data: setDescDataString },
 			success: function () {},
-			failure: function() { response.append(responsePadding + "problem triggering butte event: server cannot access map description."); }
+			failure: function() { displayResponse("problem triggering butte event: server cannot access map description."); }
 		});
 	};
 
@@ -1854,7 +1859,7 @@ $(document).ready( function(){
 						data: { data: setInvDataString },
 						success: function () {
 						},
-						failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access inventory data."); }
+						failure: function() { displayResponse("problem triggering sacrifice event: server cannot access inventory data."); }
 					});
 				};
 			});		
@@ -1870,10 +1875,10 @@ $(document).ready( function(){
 			data: { data: setSacrificeDataString },
 			success: function () {
 
-				response.append(responsePadding + "you have sacrificed " + sacrifice + " to the demon god xothrog.");
-				response.append(responsePadding + "type new to start a new character. type continue to play an existing character.");
+				displayResponse("you have sacrificed " + sacrifice + " to the demon god xothrog.");
+				displayResponse("type new to start a new character. type continue to play an existing character.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access character data."); }
+			failure: function() { displayResponse("problem triggering sacrifice event: server cannot access character data."); }
 		});
 
 		var xothrogLevel = 0;
@@ -1908,7 +1913,7 @@ $(document).ready( function(){
 						data: { data: setXothrogDataString },
 						success: function () {
 						},
-						failure: function() { response.append(responsePadding + "problem triggering sacrifice event: server cannot access xothrog data."); }
+						failure: function() { displayResponse("problem triggering sacrifice event: server cannot access xothrog data."); }
 					});
 				};
 			});	
@@ -1930,9 +1935,9 @@ $(document).ready( function(){
 			data: { data: setXothrogDataString },
 			success: function () {
 
-				response.append(responsePadding + "the demon god xothrog has awoken.");
+				displayResponse("the demon god xothrog has awoken.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character location."); }
+			failure: function() { displayResponse("problem triggering xothrog event: server cannot access character location."); }
 		});
 	};
 
@@ -2011,10 +2016,10 @@ $(document).ready( function(){
 							success: function () {
 
 								if (xothrogDirection) {
-									response.append(responsePadding + "the demon god xothrog moves " + xothrogDirection + ".");
+									displayResponse("the demon god xothrog moves " + xothrogDirection + ".");
 								};
 							},
-							failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character location."); }
+							failure: function() { displayResponse("problem triggering xothrog event: server cannot access character location."); }
 						});
 					});
 			});
@@ -2035,17 +2040,17 @@ $(document).ready( function(){
 			data: { data: setLevelDataString },
 			success: function () {
 
-				response.append(responsePadding + "the demon god seems unaffected, but you feel his willpower is weakened.");
+				displayResponse("the demon god seems unaffected, but you feel his willpower is weakened.");
 			},
-			failure: function() { response.append(responsePadding + "problem triggering xothrog event: server cannot access character level."); }
+			failure: function() { displayResponse("problem triggering xothrog event: server cannot access character level."); }
 		});
 	}
 
 	function gemTrigger() {
-		response.append(responsePadding + "test gemTrigger function");
+		displayResponse("test gemTrigger function");
 	}
 
 	function omniscience() {
-		response.append(responsePadding + "test omniscience function");
+		displayResponse("test omniscience function");
 	}
 });
