@@ -33,7 +33,7 @@ $(document).ready( function(){
 
 	function displayResponse(textResponse) {
 		response.append(responsePadding + textResponse);
-		response.scrollTop(response.height());
+		response.scrollTop(response.prop("scrollHeight"));
 	}
 
 	displayResponse("type new to start a new character. type continue to play an existing character.");
