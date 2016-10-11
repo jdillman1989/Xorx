@@ -31,6 +31,19 @@ $(document).ready( function(){
 	var currentXothrogLevel = 0;
 	var currentXothrogLocation = "";
 
+	$(window).on("beforeunload", function() {
+
+		var sessionInfo = $('#response').html();
+
+		$.ajax({
+			type: "GET",
+			dataType : 'json',
+			async: false,
+			url: '/xorx/logsession.php',
+			data: { data: sessionInfo }
+		});
+	});
+
 	function displayResponse(textResponse) {
 		response.append(responsePadding + textResponse);
 		response.scrollTop(response.prop("scrollHeight"));
