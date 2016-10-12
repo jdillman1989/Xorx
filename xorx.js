@@ -42,6 +42,10 @@ $(document).ready( function(){
 			url: '/xorx/logsession.php',
 			data: { data: sessionInfo }
 		});
+
+		if (confirm("Your progress has been logged for debugging purposes. Exit now?")) {
+			close();
+		}
 	});
 
 	function displayResponse(textResponse) {
