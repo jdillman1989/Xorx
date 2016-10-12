@@ -31,14 +31,14 @@ $(document).ready( function(){
 	var currentXothrogLevel = 0;
 	var currentXothrogLocation = "";
 
-	$(window).on("beforeunload", function() {
+	setTimeout(function(){
 
 		var sessionInfo = $('#response').html();
 
 		$.ajax({
 			type: "GET",
 			dataType : 'json',
-			async: false,
+			async: true,
 			url: '/xorx/logsession.php',
 			data: { data: sessionInfo }
 		});
@@ -46,7 +46,7 @@ $(document).ready( function(){
 		if (confirm("Your progress has been logged for debugging purposes. Exit now?")) {
 			close();
 		}
-	});
+	}, 10000);
 
 	function displayResponse(textResponse) {
 		response.append(responsePadding + textResponse);
