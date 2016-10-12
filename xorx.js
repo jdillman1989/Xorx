@@ -5,6 +5,15 @@ $(document).ready( function(){
 
 	$.ajaxSetup({ cache: false });
 
+	var currentdate = new Date(); 
+    var datetime = currentdate.getDate() + "-"
+                + (currentdate.getMonth()+1) + "-" 
+                + currentdate.getFullYear() + "_"  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+	var currentSession = datetime;
+
 	var image = $('#screen');
 	var response = $('#response');
 	var input = $('#input');
@@ -40,7 +49,7 @@ $(document).ready( function(){
 			dataType : 'json',
 			async: true,
 			url: '/xorx/logsession.php',
-			data: { data: sessionInfo }
+			data: {data: sessionInfo, session: currentSession}
 		});
 
 	}, 15000);
