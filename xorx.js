@@ -31,7 +31,7 @@ $(document).ready( function(){
 	var currentXothrogLevel = 0;
 	var currentXothrogLocation = "";
 
-	setTimeout(function(){
+	setInterval(function(){
 
 		var sessionInfo = $('#response').html();
 
@@ -42,8 +42,8 @@ $(document).ready( function(){
 			url: '/xorx/logsession.php',
 			data: { data: sessionInfo }
 		});
-		
-	}, 10000);
+
+	}, 15000);
 
 	function displayResponse(textResponse) {
 		response.append(responsePadding + textResponse);
